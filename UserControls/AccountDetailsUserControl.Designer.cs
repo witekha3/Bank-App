@@ -155,6 +155,7 @@
             this.AccountNumberLabel.Size = new System.Drawing.Size(613, 30);
             this.AccountNumberLabel.TabIndex = 3;
             this.AccountNumberLabel.Text = "Account Number: 00 0000 0000 0000 0000 0000 0000";
+
             // 
             // CancelButton
             // 
