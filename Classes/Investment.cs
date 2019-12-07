@@ -9,11 +9,11 @@ namespace Bank_App.Classes
 {
     class Investment
     {
-        public int Id { get; set; }
-        public InvestmentTypes InvestmentType { get; set; }
-        public decimal Value { get; set; }
-        public DateTime Duration { get; set; }
-        public double Interest { get; set; }
+        public int Id { get; private set; }
+        public InvestmentTypes InvestmentType { get; private set; }
+        public decimal Value { get; private set; }
+        public DateTime Duration { get; private set; }
+        public double Interest { get; private set; }
 
         public Investment()
         {

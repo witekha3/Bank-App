@@ -100,14 +100,14 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                AccountsManager.newClient.AccountNumber = AccountsManager.GenerateAccountNumber();
-                AccountsManager.newClient.Name = NameTextBox.Text;
-                AccountsManager.newClient.Surname = SurnameTextBox.Text;
-                AccountsManager.newClient.City = CityNameTextBox.Text;
-                AccountsManager.newClient.ZipCode = ZipCodeTextBox1.Text;
-                AccountsManager.newClient.DateOfBirth = DateOfBirthPicker.Value;
-                AccountsManager.newClient.PhoneNumber = PhoneNumberTextBox.Text;
-                AccountsManager.newClient.Pesel = PeselTextBox.Text;
+                AccountsManager.Client.AccountNumber = AccountsManager.GenerateAccountNumber();
+                AccountsManager.Client.Name = NameTextBox.Text;
+                AccountsManager.Client.Surname = SurnameTextBox.Text;
+                AccountsManager.Client.City = CityNameTextBox.Text;
+                AccountsManager.Client.ZipCode = ZipCodeTextBox1.Text;
+                AccountsManager.Client.DateOfBirth = DateOfBirthPicker.Value;
+                AccountsManager.Client.PhoneNumber = PhoneNumberTextBox.Text;
+                AccountsManager.Client.Pesel = PeselTextBox.Text;
 
                 AccountsManager.CreateAccount();
 

@@ -113,7 +113,7 @@ namespace Bank_App.UserControls
 
         private void Next()
         {
-            AccountsManager.newClient = null;
+            AccountsManager.Client = null;
             bool isConfirmed = CheckControls();
 
             if (isConfirmed == true)
@@ -123,7 +123,7 @@ namespace Bank_App.UserControls
                 if (arePasswordsSame == true)
                 {
                     SetTextBoxesValue();
-                    AccountsManager.newClient = new Client(LogInTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text);
+                    AccountsManager.Client = new Client(LogInTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text);
                     this.Parent.Controls["addingClientUserControl2"].BringToFront();
                 }
             }

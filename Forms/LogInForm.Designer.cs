@@ -42,13 +42,9 @@
             this.LogInTextBox = new System.Windows.Forms.TextBox();
             this.LoginLabel = new System.Windows.Forms.Label();
             this.TitleLabel = new System.Windows.Forms.Label();
-            this.AdminRadioButton = new System.Windows.Forms.RadioButton();
-            this.UserRadioButton = new System.Windows.Forms.RadioButton();
-            this.LoginAsGroupBox = new System.Windows.Forms.GroupBox();
             this.LeftPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).BeginInit();
             this.RightPanel.SuspendLayout();
-            this.LoginAsGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // LeftPanel
@@ -88,7 +84,6 @@
             this.RightPanel.BackColor = System.Drawing.SystemColors.Menu;
             this.RightPanel.Controls.Add(this.ExitButton);
             this.RightPanel.Controls.Add(this.LogInButton);
-            this.RightPanel.Controls.Add(this.LoginAsGroupBox);
             this.RightPanel.Controls.Add(this.IncorrectPasswordLabel);
             this.RightPanel.Controls.Add(this.IncorrectLoginLabel);
             this.RightPanel.Controls.Add(this.PasswordTextBox);
@@ -198,40 +193,6 @@
             this.TitleLabel.TabIndex = 0;
             this.TitleLabel.Text = "Log In";
             // 
-            // AdminRadioButton
-            // 
-            this.AdminRadioButton.AutoSize = true;
-            this.AdminRadioButton.Location = new System.Drawing.Point(21, 35);
-            this.AdminRadioButton.Name = "AdminRadioButton";
-            this.AdminRadioButton.Size = new System.Drawing.Size(146, 25);
-            this.AdminRadioButton.TabIndex = 0;
-            this.AdminRadioButton.Text = "Administrator ";
-            this.AdminRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // UserRadioButton
-            // 
-            this.UserRadioButton.AutoSize = true;
-            this.UserRadioButton.Checked = true;
-            this.UserRadioButton.Location = new System.Drawing.Point(21, 76);
-            this.UserRadioButton.Name = "UserRadioButton";
-            this.UserRadioButton.Size = new System.Drawing.Size(79, 25);
-            this.UserRadioButton.TabIndex = 1;
-            this.UserRadioButton.TabStop = true;
-            this.UserRadioButton.Text = "Client";
-            this.UserRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // LoginAsGroupBox
-            // 
-            this.LoginAsGroupBox.Controls.Add(this.UserRadioButton);
-            this.LoginAsGroupBox.Controls.Add(this.AdminRadioButton);
-            this.LoginAsGroupBox.Font = new System.Drawing.Font("Century Gothic", 10F);
-            this.LoginAsGroupBox.Location = new System.Drawing.Point(20, 280);
-            this.LoginAsGroupBox.Name = "LoginAsGroupBox";
-            this.LoginAsGroupBox.Size = new System.Drawing.Size(341, 116);
-            this.LoginAsGroupBox.TabIndex = 4;
-            this.LoginAsGroupBox.TabStop = false;
-            this.LoginAsGroupBox.Text = "Log in as:";
-            // 
             // LogInForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -250,8 +211,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.LogoPictureBox)).EndInit();
             this.RightPanel.ResumeLayout(false);
             this.RightPanel.PerformLayout();
-            this.LoginAsGroupBox.ResumeLayout(false);
-            this.LoginAsGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -271,9 +230,6 @@
         private System.Windows.Forms.Button LogInButton;
         private System.Windows.Forms.Label MottoLabel;
         private System.Windows.Forms.PictureBox LogoPictureBox;
-        private System.Windows.Forms.GroupBox LoginAsGroupBox;
-        private System.Windows.Forms.RadioButton UserRadioButton;
-        private System.Windows.Forms.RadioButton AdminRadioButton;
     }
 }
 

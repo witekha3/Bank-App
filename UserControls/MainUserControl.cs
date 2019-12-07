@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bank_App.Classes;
 
 namespace Bank_App.UserControls
 {
@@ -15,7 +16,7 @@ namespace Bank_App.UserControls
         public MainUserControl()
         {
             InitializeComponent();
-            HelloLabel.Text = "Good Morning, Username \n Today is: " + DateTime.Now.ToString("D");
+            HelloLabel.Text = "Good Morning, " + LogInManager.WhoIsCurrentLoged + "\n Today is: " + DateTime.Now.ToString("D");
 
         }
 

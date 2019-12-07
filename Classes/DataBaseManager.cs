@@ -19,17 +19,31 @@ namespace Bank_App.Forms
                 return connectionString;
             }
         }
-        public static DataTable Get(String query) {
+
+        public static DataTable Get(string query) 
+        {
             SqlConnection sqlcon = new SqlConnection(ConnectionString);
-            sqlcon.Open();
-            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlcon);
             DataTable dataTable = new DataTable();
-            sqlDataAdapter.Fill(dataTable);
-            sqlcon.Close();
+            try
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlcon);
+                sqlDataAdapter.Fill(dataTable);
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            finally
+            {
+                sqlcon.Close();
+            }
+
             return dataTable;
+
         }
 
-        public static void Post(String query) {
+        public static void Post(string query) {
 
             SqlConnection sqlcon = new SqlConnection(ConnectionString);
             try
@@ -39,7 +53,8 @@ namespace Bank_App.Forms
                 command.ExecuteNonQuery();
                 
             }
-            catch(Exception e) {
+            catch(Exception e) 
+            {
                 MessageBox.Show(e.ToString());
             }
             finally

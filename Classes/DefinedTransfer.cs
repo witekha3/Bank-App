@@ -8,10 +8,10 @@ namespace Bank_App.Classes
 {
     class DefinedTransfer
     {
-        public string DefinedTransferName { get; set; }
-        public decimal LastTransferValue { get; set; }
-        public string AccountNumber { get; set; }
-        public DateTime LastTransferDate { get; set; }
+        public string DefinedTransferName { get; private set; }
+        public decimal LastTransferValue { get; private set; }
+        public string AccountNumber { get; private set; }
+        public DateTime LastTransferDate { get; private set; }
 
         public DefinedTransfer()
         {

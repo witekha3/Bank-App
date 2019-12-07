@@ -64,28 +64,48 @@ namespace Bank_App
 
         private void LogIn()
         {
+            ResetControls();
+
             bool isConfirmed = CheckControls();
+            bool isAdmin;
 
             if (isConfirmed == true)
             {
-                if (AdminRadioButton.Checked)
+                bool isUserExist = LogInManager.LogIn(LogInTextBox.Text, PasswordTextBox.Text, out isAdmin);
+                
+                if(isUserExist == true)
                 {
-                    AdminForm adminMainForm = new AdminForm();
-                    this.Hide();
-                    adminMainForm.Show();
+                    if(isAdmin == true)
+                    {
+                        AdminForm adminForm = new AdminForm();
+                        adminForm.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        ClientForm clientForm = new ClientForm();
+                        clientForm.Show();
+                        this.Hide();
+                    }
+
                 }
                 else
                 {
-                    ClientForm clientForm = new ClientForm();
-                    this.Hide();
-                    clientForm.Show();
+
+                    IncorrectLoginLabel.Visible = true;
+                    LogInTextBox.ForeColor = Color.White;
+                    LogInTextBox.BackColor = Color.Red;
+
+                    IncorrectPasswordLabel.Visible = true;
+                    PasswordTextBox.ForeColor = Color.White;
+                    PasswordTextBox.BackColor = Color.Red;
+
                 }
             }
         }
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            ResetControls();
             LogIn();
         }
     }
