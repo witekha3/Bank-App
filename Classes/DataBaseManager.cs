@@ -11,7 +11,7 @@ namespace Bank_App.Forms
 {
     class DataBaseManager
     {
-        private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;Initial Catalog=BankAppDatabase;Integrated Security=True";
+        private static string connectionString = "Server=tcp:bankappio.database.windows.net,1433;Initial Catalog=BankAppDatabase;Persist Security Info=False;User ID=bankAdmin;Password=IOon5ive;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         public static string ConnectionString
         {
             get
@@ -22,7 +22,7 @@ namespace Bank_App.Forms
 
         public static DataTable Get(string query) 
         {
-            SqlConnection sqlcon = new SqlConnection(ConnectionString);
+            SqlConnection sqlcon = new SqlConnection(connectionString);
             DataTable dataTable = new DataTable();
             try
             {
@@ -45,7 +45,7 @@ namespace Bank_App.Forms
 
         public static void Post(string query) {
 
-            SqlConnection sqlcon = new SqlConnection(ConnectionString);
+            SqlConnection sqlcon = new SqlConnection(connectionString);
             try
             {
                 sqlcon.Open();

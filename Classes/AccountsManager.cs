@@ -30,15 +30,14 @@ namespace Bank_App.Classes
 
         public static void CreateAccount()
         {
-
             string personTableQ = "INSERT INTO PersonTable VALUES(" +
                 "'" + Client.Name + "', '" + Client.Surname + "', " +
                 "'" + Client.City + "', '" + Client.ZipCode + "', " +
-                "'" + Client.Email + "', '" + Client.DateOfBirth.ToString("dd-M-yyyy", CultureInfo.InvariantCulture) + "', " +
-                "'" + Client.PhoneNumber + "', '" + Client.Pesel + "')";
+                "'" + Client.Email + "', '" + "2011-11-11" + "', " +
+                "'" + Client.PhoneNumber + "')";
             
             string userTableQ = "INSERT INTO UserTable VALUES(" +
-                "'" + Client.Login + "', '" + Client.Password + "')";
+                "'" + Client.Login + "', '" + Client.Password + "', '" + 1 + "')";
 
             string createAccountQ = "" +
             "Begin" +
