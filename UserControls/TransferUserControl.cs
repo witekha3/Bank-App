@@ -51,6 +51,14 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
+            if(AccountNumberTextBox.Text == "")
+            {
+                IncorrectAccountNumberLabel.Visible = true;
+                AccountNumberTextBox.ForeColor = Color.White;
+                AccountNumberTextBox.BackColor = Color.Red;
+                isConfirmed = false;
+            }
+
             if (isConfirmed)
                 return true;
             else
@@ -64,12 +72,14 @@ namespace Bank_App.UserControls
                 TitleTextBox.Enabled = true;
                 ValueTextBox.Enabled = true;
                 DatePicker.Enabled = true;
+                AccountNumberTextBox.Enabled = true;
             }
             else
             {
                 TitleTextBox.Enabled = false;
                 ValueTextBox.Enabled = false;
                 DatePicker.Enabled = false;
+                AccountNumberTextBox.Enabled = false;
             }
         }
 
@@ -90,7 +100,8 @@ namespace Bank_App.UserControls
             SetVisibility(false);
             ResetControls();
             TitleTextBox.Text = "Title";
-            ValueTextBox.Text = "Value";
+            ValueTextBox.Text = "0";
+            AccountNumberTextBox.Text = "0";
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
 
