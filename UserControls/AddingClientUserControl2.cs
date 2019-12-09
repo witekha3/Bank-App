@@ -46,8 +46,8 @@ namespace Bank_App.UserControls
             ZipCodeTextBox1.Text = "00-000";
             PeselTextBox.Text = "Pesel";
             PhoneNumberTextBox.Text = "PhoneNumber";
-            DateOfBirthPicker.MaxDate = DateTime.Now;
-            DateOfBirthPicker.Value = DateTime.Now;
+            DateOfBirthPicker.MaxDate = DateTime.Today;
+            DateOfBirthPicker.Value = DateTime.Today;
         }
 
         private bool CheckControls()
@@ -105,7 +105,7 @@ namespace Bank_App.UserControls
                 AccountsManager.Client.Surname = SurnameTextBox.Text;
                 AccountsManager.Client.City = CityNameTextBox.Text;
                 AccountsManager.Client.ZipCode = ZipCodeTextBox1.Text;
-                AccountsManager.Client.DateOfBirth = DateOfBirthPicker.Value;
+                AccountsManager.Client.DateOfBirth = DateOfBirthPicker.Value.Date;
                 AccountsManager.Client.PhoneNumber = PhoneNumberTextBox.Text;
                 AccountsManager.Client.Pesel = PeselTextBox.Text;
 

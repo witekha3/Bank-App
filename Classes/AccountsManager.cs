@@ -33,8 +33,8 @@ namespace Bank_App.Classes
             string personTableQ = "INSERT INTO PersonTable VALUES(" +
                 "'" + Client.Name + "', '" + Client.Surname + "', " +
                 "'" + Client.City + "', '" + Client.ZipCode + "', " +
-                "'" + Client.Email + "', '" + "2011-11-11" + "', " +
-                "'" + Client.PhoneNumber + "')";
+                "'" + Client.Email + "', '" + Client.DateOfBirth.ToString() + "', " +
+                "'" + Client.PhoneNumber + "', '" + Client.Pesel + "')";
             
             string userTableQ = "INSERT INTO UserTable VALUES(" +
                 "'" + Client.Login + "', '" + Client.Password + "', '" + 1 + "')";
