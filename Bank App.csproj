@@ -136,6 +136,12 @@
     <Compile Include="UserControls\MainUserControl.Designer.cs">
       <DependentUpon>MainUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\SelectDefinedTransferUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\SelectDefinedTransferUserControl.Designer.cs">
+      <DependentUpon>SelectDefinedTransferUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\TransferUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -180,6 +186,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MainUserControl.resx">
       <DependentUpon>MainUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\SelectDefinedTransferUserControl.resx">
+      <DependentUpon>SelectDefinedTransferUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\TransferUserControl.resx">
       <DependentUpon>TransferUserControl.cs</DependentUpon>

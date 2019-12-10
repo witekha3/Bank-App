@@ -95,14 +95,27 @@ namespace Bank_App.UserControls
             }
         }
 
+        private void SetValueOfTextBoxes()
+        {
+            TitleTextBox.Text = "Title";
+            ValueTextBox.Text = "0";
+            AccountNumberTextBox.Text = "0";
+        }
+
         private void Cancel()
         {
             SetVisibility(false);
             ResetControls();
-            TitleTextBox.Text = "Title";
-            ValueTextBox.Text = "0";
-            AccountNumberTextBox.Text = "0";
+            SetValueOfTextBoxes();
             this.Parent.Controls["MainUserControl"].BringToFront();
+        }
+
+        private void SelectDefinedTransfer()
+        {
+            SetVisibility(false);
+            ResetControls();
+            SetValueOfTextBoxes();
+            this.Parent.Controls["selectDefinedTransferUserControl"].BringToFront();
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -112,7 +125,7 @@ namespace Bank_App.UserControls
 
         private void DefinedTransferButton_Click(object sender, EventArgs e)
         {
-
+            SelectDefinedTransfer();
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
