@@ -41,7 +41,7 @@ namespace Bank_App.Classes
                 }
 
             }
-            catch(IndexOutOfRangeException e )
+            catch(IndexOutOfRangeException)
             {
                 isAdmin = false;
                 return false;

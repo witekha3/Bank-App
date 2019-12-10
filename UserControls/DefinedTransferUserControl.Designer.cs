@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.DefinedTransfersLabel = new System.Windows.Forms.Label();
-            this.DefinedTransfersListView = new System.Windows.Forms.ListView();
+            this.DefinedTransferListView = new System.Windows.Forms.ListView();
             this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AccountNumberColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,24 +53,24 @@
             this.DefinedTransfersLabel.Text = "Defined Transfers";
             this.DefinedTransfersLabel.UseWaitCursor = true;
             // 
-            // DefinedTransfersListView
+            // DefinedTransferListView
             // 
-            this.DefinedTransfersListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.DefinedTransferListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.NameColumn,
             this.LastValueColumn,
             this.AccountNumberColumn,
             this.DateColumn});
-            this.DefinedTransfersListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DefinedTransfersListView.FullRowSelect = true;
-            this.DefinedTransfersListView.GridLines = true;
-            this.DefinedTransfersListView.HideSelection = false;
-            this.DefinedTransfersListView.LabelWrap = false;
-            this.DefinedTransfersListView.Location = new System.Drawing.Point(20, 70);
-            this.DefinedTransfersListView.Name = "DefinedTransfersListView";
-            this.DefinedTransfersListView.Size = new System.Drawing.Size(690, 450);
-            this.DefinedTransfersListView.TabIndex = 4;
-            this.DefinedTransfersListView.UseCompatibleStateImageBehavior = false;
-            this.DefinedTransfersListView.View = System.Windows.Forms.View.Details;
+            this.DefinedTransferListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DefinedTransferListView.FullRowSelect = true;
+            this.DefinedTransferListView.GridLines = true;
+            this.DefinedTransferListView.HideSelection = false;
+            this.DefinedTransferListView.LabelWrap = false;
+            this.DefinedTransferListView.Location = new System.Drawing.Point(20, 70);
+            this.DefinedTransferListView.Name = "DefinedTransferListView";
+            this.DefinedTransferListView.Size = new System.Drawing.Size(690, 450);
+            this.DefinedTransferListView.TabIndex = 4;
+            this.DefinedTransferListView.UseCompatibleStateImageBehavior = false;
+            this.DefinedTransferListView.View = System.Windows.Forms.View.Details;
             // 
             // NameColumn
             // 
@@ -100,6 +100,7 @@
             this.CreateButton.TabIndex = 5;
             this.CreateButton.Text = "Create";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // DeleteButton
             // 
@@ -165,7 +166,7 @@
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.CreateButton);
-            this.Controls.Add(this.DefinedTransfersListView);
+            this.Controls.Add(this.DefinedTransferListView);
             this.Controls.Add(this.Instruction2Label);
             this.Controls.Add(this.Instruction1Label);
             this.Controls.Add(this.DefinedTransfersLabel);
@@ -182,7 +183,7 @@
         #endregion
 
         private System.Windows.Forms.Label DefinedTransfersLabel;
-        private System.Windows.Forms.ListView DefinedTransfersListView;
+        private System.Windows.Forms.ListView DefinedTransferListView;
         private System.Windows.Forms.ColumnHeader NameColumn;
         private System.Windows.Forms.ColumnHeader LastValueColumn;
         private System.Windows.Forms.ColumnHeader DateColumn;

@@ -113,6 +113,7 @@ namespace Bank_App.UserControls
 
                 SetTextBoxesValue();
                 ResetControls();
+                AccountsManager.Client = null;
                 this.Parent.Controls["mainUserControl"].BringToFront();
             }
         }
