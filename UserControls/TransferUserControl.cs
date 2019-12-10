@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bank_App.Classes;
+using Bank_App.Forms;
 
 namespace Bank_App.UserControls
 {
@@ -109,6 +111,40 @@ namespace Bank_App.UserControls
             SetValueOfTextBoxes();
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
+        private Transfer CreateTransfer()
+        {
+            Transfer transfer = new Transfer(
+                TitleTextBox.Text,
+                Convert.ToDecimal(ValueTextBox.Text),
+                LogInManager.WhoIsCurrentLoged,
+                AccountNumberTextBox.Text,
+                DatePicker.Value.Date);
+            return transfer;
+        }
+        private bool CheckIfExist()
+        {
+            DataTable ReceiverData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + AccountNumberTextBox.Text + "'" + "");
+            if (ReceiverData.Rows.Count != 0) return true;
+            else
+            {
+                MessageBox.Show("Wrong receiver account number");
+                return false;
+            }
+        }
+        private bool CheckBalance()
+        {
+            DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+            decimal saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
+            if (saldo >= Convert.ToDecimal(ValueTextBox.Text)) 
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("You don't have enough money to realize this transfer");
+                return false;
+            }
+        }
 
         private void SelectDefinedTransfer()
         {
@@ -120,6 +156,10 @@ namespace Bank_App.UserControls
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
+            if (CheckIfExist() && CheckBalance())
+            {
+                TransferManager.SendMoney(CreateTransfer());
+            }
             Confirm();
         }
 

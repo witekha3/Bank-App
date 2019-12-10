@@ -16,12 +16,13 @@ namespace Bank_App.Classes
         public static bool LogIn(string login, string password, out bool isAdmin)
         {
             DataTable datatable = DataBaseManager.Get("SELECT * FROM UserTable WHERE Login = " + "'" + login + "' AND PASSWORD = " + "'" + password + "'");
-
+            int userId= Convert.ToInt32(datatable.Rows[0]["Id"]);
             try
             {
                 if (datatable.Rows.Count == 1)
                 {
-                    WhoIsCurrentLoged = datatable.Rows[0]["Login"].ToString();
+                    DataTable data = DataBaseManager.Get("SELECT * FROM AccountTable WHERE UserId = " + "'" + userId + "'");
+                    WhoIsCurrentLoged = data.Rows[0]["AccountNumber"].ToString();
                     if(datatable.Rows[0]["isAdmin"].ToString() == "True")
                     {
                         isAdmin = true;

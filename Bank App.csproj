@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\TransferManager.cs" />
     <Compile Include="Classes\DefinedTransfer.cs" />
     <Compile Include="Classes\Investment.cs" />
     <Compile Include="Classes\Transfer.cs" />

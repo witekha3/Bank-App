@@ -28,34 +28,50 @@ namespace Bank_App.Classes
             return accountNumber;
         }
 
+        public static bool CheckIfPersonExist(String pesel) 
+        {
+            bool exist = false;
+            if (DataBaseManager.Get("SELECT * FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
+            {
+                exist = true;
+            }
+            return exist;
+
+        }
+
         public static void CreateAccount()
         {
-            string personTableQ = "INSERT INTO PersonTable VALUES(" +
-                "'" + Client.Name + "', '" + Client.Surname + "', " +
-                "'" + Client.City + "', '" + Client.ZipCode + "', " +
-                "'" + Client.Email + "', '" + Client.DateOfBirth.ToString() + "', " +
-                "'" + Client.PhoneNumber + "', '" + Client.Pesel + "')";
+            if (CheckIfPersonExist(Client.Pesel))
+            {
+                MessageBox.Show("This person already has account");
+            }
+            else { 
+                string personTableQ = "INSERT INTO PersonTable VALUES(" +
+                    "'" + Client.Name + "', '" + Client.Surname + "', " +
+                    "'" + Client.City + "', '" + Client.ZipCode + "', " +
+                    "'" + Client.Email + "', '" + Client.DateOfBirth.ToString() + "', " +
+                    "'" + Client.PhoneNumber + "', '" + Client.Pesel + "')";
             
-            string userTableQ = "INSERT INTO UserTable VALUES(" +
-                "'" + Client.Login + "', '" + Client.Password + "', '" + 1 + "')";
-
-            string createAccountQ = "" +
-            "Begin" +
-            "    Declare @PersonId int" +
-            "    Declare @UserId int" +
-            "    if (@PersonId is null)" +
-            "                Begin" +
-            "                    " + personTableQ +
-            "        Select @PersonId = SCOPE_IDENTITY()" +
-            "    End" +
-            "    if (@UserId is null)" +
-            "                Begin" +
-            "                    " + userTableQ +
-            "        Select @UserID = SCOPE_IDENTITY()" +
-            "    End" +
-            "    Insert into AccountTable values(@PersonId, @UserId, '" + Client.AccountNumber + "')" +
-            "End";
-            DataBaseManager.Post(createAccountQ);
+                string userTableQ = "INSERT INTO UserTable VALUES(" +
+                    "'" + Client.Login + "', '" + Client.Password + "', '" + Client.IsAdmin.ToString() + "')";
+                string createAccountQ = "" +
+                "Begin" +
+                "    Declare @PersonId int" +
+                "    Declare @UserId int" +
+                "    if (@PersonId is null)" +
+                "                Begin" +
+                "                    " + personTableQ +
+                "        Select @PersonId = SCOPE_IDENTITY()" +
+                "    End" +
+                "    if (@UserId is null)" +
+                "                Begin" +
+                "                    " + userTableQ +
+                "        Select @UserID = SCOPE_IDENTITY()" +
+                "    End" +
+                "    Insert into AccountTable values(@PersonId, @UserId, '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')" +
+                "End";
+                DataBaseManager.Post(createAccountQ);
+            }
         }
     }
 }
