@@ -29,9 +29,9 @@ namespace Bank_App.UserControls
 
             try
             {
-                DefinedTransfersListView.SelectedItems[0].Remove();
+                DefinedTransferListView.SelectedItems[0].Remove();
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 IncorrectSelectedItemLabel.Visible = true;
             }
@@ -53,6 +53,11 @@ namespace Bank_App.UserControls
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             Delete();
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

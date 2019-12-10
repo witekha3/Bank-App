@@ -30,7 +30,7 @@ namespace Bank_App.UserControls
             {
                 InvestmentsListView.SelectedItems[0].Remove();
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 IncorrectSelectedItemLabel.Visible = true;
             }
@@ -43,6 +43,12 @@ namespace Bank_App.UserControls
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
 
+        private void Create()
+        {
+            ResetControls();
+            this.Parent.Controls["addingInvestmentUserControl"].BringToFront();
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Cancel();
@@ -52,5 +58,11 @@ namespace Bank_App.UserControls
         {
             Delete();
         }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            Create();
+        }
+
     }
 }
