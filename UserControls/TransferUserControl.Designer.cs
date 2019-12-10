@@ -42,6 +42,9 @@
             this.DefinedTransferButton = new System.Windows.Forms.Button();
             this.CreateTransferButton = new System.Windows.Forms.Button();
             this.OrLabel = new System.Windows.Forms.Label();
+            this.AccountNumberLabel = new System.Windows.Forms.Label();
+            this.AccountNumberTextBox = new System.Windows.Forms.TextBox();
+            this.IncorrectAccountNumberLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TransferLabel
@@ -129,7 +132,7 @@
             // 
             this.DatePicker.Enabled = false;
             this.DatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePicker.Location = new System.Drawing.Point(25, 490);
+            this.DatePicker.Location = new System.Drawing.Point(25, 590);
             this.DatePicker.MaxDate = new System.DateTime(2019, 10, 26, 0, 0, 0, 0);
             this.DatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.DatePicker.Name = "DatePicker";
@@ -140,7 +143,7 @@
             // DateLabel
             // 
             this.DateLabel.AutoSize = true;
-            this.DateLabel.Location = new System.Drawing.Point(20, 455);
+            this.DateLabel.Location = new System.Drawing.Point(20, 555);
             this.DateLabel.Name = "DateLabel";
             this.DateLabel.Size = new System.Drawing.Size(64, 23);
             this.DateLabel.TabIndex = 13;
@@ -199,6 +202,41 @@
             this.OrLabel.Text = "or";
             this.OrLabel.UseWaitCursor = true;
             // 
+            // AccountNumberLabel
+            // 
+            this.AccountNumberLabel.AutoSize = true;
+            this.AccountNumberLabel.Location = new System.Drawing.Point(20, 455);
+            this.AccountNumberLabel.Name = "AccountNumberLabel";
+            this.AccountNumberLabel.Size = new System.Drawing.Size(180, 23);
+            this.AccountNumberLabel.TabIndex = 13;
+            this.AccountNumberLabel.Text = "Account Number";
+            this.AccountNumberLabel.UseWaitCursor = true;
+            // 
+            // AccountNumberTextBox
+            // 
+            this.AccountNumberTextBox.Enabled = false;
+            this.AccountNumberTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.AccountNumberTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.AccountNumberTextBox.Location = new System.Drawing.Point(25, 490);
+            this.AccountNumberTextBox.Name = "AccountNumberTextBox";
+            this.AccountNumberTextBox.Size = new System.Drawing.Size(300, 28);
+            this.AccountNumberTextBox.TabIndex = 11;
+            this.AccountNumberTextBox.Text = "0";
+            this.AccountNumberTextBox.UseWaitCursor = true;
+            // 
+            // IncorrectAccountNumberLabel
+            // 
+            this.IncorrectAccountNumberLabel.AutoSize = true;
+            this.IncorrectAccountNumberLabel.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IncorrectAccountNumberLabel.ForeColor = System.Drawing.Color.Red;
+            this.IncorrectAccountNumberLabel.Location = new System.Drawing.Point(20, 520);
+            this.IncorrectAccountNumberLabel.Name = "IncorrectAccountNumberLabel";
+            this.IncorrectAccountNumberLabel.Size = new System.Drawing.Size(269, 19);
+            this.IncorrectAccountNumberLabel.TabIndex = 12;
+            this.IncorrectAccountNumberLabel.Text = "Value, which you entered is incorrect.";
+            this.IncorrectAccountNumberLabel.UseWaitCursor = true;
+            this.IncorrectAccountNumberLabel.Visible = false;
+            // 
             // TransferUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -209,9 +247,12 @@
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.DatePicker);
+            this.Controls.Add(this.AccountNumberLabel);
             this.Controls.Add(this.DateLabel);
+            this.Controls.Add(this.IncorrectAccountNumberLabel);
             this.Controls.Add(this.IncorrectValueLabel);
             this.Controls.Add(this.IncorrectTitleLabel);
+            this.Controls.Add(this.AccountNumberTextBox);
             this.Controls.Add(this.ValueTextBox);
             this.Controls.Add(this.TitleTextBox);
             this.Controls.Add(this.ValueLabel);
@@ -244,5 +285,8 @@
         private System.Windows.Forms.Button DefinedTransferButton;
         private System.Windows.Forms.Button CreateTransferButton;
         private System.Windows.Forms.Label OrLabel;
+        private System.Windows.Forms.Label AccountNumberLabel;
+        private System.Windows.Forms.TextBox AccountNumberTextBox;
+        private System.Windows.Forms.Label IncorrectAccountNumberLabel;
     }
 }

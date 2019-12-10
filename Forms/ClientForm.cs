@@ -27,19 +27,6 @@ namespace Bank_App.Forms
                 return instance;
             }
         }
-
-        public Panel Container
-        {
-            get
-            {
-                return CentralPanel;
-            }
-
-            set
-            {
-                CentralPanel = value;
-            }
-        }
         public ClientForm()
         {
             InitializeComponent();
@@ -68,6 +55,10 @@ namespace Bank_App.Forms
             InvestmentsUserControl investmentsUserControl = new InvestmentsUserControl();
             investmentsUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(investmentsUserControl);
+
+            AddingInvestmentUserControl addingInvestmentUserControl = new AddingInvestmentUserControl();
+            addingInvestmentUserControl.Dock = DockStyle.Fill;
+            CentralPanel.Controls.Add(addingInvestmentUserControl);
         }
 
         private void LogOut()

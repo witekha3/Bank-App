@@ -28,11 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.InvestmentsListView = new System.Windows.Forms.ListView();
-            this.IdColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.InterestColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.InvestmentsLabel = new System.Windows.Forms.Label();
             this.IncorrectSelectedItemLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
@@ -40,49 +35,16 @@
             this.CreateButton = new System.Windows.Forms.Button();
             this.Instruction2Label = new System.Windows.Forms.Label();
             this.Instruction1Label = new System.Windows.Forms.Label();
+            this.InvestmentsListView = new System.Windows.Forms.ListView();
+            this.IdColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.InvestmentNameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.TypeColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.ValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.InterestColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.StartColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.FinishColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
-            // 
-            // InvestmentsListView
-            // 
-            this.InvestmentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.IdColumn,
-            this.TypeColumn,
-            this.ValueColumn,
-            this.DurationColumn,
-            this.InterestColumn});
-            this.InvestmentsListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.InvestmentsListView.FullRowSelect = true;
-            this.InvestmentsListView.GridLines = true;
-            this.InvestmentsListView.HideSelection = false;
-            this.InvestmentsListView.LabelWrap = false;
-            this.InvestmentsListView.Location = new System.Drawing.Point(20, 70);
-            this.InvestmentsListView.Name = "InvestmentsListView";
-            this.InvestmentsListView.Size = new System.Drawing.Size(690, 450);
-            this.InvestmentsListView.TabIndex = 14;
-            this.InvestmentsListView.UseCompatibleStateImageBehavior = false;
-            this.InvestmentsListView.View = System.Windows.Forms.View.Details;
-            // 
-            // IdColumn
-            // 
-            this.IdColumn.Text = "Id";
-            // 
-            // ValueColumn
-            // 
-            this.ValueColumn.Text = "Value";
-            this.ValueColumn.Width = 100;
-            // 
-            // DurationColumn
-            // 
-            this.DurationColumn.DisplayIndex = 4;
-            this.DurationColumn.Text = "Duration";
-            this.DurationColumn.Width = 200;
-            // 
-            // InterestColumn
-            // 
-            this.InterestColumn.DisplayIndex = 3;
-            this.InterestColumn.Text = "Interest";
-            this.InterestColumn.Width = 100;
             // 
             // InvestmentsLabel
             // 
@@ -136,6 +98,7 @@
             this.CreateButton.TabIndex = 17;
             this.CreateButton.Text = "Create";
             this.CreateButton.UseVisualStyleBackColor = true;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // Instruction2Label
             // 
@@ -159,10 +122,68 @@
             this.Instruction1Label.Text = "Create a new investment.";
             this.Instruction1Label.UseWaitCursor = true;
             // 
+            // InvestmentsListView
+            // 
+            this.InvestmentsListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.IdColumn,
+            this.InvestmentNameColumn,
+            this.TypeColumn,
+            this.ValueColumn,
+            this.InterestColumn,
+            this.StartColumn,
+            this.DurationColumn,
+            this.FinishColumn});
+            this.InvestmentsListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.InvestmentsListView.FullRowSelect = true;
+            this.InvestmentsListView.GridLines = true;
+            this.InvestmentsListView.HideSelection = false;
+            this.InvestmentsListView.LabelWrap = false;
+            this.InvestmentsListView.Location = new System.Drawing.Point(20, 70);
+            this.InvestmentsListView.MultiSelect = false;
+            this.InvestmentsListView.Name = "InvestmentsListView";
+            this.InvestmentsListView.Size = new System.Drawing.Size(690, 450);
+            this.InvestmentsListView.TabIndex = 19;
+            this.InvestmentsListView.UseCompatibleStateImageBehavior = false;
+            this.InvestmentsListView.View = System.Windows.Forms.View.Details;
+            // 
+            // IdColumn
+            // 
+            this.IdColumn.Text = "Id";
+            // 
+            // InvestmentNameColumn
+            // 
+            this.InvestmentNameColumn.Text = "Name";
+            this.InvestmentNameColumn.Width = 200;
+            // 
             // TypeColumn
             // 
             this.TypeColumn.Text = "Type";
-            this.TypeColumn.Width = 226;
+            this.TypeColumn.Width = 200;
+            // 
+            // ValueColumn
+            // 
+            this.ValueColumn.Text = "Value";
+            this.ValueColumn.Width = 116;
+            // 
+            // InterestColumn
+            // 
+            this.InterestColumn.Text = "Interest";
+            this.InterestColumn.Width = 100;
+            // 
+            // StartColumn
+            // 
+            this.StartColumn.Text = "Start";
+            this.StartColumn.Width = 130;
+            // 
+            // DurationColumn
+            // 
+            this.DurationColumn.Text = "Duration";
+            this.DurationColumn.Width = 130;
+            // 
+            // FinishColumn
+            // 
+            this.FinishColumn.Text = "Finish";
+            this.FinishColumn.Width = 130;
             // 
             // InvestmentsUserControl
             // 
@@ -179,7 +200,7 @@
             this.Controls.Add(this.Instruction1Label);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "InvestmentsUserControl";
             this.Size = new System.Drawing.Size(730, 800);
             this.ResumeLayout(false);
@@ -188,12 +209,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ListView InvestmentsListView;
-        private System.Windows.Forms.ColumnHeader IdColumn;
-        private System.Windows.Forms.ColumnHeader ValueColumn;
-        private System.Windows.Forms.ColumnHeader DurationColumn;
-        private System.Windows.Forms.ColumnHeader InterestColumn;
         private System.Windows.Forms.Label InvestmentsLabel;
         private System.Windows.Forms.Label IncorrectSelectedItemLabel;
         private System.Windows.Forms.Button CancelButton;
@@ -201,6 +216,14 @@
         private System.Windows.Forms.Button CreateButton;
         private System.Windows.Forms.Label Instruction2Label;
         private System.Windows.Forms.Label Instruction1Label;
+        private System.Windows.Forms.ListView InvestmentsListView;
+        private System.Windows.Forms.ColumnHeader IdColumn;
+        private System.Windows.Forms.ColumnHeader InvestmentNameColumn;
         private System.Windows.Forms.ColumnHeader TypeColumn;
+        private System.Windows.Forms.ColumnHeader ValueColumn;
+        private System.Windows.Forms.ColumnHeader InterestColumn;
+        private System.Windows.Forms.ColumnHeader StartColumn;
+        private System.Windows.Forms.ColumnHeader DurationColumn;
+        private System.Windows.Forms.ColumnHeader FinishColumn;
     }
 }

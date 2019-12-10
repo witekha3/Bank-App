@@ -112,6 +112,12 @@
     <Compile Include="UserControls\AddingClientUserControl2.Designer.cs">
       <DependentUpon>AddingClientUserControl2.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AddingInvestmentUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AddingInvestmentUserControl.Designer.cs">
+      <DependentUpon>AddingInvestmentUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\DefinedTransferUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -162,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AddingClientUserControl2.resx">
       <DependentUpon>AddingClientUserControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AddingInvestmentUserControl.resx">
+      <DependentUpon>AddingInvestmentUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DefinedTransferUserControl.resx">
       <DependentUpon>DefinedTransferUserControl.cs</DependentUpon>

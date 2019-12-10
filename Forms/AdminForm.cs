@@ -28,18 +28,6 @@ namespace Bank_App.Forms
             }
         }
 
-        public Panel Container
-        {
-            get
-            {
-                return CentralPanel;
-            }
-
-            set
-            {
-                CentralPanel = value;
-            }
-        }
         public AdminForm()
         {
             InitializeComponent();
