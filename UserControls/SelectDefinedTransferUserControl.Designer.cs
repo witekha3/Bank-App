@@ -97,6 +97,7 @@
             this.RefreshButton.TabIndex = 7;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // Instruction1Label
             // 
@@ -108,6 +109,7 @@
             this.Instruction1Label.TabIndex = 6;
             this.Instruction1Label.Text = "Refresh list.";
             this.Instruction1Label.UseWaitCursor = true;
+            this.Instruction1Label.Click += new System.EventHandler(this.Instruction1Label_Click);
             // 
             // CancelButton
             // 

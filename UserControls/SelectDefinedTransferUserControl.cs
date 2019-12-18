@@ -21,5 +21,15 @@ namespace Bank_App.UserControls
         {
             this.Parent.Controls["transferUserControl"].BringToFront();
         }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Instruction1Label_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

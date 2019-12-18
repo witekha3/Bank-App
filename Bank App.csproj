@@ -125,6 +125,12 @@
     <Compile Include="UserControls\DefinedTransferUserControl.Designer.cs">
       <DependentUpon>DefinedTransferUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\DeleteClientUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\DeleteClientUserControl.Designer.cs">
+      <DependentUpon>DeleteClientUserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\InvestmentsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -187,6 +193,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\DefinedTransferUserControl.resx">
       <DependentUpon>DefinedTransferUserControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\DeleteClientUserControl.resx">
+      <DependentUpon>DeleteClientUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\InvestmentsUserControl.resx">
       <DependentUpon>InvestmentsUserControl.cs</DependentUpon>

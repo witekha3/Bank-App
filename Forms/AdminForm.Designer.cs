@@ -104,6 +104,7 @@
             this.RemoveClient.TabIndex = 1;
             this.RemoveClient.Text = "Remove Client";
             this.RemoveClient.UseVisualStyleBackColor = true;
+            this.RemoveClient.Click += new System.EventHandler(this.RemoveClient_Click);
             // 
             // AddClientButton
             // 

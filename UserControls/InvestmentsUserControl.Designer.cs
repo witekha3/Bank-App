@@ -44,6 +44,8 @@
             this.StartColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FinishColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.RefreshButton = new System.Windows.Forms.Button();
+            this.RefreshLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // InvestmentsLabel
@@ -64,9 +66,9 @@
             this.IncorrectSelectedItemLabel.ForeColor = System.Drawing.Color.Red;
             this.IncorrectSelectedItemLabel.Location = new System.Drawing.Point(20, 700);
             this.IncorrectSelectedItemLabel.Name = "IncorrectSelectedItemLabel";
-            this.IncorrectSelectedItemLabel.Size = new System.Drawing.Size(352, 19);
+            this.IncorrectSelectedItemLabel.Size = new System.Drawing.Size(319, 19);
             this.IncorrectSelectedItemLabel.TabIndex = 18;
-            this.IncorrectSelectedItemLabel.Text = "Select at least one defined transfer and try again.";
+            this.IncorrectSelectedItemLabel.Text = "Select at least one investment and try again.";
             this.IncorrectSelectedItemLabel.UseWaitCursor = true;
             this.IncorrectSelectedItemLabel.Visible = false;
             // 
@@ -141,7 +143,7 @@
             this.InvestmentsListView.Location = new System.Drawing.Point(20, 70);
             this.InvestmentsListView.MultiSelect = false;
             this.InvestmentsListView.Name = "InvestmentsListView";
-            this.InvestmentsListView.Size = new System.Drawing.Size(690, 450);
+            this.InvestmentsListView.Size = new System.Drawing.Size(690, 363);
             this.InvestmentsListView.TabIndex = 19;
             this.InvestmentsListView.UseCompatibleStateImageBehavior = false;
             this.InvestmentsListView.View = System.Windows.Forms.View.Details;
@@ -185,11 +187,34 @@
             this.FinishColumn.Text = "Finish";
             this.FinishColumn.Width = 130;
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.Location = new System.Drawing.Point(20, 475);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(690, 40);
+            this.RefreshButton.TabIndex = 21;
+            this.RefreshButton.Text = "Refresh";
+            this.RefreshButton.UseVisualStyleBackColor = true;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
+            // RefreshLabel
+            // 
+            this.RefreshLabel.AutoSize = true;
+            this.RefreshLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.RefreshLabel.Location = new System.Drawing.Point(20, 440);
+            this.RefreshLabel.Name = "RefreshLabel";
+            this.RefreshLabel.Size = new System.Drawing.Size(114, 23);
+            this.RefreshLabel.TabIndex = 20;
+            this.RefreshLabel.Text = "Refresh list.";
+            this.RefreshLabel.UseWaitCursor = true;
+            // 
             // InvestmentsUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
+            this.Controls.Add(this.RefreshButton);
+            this.Controls.Add(this.RefreshLabel);
             this.Controls.Add(this.InvestmentsListView);
             this.Controls.Add(this.InvestmentsLabel);
             this.Controls.Add(this.IncorrectSelectedItemLabel);
@@ -225,5 +250,7 @@
         private System.Windows.Forms.ColumnHeader StartColumn;
         private System.Windows.Forms.ColumnHeader DurationColumn;
         private System.Windows.Forms.ColumnHeader FinishColumn;
+        private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Label RefreshLabel;
     }
 }

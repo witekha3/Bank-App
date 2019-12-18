@@ -53,6 +53,10 @@ namespace Bank_App.Forms
             showClientDetailsUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(showClientDetailsUserControl);
 
+            DeleteClientUserControl deleteClientUserControl = new DeleteClientUserControl();
+            deleteClientUserControl.Dock = DockStyle.Fill;
+            CentralPanel.Controls.Add(deleteClientUserControl);
+
         }
 
         private void logOut()
@@ -76,6 +80,11 @@ namespace Bank_App.Forms
         private void ShowClientDetailsButton_Click(object sender, EventArgs e)
         {
             CentralPanel.Controls["showClientDetailsUserControl"].BringToFront();
+        }
+
+        private void RemoveClient_Click(object sender, EventArgs e)
+        {
+            CentralPanel.Controls["deleteClientUserControl"].BringToFront();
         }
     }
 }

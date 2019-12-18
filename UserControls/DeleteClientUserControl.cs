@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Bank_App.UserControls
 {
-    public partial class InvestmentsUserControl : UserControl
+    public partial class DeleteClientUserControl : UserControl
     {
-        public InvestmentsUserControl()
+        public DeleteClientUserControl()
         {
             InitializeComponent();
         }
@@ -28,7 +28,7 @@ namespace Bank_App.UserControls
 
             try
             {
-                InvestmentsListView.SelectedItems[0].Remove();
+                ClientsListView.SelectedItems[0].Remove();
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -36,22 +36,10 @@ namespace Bank_App.UserControls
             }
 
         }
-
         private void Cancel()
         {
             ResetControls();
             this.Parent.Controls["MainUserControl"].BringToFront();
-        }
-
-        private void Create()
-        {
-            ResetControls();
-            this.Parent.Controls["addingInvestmentUserControl"].BringToFront();
-        }
-
-        private void CancelButton_Click(object sender, EventArgs e)
-        {
-            Cancel();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -59,14 +47,9 @@ namespace Bank_App.UserControls
             Delete();
         }
 
-        private void CreateButton_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
-            Create();
-        }
-
-        private void RefreshButton_Click(object sender, EventArgs e)
-        {
-
+            Cancel();
         }
     }
 }
