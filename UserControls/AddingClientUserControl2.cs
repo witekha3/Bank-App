@@ -37,6 +37,10 @@ namespace Bank_App.UserControls
             ZipCodeTextBox1.ForeColor = SystemColors.ControlDarkDark;
             ZipCodeTextBox1.BackColor = SystemColors.Window;
 
+            IncorrectPeselLabel.Visible = false;
+            PeselTextBox.ForeColor = SystemColors.ControlDarkDark;
+            PeselTextBox.BackColor = SystemColors.Window;
+
         }
         private void SetTextBoxesValue()
         {
@@ -83,6 +87,14 @@ namespace Bank_App.UserControls
                 IncorrectZipCodeLabel.Visible = true;
                 ZipCodeTextBox1.ForeColor = Color.White;
                 ZipCodeTextBox1.BackColor = Color.Red;
+                isConfirmed = false;
+            }
+
+            if (PeselTextBox.Text == "")
+            {
+                IncorrectPeselLabel.Visible = true;
+                PeselTextBox.ForeColor = Color.White;
+                PeselTextBox.BackColor = Color.Red;
                 isConfirmed = false;
             }
 

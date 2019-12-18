@@ -88,6 +88,7 @@
             this.ShowClientDetailsButton.TabIndex = 1;
             this.ShowClientDetailsButton.Text = "Client Details";
             this.ShowClientDetailsButton.UseVisualStyleBackColor = true;
+            this.ShowClientDetailsButton.Click += new System.EventHandler(this.ShowClientDetailsButton_Click);
             // 
             // RemoveClient
             // 

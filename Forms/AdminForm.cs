@@ -48,6 +48,11 @@ namespace Bank_App.Forms
             AddingClientUserControl2 addingClientUserControl2 = new AddingClientUserControl2();
             addingClientUserControl2.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(addingClientUserControl2);
+
+            ShowClientDetailsUserControl showClientDetailsUserControl = new ShowClientDetailsUserControl();
+            showClientDetailsUserControl.Dock = DockStyle.Fill;
+            CentralPanel.Controls.Add(showClientDetailsUserControl);
+
         }
 
         private void logOut()
@@ -66,6 +71,11 @@ namespace Bank_App.Forms
         private void LogOutButton_Click(object sender, EventArgs e)
         {
             logOut();
+        }
+
+        private void ShowClientDetailsButton_Click(object sender, EventArgs e)
+        {
+            CentralPanel.Controls["showClientDetailsUserControl"].BringToFront();
         }
     }
 }
