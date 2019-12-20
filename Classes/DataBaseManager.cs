@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Windows.Forms;
+using MySql.Data.MySqlClient;
+using MySql.Data;
 
 namespace Bank_App.Forms
 {
     class DataBaseManager
     {
-        private static string connectionString = "Server=tcp:bankappio.database.windows.net,1433;Initial Catalog=BankAppDatabase;Persist Security Info=False;User ID=bankAdmin;Password=IOon5ive;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        private static string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=VcKK1sp3gz;";
         public static string ConnectionString
         {
             get
@@ -22,12 +24,12 @@ namespace Bank_App.Forms
 
         public static DataTable Get(string query) 
         {
-            SqlConnection sqlcon = new SqlConnection(connectionString);
+            MySqlConnection sqlcon = new MySqlConnection(connectionString);
             DataTable dataTable = new DataTable();
             try
             {
                 sqlcon.Open();
-                SqlDataAdapter sqlDataAdapter = new SqlDataAdapter(query, sqlcon);
+                MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, sqlcon);
                 sqlDataAdapter.Fill(dataTable);
             }
             catch(Exception e)
@@ -45,11 +47,11 @@ namespace Bank_App.Forms
 
         public static void Post(string query) {
 
-            SqlConnection sqlcon = new SqlConnection(connectionString);
+            MySqlConnection sqlcon = new MySqlConnection(connectionString);
             try
             {
                 sqlcon.Open();
-                SqlCommand command = new SqlCommand(query, sqlcon);
+                MySqlCommand command = new MySqlCommand(query, sqlcon);
                 command.ExecuteNonQuery();
                 
             }
