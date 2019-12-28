@@ -23,7 +23,7 @@ namespace Bank_App.Classes
                     int userId = Convert.ToInt32(datatable.Rows[0]["Id"]);
                     DataTable data = DataBaseManager.Get("SELECT * FROM AccountTable WHERE UserId = " + "'" + userId + "'");
                     WhoIsCurrentLoged = data.Rows[0]["AccountNumber"].ToString();
-                    if(datatable.Rows[0]["isAdmin"].ToString() == "True")
+                    if(datatable.Rows[0]["IsAdmin"].ToString() == "1")
                     {
                         isAdmin = true;
                         return true;

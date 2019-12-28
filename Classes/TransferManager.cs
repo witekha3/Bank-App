@@ -32,7 +32,7 @@ namespace Bank_App.Classes
         }
         public static void UpdateTransferList(Transfer transfer)
         {
-            DataBaseManager.Post("INSERT INTO TransferHistory VALUES(" +
+            DataBaseManager.Post("INSERT INTO TransferHistory VALUES("+"''," +
                 "'" + transfer.Title + "', '" + transfer.TransferValue.ToString().Replace(",", ".") + "', " +
                 "'" + transfer.SenderAccountNumber + "', '" + transfer.ReceiverAccountNumber + "', " +
                 "'" + transfer.Date.ToString() + "')");

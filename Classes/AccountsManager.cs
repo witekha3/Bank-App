@@ -46,13 +46,13 @@ namespace Bank_App.Classes
                 MessageBox.Show("This person already has account");
             }
             else { 
-                string personTableQ = "INSERT INTO PersonTable VALUES(" +
+                string personTableQ = "INSERT INTO PersonTable VALUES("+"'' ," +
                     "'" + Client.Name + "', '" + Client.Surname + "', " +
                     "'" + Client.City + "', '" + Client.ZipCode + "', " +
                     "'" + Client.Email + "', '" + Client.DateOfBirth.ToString() + "', " +
                     "'" + Client.PhoneNumber + "', '" + Client.Pesel + "')";
             
-                string userTableQ = "INSERT INTO UserTable VALUES(" +
+                string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
                     "'" + Client.Login + "', '" + Client.Password + "', '" + Client.IsAdmin.ToString() + "')";
                 string createAccountQ = "" +
                 "Begin" +
@@ -68,7 +68,7 @@ namespace Bank_App.Classes
                 "                    " + userTableQ +
                 "        Select @UserID = SCOPE_IDENTITY()" +
                 "    End" +
-                "    Insert into AccountTable values(@PersonId, @UserId, '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')" +
+                "    Insert into AccountTable values("+"'', "+"@PersonId, @UserId, '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')" +
                 "End";
                 DataBaseManager.Post(createAccountQ);
             }
