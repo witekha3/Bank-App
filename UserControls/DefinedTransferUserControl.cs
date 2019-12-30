@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bank_App.Classes;
+using Bank_App.Forms;
 
 namespace Bank_App.UserControls
 {
@@ -24,12 +26,14 @@ namespace Bank_App.UserControls
 
         private void Delete()
         {
-
             ResetControls();
 
             try
             {
-                DefinedTransferListView.SelectedItems[0].Remove();
+                DataBaseManager.Post("Delete from TransferHistory where Title = " + "'" + TransferHistoryListView.SelectedItems[0].Text + "'" + " and ReceiverAccountNumber = "
+                   + "'" + TransferHistoryListView.SelectedItems[0].SubItems[2].Text + "'" + " and Date = " + "'" + TransferHistoryListView.SelectedItems[0].SubItems[3].Text + "'");
+
+                TransferHistoryListView.SelectedItems[0].Remove();
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -38,10 +42,43 @@ namespace Bank_App.UserControls
 
         }
 
+        public void ShowTransferHistory()
+        {
+            DataTable data = TransferManager.GetTransferHistoryFromDataBase();
+
+            ListViewItem item;
+
+            try
+            {
+                int rowsNumber = data.Rows.Count;
+
+                for (int i = 0; i < rowsNumber; i++)
+                {
+                    item = new ListViewItem(data.Rows[i].ItemArray[0].ToString());
+                    item.SubItems.Add(data.Rows[i].ItemArray[1].ToString());
+                    item.SubItems.Add(data.Rows[i].ItemArray[2].ToString());
+                    item.SubItems.Add(data.Rows[i].ItemArray[3].ToString());
+                    TransferHistoryListView.Items.Add(item);
+                }
+            }
+            catch(IndexOutOfRangeException)
+            {
+
+            }
+
+
+        }
+
         private void Cancel()
         {
             ResetControls();
             this.Parent.Controls["MainUserControl"].BringToFront();
+        }
+
+        private void RefreshListView()
+        {
+            TransferHistoryListView.Items.Clear();
+            ShowTransferHistory();
         }
 
 
@@ -55,9 +92,14 @@ namespace Bank_App.UserControls
             Delete();
         }
 
-        private void CreateButton_Click(object sender, EventArgs e)
+        private void DefinedTransferUserControl_Load(object sender, EventArgs e)
         {
+            ShowTransferHistory();
+        }
 
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshListView();
         }
     }
 }

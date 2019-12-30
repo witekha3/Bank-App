@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.DefinedTransfersLabel = new System.Windows.Forms.Label();
-            this.DefinedTransferListView = new System.Windows.Forms.ListView();
-            this.NameColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.TransferHistoryLabel = new System.Windows.Forms.Label();
+            this.TransferHistoryListView = new System.Windows.Forms.ListView();
+            this.TitleColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LastValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.AccountNumberColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.DateColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -42,40 +42,40 @@
             this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // DefinedTransfersLabel
+            // TransferHistoryLabel
             // 
-            this.DefinedTransfersLabel.AutoSize = true;
-            this.DefinedTransfersLabel.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DefinedTransfersLabel.Location = new System.Drawing.Point(20, 20);
-            this.DefinedTransfersLabel.Name = "DefinedTransfersLabel";
-            this.DefinedTransfersLabel.Size = new System.Drawing.Size(244, 34);
-            this.DefinedTransfersLabel.TabIndex = 3;
-            this.DefinedTransfersLabel.Text = "Defined Transfers";
-            this.DefinedTransfersLabel.UseWaitCursor = true;
+            this.TransferHistoryLabel.AutoSize = true;
+            this.TransferHistoryLabel.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TransferHistoryLabel.Location = new System.Drawing.Point(20, 20);
+            this.TransferHistoryLabel.Name = "TransferHistoryLabel";
+            this.TransferHistoryLabel.Size = new System.Drawing.Size(215, 34);
+            this.TransferHistoryLabel.TabIndex = 3;
+            this.TransferHistoryLabel.Text = "Transfer History";
+            this.TransferHistoryLabel.UseWaitCursor = true;
             // 
-            // DefinedTransferListView
+            // TransferHistoryListView
             // 
-            this.DefinedTransferListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.NameColumn,
+            this.TransferHistoryListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.TitleColumn,
             this.LastValueColumn,
             this.AccountNumberColumn,
             this.DateColumn});
-            this.DefinedTransferListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DefinedTransferListView.FullRowSelect = true;
-            this.DefinedTransferListView.GridLines = true;
-            this.DefinedTransferListView.HideSelection = false;
-            this.DefinedTransferListView.LabelWrap = false;
-            this.DefinedTransferListView.Location = new System.Drawing.Point(20, 70);
-            this.DefinedTransferListView.Name = "DefinedTransferListView";
-            this.DefinedTransferListView.Size = new System.Drawing.Size(690, 450);
-            this.DefinedTransferListView.TabIndex = 4;
-            this.DefinedTransferListView.UseCompatibleStateImageBehavior = false;
-            this.DefinedTransferListView.View = System.Windows.Forms.View.Details;
+            this.TransferHistoryListView.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TransferHistoryListView.FullRowSelect = true;
+            this.TransferHistoryListView.GridLines = true;
+            this.TransferHistoryListView.HideSelection = false;
+            this.TransferHistoryListView.LabelWrap = false;
+            this.TransferHistoryListView.Location = new System.Drawing.Point(20, 70);
+            this.TransferHistoryListView.Name = "TransferHistoryListView";
+            this.TransferHistoryListView.Size = new System.Drawing.Size(690, 450);
+            this.TransferHistoryListView.TabIndex = 4;
+            this.TransferHistoryListView.UseCompatibleStateImageBehavior = false;
+            this.TransferHistoryListView.View = System.Windows.Forms.View.Details;
             // 
-            // NameColumn
+            // TitleColumn
             // 
-            this.NameColumn.Text = "Name";
-            this.NameColumn.Width = 178;
+            this.TitleColumn.Text = "Title";
+            this.TitleColumn.Width = 178;
             // 
             // LastValueColumn
             // 
@@ -100,7 +100,7 @@
             this.RefreshButton.TabIndex = 5;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
-            this.RefreshButton.Click += new System.EventHandler(this.CreateButton_Click);
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // DeleteButton
             // 
@@ -166,15 +166,16 @@
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.RefreshButton);
-            this.Controls.Add(this.DefinedTransferListView);
+            this.Controls.Add(this.TransferHistoryListView);
             this.Controls.Add(this.Instruction2Label);
             this.Controls.Add(this.Instruction1Label);
-            this.Controls.Add(this.DefinedTransfersLabel);
+            this.Controls.Add(this.TransferHistoryLabel);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DefinedTransferUserControl";
             this.Size = new System.Drawing.Size(730, 800);
+            this.Load += new System.EventHandler(this.DefinedTransferUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -182,9 +183,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label DefinedTransfersLabel;
-        private System.Windows.Forms.ListView DefinedTransferListView;
-        private System.Windows.Forms.ColumnHeader NameColumn;
+        private System.Windows.Forms.Label TransferHistoryLabel;
+        private System.Windows.Forms.ListView TransferHistoryListView;
+        private System.Windows.Forms.ColumnHeader TitleColumn;
         private System.Windows.Forms.ColumnHeader LastValueColumn;
         private System.Windows.Forms.ColumnHeader DateColumn;
         private System.Windows.Forms.ColumnHeader AccountNumberColumn;

@@ -33,10 +33,10 @@
             this.AccountDetailsButton = new System.Windows.Forms.Button();
             this.LogOutButton = new System.Windows.Forms.Button();
             this.InvestmentsButton = new System.Windows.Forms.Button();
-            this.DefinedTransfersButton = new System.Windows.Forms.Button();
+            this.TransfersHistoryButton = new System.Windows.Forms.Button();
             this.TransfersButton = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.SaldoLabel = new System.Windows.Forms.Label();
             this.AccountNumberLabel = new System.Windows.Forms.Label();
             this.MottoLabel = new System.Windows.Forms.Label();
             this.LogoPictureBox = new System.Windows.Forms.PictureBox();
@@ -52,7 +52,7 @@
             this.LeftPanel.Controls.Add(this.AccountDetailsButton);
             this.LeftPanel.Controls.Add(this.LogOutButton);
             this.LeftPanel.Controls.Add(this.InvestmentsButton);
-            this.LeftPanel.Controls.Add(this.DefinedTransfersButton);
+            this.LeftPanel.Controls.Add(this.TransfersHistoryButton);
             this.LeftPanel.Controls.Add(this.TransfersButton);
             this.LeftPanel.Controls.Add(this.LogoPanel);
             this.LeftPanel.Dock = System.Windows.Forms.DockStyle.Left;
@@ -110,21 +110,21 @@
             this.InvestmentsButton.UseVisualStyleBackColor = true;
             this.InvestmentsButton.Click += new System.EventHandler(this.InvestmentsButton_Click);
             // 
-            // DefinedTransfersButton
+            // TransfersHistoryButton
             // 
-            this.DefinedTransfersButton.FlatAppearance.BorderSize = 0;
-            this.DefinedTransfersButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DefinedTransfersButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.DefinedTransfersButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.DefinedTransfersButton.Image = ((System.Drawing.Image)(resources.GetObject("DefinedTransfersButton.Image")));
-            this.DefinedTransfersButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.DefinedTransfersButton.Location = new System.Drawing.Point(2, 336);
-            this.DefinedTransfersButton.Name = "DefinedTransfersButton";
-            this.DefinedTransfersButton.Size = new System.Drawing.Size(262, 70);
-            this.DefinedTransfersButton.TabIndex = 1;
-            this.DefinedTransfersButton.Text = "    Defined Transfers";
-            this.DefinedTransfersButton.UseVisualStyleBackColor = true;
-            this.DefinedTransfersButton.Click += new System.EventHandler(this.DefinedTransfersButton_Click);
+            this.TransfersHistoryButton.FlatAppearance.BorderSize = 0;
+            this.TransfersHistoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.TransfersHistoryButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.TransfersHistoryButton.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.TransfersHistoryButton.Image = ((System.Drawing.Image)(resources.GetObject("TransfersHistoryButton.Image")));
+            this.TransfersHistoryButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.TransfersHistoryButton.Location = new System.Drawing.Point(2, 336);
+            this.TransfersHistoryButton.Name = "TransfersHistoryButton";
+            this.TransfersHistoryButton.Size = new System.Drawing.Size(262, 70);
+            this.TransfersHistoryButton.TabIndex = 1;
+            this.TransfersHistoryButton.Text = "History of Transfers";
+            this.TransfersHistoryButton.UseVisualStyleBackColor = true;
+            this.TransfersHistoryButton.Click += new System.EventHandler(this.DefinedTransfersButton_Click);
             // 
             // TransfersButton
             // 
@@ -144,7 +144,7 @@
             // 
             // LogoPanel
             // 
-            this.LogoPanel.Controls.Add(this.label2);
+            this.LogoPanel.Controls.Add(this.SaldoLabel);
             this.LogoPanel.Controls.Add(this.AccountNumberLabel);
             this.LogoPanel.Controls.Add(this.MottoLabel);
             this.LogoPanel.Controls.Add(this.LogoPictureBox);
@@ -154,16 +154,16 @@
             this.LogoPanel.Size = new System.Drawing.Size(270, 250);
             this.LogoPanel.TabIndex = 0;
             // 
-            // label2
+            // SaldoLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.label2.Location = new System.Drawing.Point(80, 200);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 19);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Saldo: 0.00";
+            this.SaldoLabel.AutoSize = true;
+            this.SaldoLabel.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.SaldoLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SaldoLabel.Location = new System.Drawing.Point(80, 200);
+            this.SaldoLabel.Name = "SaldoLabel";
+            this.SaldoLabel.Size = new System.Drawing.Size(100, 19);
+            this.SaldoLabel.TabIndex = 1;
+            this.SaldoLabel.Text = "Saldo: 0.00";
             // 
             // AccountNumberLabel
             // 
@@ -220,6 +220,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ClientForm";
             this.Text = "ClientForm";
+            this.Load += new System.EventHandler(this.ClientForm_Load);
             this.LeftPanel.ResumeLayout(false);
             this.LogoPanel.ResumeLayout(false);
             this.LogoPanel.PerformLayout();
@@ -233,14 +234,14 @@
         private System.Windows.Forms.Panel LeftPanel;
         private System.Windows.Forms.Button LogOutButton;
         private System.Windows.Forms.Button InvestmentsButton;
-        private System.Windows.Forms.Button DefinedTransfersButton;
+        private System.Windows.Forms.Button TransfersHistoryButton;
         private System.Windows.Forms.Button TransfersButton;
         private System.Windows.Forms.Panel LogoPanel;
         private System.Windows.Forms.Label MottoLabel;
         private System.Windows.Forms.PictureBox LogoPictureBox;
         private System.Windows.Forms.Panel CentralPanel;
         private System.Windows.Forms.Button AccountDetailsButton;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label SaldoLabel;
         private System.Windows.Forms.Label AccountNumberLabel;
     }
 }

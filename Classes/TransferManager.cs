@@ -35,7 +35,13 @@ namespace Bank_App.Classes
             DataBaseManager.Post("INSERT INTO TransferHistory VALUES("+"''," +
                 "'" + transfer.Title + "', '" + transfer.TransferValue.ToString().Replace(",", ".") + "', " +
                 "'" + transfer.SenderAccountNumber + "', '" + transfer.ReceiverAccountNumber + "', " +
-                "'" + transfer.Date.ToString() + "')");
+                "'" + transfer.Date.ToString("G") + "')");
+        }
+
+        public static DataTable GetTransferHistoryFromDataBase()
+        {
+            DataTable data = DataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber, Date from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
+            return data;
         }
     }
 }

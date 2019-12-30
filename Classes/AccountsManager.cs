@@ -54,6 +54,7 @@ namespace Bank_App.Classes
             
                 string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
                     "'" + Client.Login + "', '" + Client.Password + "', '" + Client.IsAdmin.ToString() + "')";
+
                 string createAccountQ = "" +
                 "Begin" +
                 "    Declare @PersonId int" +
@@ -61,13 +62,13 @@ namespace Bank_App.Classes
                 "    if (@PersonId is null)" +
                 "                Begin" +
                 "                    " + personTableQ +
-                "        Select @PersonId = SCOPE_IDENTITY()" +
-                "    End" +
+                "                   Select @PersonId = SCOPE_IDENTITY()" +
+                "               End" +
                 "    if (@UserId is null)" +
                 "                Begin" +
                 "                    " + userTableQ +
-                "        Select @UserID = SCOPE_IDENTITY()" +
-                "    End" +
+                "                    Select @UserID = SCOPE_IDENTITY()" +
+                "               End" +
                 "    Insert into AccountTable values("+"'', "+"@PersonId, @UserId, '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')" +
                 "End";
                 DataBaseManager.Post(createAccountQ);

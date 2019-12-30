@@ -1,4 +1,5 @@
-﻿using Bank_App.UserControls;
+﻿using Bank_App.Classes;
+using Bank_App.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,6 +70,7 @@ namespace Bank_App.Forms
         {
             LogInForm logInForm = new LogInForm();
             logInForm.Show();
+            AccountNumberLabel.Text = "";
             this.Hide();
         }
 
@@ -95,6 +97,11 @@ namespace Bank_App.Forms
         private void DefinedTransfersButton_Click(object sender, EventArgs e)
         {
             CentralPanel.Controls["definedTransferUserControl"].BringToFront();
+        }
+
+        private void ClientForm_Load(object sender, EventArgs e)
+        {
+            AccountNumberLabel.Text = LogInManager.WhoIsCurrentLoged;
         }
     }
 }
