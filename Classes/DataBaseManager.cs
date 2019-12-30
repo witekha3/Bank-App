@@ -13,7 +13,7 @@ namespace Bank_App.Forms
 {
     class DataBaseManager
     {
-        private static string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=VcKK1sp3gz;";
+        private static string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
         public static string ConnectionString
         {
             get

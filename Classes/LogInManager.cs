@@ -15,9 +15,10 @@ namespace Bank_App.Classes
 
         public static bool LogIn(string login, string password, out bool isAdmin)
         {
-            DataTable datatable = DataBaseManager.Get("SELECT * FROM UserTable WHERE Login = " + "'" + login + "' AND PASSWORD = " + "'" + password + "'");
             try
             {
+                DataTable datatable = DataBaseManager.Get("SELECT * FROM UserTable WHERE Login = " + "'" + login + "' AND PASSWORD = " + "'" + password + "'");
+
                 if (datatable.Rows.Count == 1)
                 {
                     int userId = Convert.ToInt32(datatable.Rows[0]["Id"]);
