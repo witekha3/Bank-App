@@ -177,5 +177,47 @@ namespace Bank_App.UserControls
         {
             SetVisibility(true);
         }
+
+        private void DefinedTransfer()
+        {
+            AutoCompleteStringCollection myCollection = new AutoCompleteStringCollection();
+
+            DataTable data = DataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
+
+            for (int i = 0; i < data.Rows.Count; i++) 
+            {
+                string sData = "";
+                sData += data.Rows[i].ItemArray[0].ToString() + " Receiver Account: " + data.Rows[i].ItemArray[2].ToString();
+
+                myCollection.Add(sData);
+            }
+
+            DefinedTransferTxt.AutoCompleteCustomSource = myCollection;
+        }
+
+        private void TransferUserControl_Load(object sender, EventArgs e)
+        {
+            DefinedTransfer();
+        }
+
+        private void DefinedTransferTxt_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                string selectedTransfer = DefinedTransferTxt.Text;
+                int indexOfTitle = selectedTransfer.IndexOf(" Receiver Account: ");
+
+                DataTable data = DataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber from TransferHistory where " +
+                    "SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged + " and Title = '" + selectedTransfer.Substring(0, indexOfTitle)+"'");
+
+                TitleTextBox.Text = data.Rows[0].ItemArray[0].ToString();
+                TitleTextBox.Enabled = true;
+                ValueTextBox.Text = data.Rows[0].ItemArray[1].ToString();
+                ValueTextBox.Enabled = true;
+                AccountNumberTextBox.Text = data.Rows[0].ItemArray[2].ToString();
+                AccountNumberTextBox.Enabled = true;
+                DatePicker.Enabled = true;
+            }
+        }
     }
 }

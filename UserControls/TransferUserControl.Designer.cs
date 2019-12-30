@@ -39,12 +39,13 @@
             this.DateLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
-            this.DefinedTransferButton = new System.Windows.Forms.Button();
             this.CreateTransferButton = new System.Windows.Forms.Button();
             this.OrLabel = new System.Windows.Forms.Label();
             this.AccountNumberLabel = new System.Windows.Forms.Label();
             this.AccountNumberTextBox = new System.Windows.Forms.TextBox();
             this.IncorrectAccountNumberLabel = new System.Windows.Forms.Label();
+            this.DefinedTransferTxt = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // TransferLabel
@@ -172,16 +173,6 @@
             this.ConfirmButton.UseVisualStyleBackColor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
-            // DefinedTransferButton
-            // 
-            this.DefinedTransferButton.Location = new System.Drawing.Point(25, 70);
-            this.DefinedTransferButton.Name = "DefinedTransferButton";
-            this.DefinedTransferButton.Size = new System.Drawing.Size(400, 40);
-            this.DefinedTransferButton.TabIndex = 17;
-            this.DefinedTransferButton.Text = "Use defined transfer";
-            this.DefinedTransferButton.UseVisualStyleBackColor = true;
-            this.DefinedTransferButton.Click += new System.EventHandler(this.DefinedTransferButton_Click);
-            // 
             // CreateTransferButton
             // 
             this.CreateTransferButton.Location = new System.Drawing.Point(25, 175);
@@ -237,13 +228,33 @@
             this.IncorrectAccountNumberLabel.UseWaitCursor = true;
             this.IncorrectAccountNumberLabel.Visible = false;
             // 
+            // DefinedTransferTxt
+            // 
+            this.DefinedTransferTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.DefinedTransferTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.DefinedTransferTxt.Location = new System.Drawing.Point(202, 75);
+            this.DefinedTransferTxt.Name = "DefinedTransferTxt";
+            this.DefinedTransferTxt.Size = new System.Drawing.Size(447, 32);
+            this.DefinedTransferTxt.TabIndex = 18;
+            this.DefinedTransferTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DefinedTransferTxt_KeyDown);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(164, 23);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Defined transfer";
+            // 
             // TransferUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.DefinedTransferTxt);
             this.Controls.Add(this.CreateTransferButton);
-            this.Controls.Add(this.DefinedTransferButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.DatePicker);
@@ -264,6 +275,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "TransferUserControl";
             this.Size = new System.Drawing.Size(730, 800);
+            this.Load += new System.EventHandler(this.TransferUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -282,11 +294,12 @@
         private System.Windows.Forms.Label DateLabel;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ConfirmButton;
-        private System.Windows.Forms.Button DefinedTransferButton;
         private System.Windows.Forms.Button CreateTransferButton;
         private System.Windows.Forms.Label OrLabel;
         private System.Windows.Forms.Label AccountNumberLabel;
         private System.Windows.Forms.TextBox AccountNumberTextBox;
         private System.Windows.Forms.Label IncorrectAccountNumberLabel;
+        private System.Windows.Forms.TextBox DefinedTransferTxt;
+        private System.Windows.Forms.Label label1;
     }
 }
