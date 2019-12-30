@@ -85,6 +85,7 @@
             this.CentralPanel.Name = "CentralPanel";
             this.CentralPanel.Size = new System.Drawing.Size(730, 800);
             this.CentralPanel.TabIndex = 0;
+            this.CentralPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CentralPanel_Paint);
             // 
             // CancelButton
             // 
@@ -257,7 +258,6 @@
             this.NameTextBox.Size = new System.Drawing.Size(300, 28);
             this.NameTextBox.TabIndex = 8;
             this.NameTextBox.Text = "Name";
-
             // 
             // label1
             // 
