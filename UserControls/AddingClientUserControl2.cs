@@ -146,5 +146,9 @@ namespace Bank_App.UserControls
             CreateClient();
         }
 
+        private void CentralPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
