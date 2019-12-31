@@ -49,6 +49,7 @@ namespace Bank_App.Classes
             else {
                 int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
                 
+                
                 string personTableQ = "INSERT INTO PersonTable VALUES("+"'' ," +
                     "'" + Client.Name + "', '" + Client.Surname + "', " +
                     "'" + Client.City + "', '" + Client.ZipCode + "', " +

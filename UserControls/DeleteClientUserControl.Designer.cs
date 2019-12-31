@@ -32,15 +32,15 @@
             this.RefreshLabel = new System.Windows.Forms.Label();
             this.ClientsListView = new System.Windows.Forms.ListView();
             this.IdColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LoginColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.EmailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.PeselColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.AccountNumberColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.CleintLabel = new System.Windows.Forms.Label();
             this.IncorrectSelectedItemLabel = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.Instruction2Label = new System.Windows.Forms.Label();
-            this.LoginColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.EmailColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PeselColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.AccountNumberColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // RefreshButton
@@ -87,6 +87,26 @@
             // IdColumn
             // 
             this.IdColumn.Text = "Id";
+            // 
+            // LoginColumn
+            // 
+            this.LoginColumn.Text = "Login";
+            this.LoginColumn.Width = 120;
+            // 
+            // EmailColumn
+            // 
+            this.EmailColumn.Text = "Email";
+            this.EmailColumn.Width = 120;
+            // 
+            // PeselColumn
+            // 
+            this.PeselColumn.Text = "Pesel";
+            this.PeselColumn.Width = 120;
+            // 
+            // AccountNumberColumn
+            // 
+            this.AccountNumberColumn.Text = "Account Number";
+            this.AccountNumberColumn.Width = 264;
             // 
             // CleintLabel
             // 
@@ -143,26 +163,6 @@
             this.Instruction2Label.Text = "Delete selected client.";
             this.Instruction2Label.UseWaitCursor = true;
             // 
-            // LoginColumn
-            // 
-            this.LoginColumn.Text = "Login";
-            this.LoginColumn.Width = 120;
-            // 
-            // EmailColumn
-            // 
-            this.EmailColumn.Text = "Email";
-            this.EmailColumn.Width = 120;
-            // 
-            // PeselColumn
-            // 
-            this.PeselColumn.Text = "Pesel";
-            this.PeselColumn.Width = 120;
-            // 
-            // AccountNumberColumn
-            // 
-            this.AccountNumberColumn.Text = "Account Number";
-            this.AccountNumberColumn.Width = 264;
-            // 
             // DeleteClientUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -177,9 +177,10 @@
             this.Controls.Add(this.Instruction2Label);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DeleteClientUserControl";
             this.Size = new System.Drawing.Size(730, 800);
+            this.Load += new System.EventHandler(this.DeleteClientUserControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -39,7 +39,6 @@ namespace Bank_App.UserControls
             {
                 IncorrectSelectedItemLabel.Visible = true;
             }
-
         }
 
         public void ShowTransferHistory()
