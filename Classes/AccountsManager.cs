@@ -70,5 +70,19 @@ namespace Bank_App.Classes
                 
             }
         }
+
+        public static DataTable GetUsersFromDataBase()
+        {
+
+            DataTable data = DataBaseManager.Get("SELECT " +
+                "UserTable.Id, UserTable.Login, " +
+               "PersonTable.Email, PersonTable.Pesel, " +
+               "AccountTable.AccountNumber " +
+               "FROM AccountTable " +
+               "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+               "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+               "ORDER BY AccountTable.Id ");
+            return data;
+        }
     }
 }

@@ -47,7 +47,7 @@ namespace Bank_App.UserControls
 
         public void ShowClients()
         {
-            DataTable data = TransferManager.GetUsersFromDataBase();
+            DataTable data = AccountsManager.GetUsersFromDataBase();
 
             ListViewItem item;
 
@@ -80,6 +80,12 @@ namespace Bank_App.UserControls
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
 
+        private void RefreshListView()
+        {
+            ClientsListView.Items.Clear();
+            ShowClients();
+        }
+
         private void DeleteButton_Click(object sender, EventArgs e)
         {
             Delete();
@@ -93,6 +99,11 @@ namespace Bank_App.UserControls
         private void DeleteClientUserControl_Load(object sender, EventArgs e)
         {
             ShowClients();
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshListView();
         }
     }
 }
