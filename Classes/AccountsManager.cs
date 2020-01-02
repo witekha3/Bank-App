@@ -117,7 +117,7 @@ namespace Bank_App.Classes
         {
             DataTable data = DataBaseManager.Get("SELECT " +
                 "UserTable.Id, " +
-                "PersonTable.Id, PersonTable.Pesel," +
+                "PersonTable.Id, PersonTable.Pesel, " +
                 "AccountTable.AccountNumber " +
                 "FROM AccountTable " +
                 "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
@@ -126,9 +126,18 @@ namespace Bank_App.Classes
             int userTableId = (int)data.Rows[0].ItemArray[0];
             int personTableId = (int)data.Rows[0].ItemArray[1];
 
-            DataBaseManager.Post("UPDATE UserTable.Id " + 
+            DataBaseManager.Post("UPDATE UserTable " + 
                 "SET Login = " + "'" + login + "'" +
-                "WHERE Id = " + "'" + userTableId + "'");
+                " WHERE Id = " + "'" + userTableId + "'");
+
+            DataBaseManager.Post("UPDATE PersonTable " +
+            "SET Name = " + "'" + name + "'" +
+            ", Surname = " + "'" + surname + "'" +
+            ", City = " + "'" + city + "'" +
+            ", CityCode = " + "'" + zipCode + "'" +
+            ", Email = " + "'" + email + "'" +
+            ", PhoneNumber = " + "'" + phone + "'" +
+            " WHERE Id = " + "'" + personTableId + "'");
         }
     }
 }
