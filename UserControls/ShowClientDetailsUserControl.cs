@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Bank_App.Classes;
 
 namespace Bank_App.UserControls
 {
@@ -156,6 +157,25 @@ namespace Bank_App.UserControls
             }
         }
 
+        private void FillTextBoxesByData(DataTable data)
+        {
+            try
+            {
+                LogInTextBox.Text = data.Rows[0].ItemArray[1].ToString();
+                NameTextBox.Text = data.Rows[0].ItemArray[2].ToString();
+                SurnameTextBox.Text = data.Rows[0].ItemArray[3].ToString();
+                CityNameTextBox.Text = data.Rows[0].ItemArray[4].ToString();
+                ZipCodeTextBox1.Text = data.Rows[0].ItemArray[5].ToString();
+                PhoneNumberTextBox.Text = data.Rows[0].ItemArray[6].ToString();
+                EmailTextBox.Text = data.Rows[0].ItemArray[7].ToString();
+            }
+            catch (ArgumentNullException)
+            {
+                SetVisibility(false);
+            }
+
+        }
+
         private void Search()
         {
             ResetControls();
@@ -168,6 +188,17 @@ namespace Bank_App.UserControls
             if(isConfirmed)
             {
                 SetVisibility(true);
+                try
+                {
+                    DataTable data = AccountsManager.GetUserDetailByAdmin(PeselTextBox.Text);
+                    FillTextBoxesByData(data);
+
+                }
+                catch (IndexOutOfRangeException)
+                {
+                    IncorrectPeselLabel.Visible = true;
+                }
+
             }
 
         }
@@ -189,6 +220,8 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
+                AccountsManager.UpdateUserDetails(PeselTextBox.Text, LogInTextBox.Text, NameTextBox.Text, SurnameTextBox.Text, CityNameTextBox.Text,
+                    ZipCodeTextBox1.Text, EmailTextBox.Text, PhoneNumberTextBox.Text);
                 ResetControls();
                 ResetPeselControls();
                 SetVisibility(false);

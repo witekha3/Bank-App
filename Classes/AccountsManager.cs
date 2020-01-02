@@ -44,7 +44,7 @@ namespace Bank_App.Classes
         {
             if (CheckIfPersonExist(Client.Pesel))
             {
-                MessageBox.Show("This person already has account");
+                MessageBox.Show("This person already exist");
             }
             else {
                 int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
@@ -71,7 +71,7 @@ namespace Bank_App.Classes
             }
         }
 
-        public static DataTable GetUsersFromDataBase()
+        public static DataTable GetAllUsersFromDataBase()
         {
 
             DataTable data = DataBaseManager.Get("SELECT " +
@@ -83,6 +83,52 @@ namespace Bank_App.Classes
                "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
                "ORDER BY AccountTable.Id ");
             return data;
+        }
+
+        public static DataTable GetUserDetailByAdmin(string pesel)
+        {
+            DataTable data = DataBaseManager.Get("SELECT " +
+               "UserTable.Id, UserTable.Login, " +
+               "PersonTable.Name, PersonTable.Surname, PersonTable.City, PersonTable.CityCode, PersonTable.PhoneNumber, PersonTable.Email, PersonTable.Pesel," +
+               "AccountTable.AccountNumber " +
+               "FROM AccountTable " +
+               "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+               "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+               "WHERE PersonTable.Pesel = " + "'" + pesel + "'"); 
+
+            return data;
+        }
+
+        public static DataTable GetAccountDetails()
+        {
+            DataTable data = DataBaseManager.Get("SELECT " +
+               "UserTable.Id, UserTable.Login, " +
+               "PersonTable.Name, PersonTable.Surname, PersonTable.BirthDate, PersonTable.Pesel, PersonTable.Email, PersonTable.PhoneNumber, PersonTable.City, PersonTable.CityCode, " +
+               "AccountTable.AccountNumber " +
+               "FROM AccountTable " +
+               "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+               "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+               "WHERE AccountTable.AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged.ToString() + "'");
+
+            return data;
+        }
+
+        public static void UpdateUserDetails(string pesel, string login, string name, string surname, string city, string zipCode, string email, string phone)
+        {
+            DataTable data = DataBaseManager.Get("SELECT " +
+                "UserTable.Id, " +
+                "PersonTable.Id, PersonTable.Pesel," +
+                "AccountTable.AccountNumber " +
+                "FROM AccountTable " +
+                "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+                "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+                "WHERE PersonTable.Pesel = " + "'" + pesel + "'");
+            int userTableId = (int)data.Rows[0].ItemArray[0];
+            int personTableId = (int)data.Rows[0].ItemArray[1];
+
+            DataBaseManager.Post("UPDATE UserTable.Id " + 
+                "SET Login = " + "'" + login + "'" +
+                "WHERE Id = " + "'" + userTableId + "'");
         }
     }
 }

@@ -47,7 +47,7 @@ namespace Bank_App.UserControls
 
         public void ShowClients()
         {
-            DataTable data = AccountsManager.GetUsersFromDataBase();
+            DataTable data = AccountsManager.GetAllUsersFromDataBase();
 
             ListViewItem item;
 

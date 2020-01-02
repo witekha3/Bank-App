@@ -62,9 +62,9 @@
             this.PeselNumberLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PeselNumberLabel.Location = new System.Drawing.Point(20, 220);
             this.PeselNumberLabel.Name = "PeselNumberLabel";
-            this.PeselNumberLabel.Size = new System.Drawing.Size(193, 30);
+            this.PeselNumberLabel.Size = new System.Drawing.Size(89, 30);
             this.PeselNumberLabel.TabIndex = 3;
-            this.PeselNumberLabel.Text = "Pesel: 11111111";
+            this.PeselNumberLabel.Text = "Pesel: ";
             // 
             // NameLabel
             // 
@@ -72,9 +72,9 @@
             this.NameLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.NameLabel.Location = new System.Drawing.Point(20, 70);
             this.NameLabel.Name = "NameLabel";
-            this.NameLabel.Size = new System.Drawing.Size(175, 30);
+            this.NameLabel.Size = new System.Drawing.Size(101, 30);
             this.NameLabel.TabIndex = 3;
-            this.NameLabel.Text = "Name: Name";
+            this.NameLabel.Text = "Name: ";
             // 
             // SurnameLabel
             // 
@@ -82,9 +82,9 @@
             this.SurnameLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.SurnameLabel.Location = new System.Drawing.Point(20, 120);
             this.SurnameLabel.Name = "SurnameLabel";
-            this.SurnameLabel.Size = new System.Drawing.Size(237, 30);
+            this.SurnameLabel.Size = new System.Drawing.Size(132, 30);
             this.SurnameLabel.TabIndex = 3;
-            this.SurnameLabel.Text = "Surname: Surname";
+            this.SurnameLabel.Text = "Surname: ";
             // 
             // DateOfBirthLabel
             // 
@@ -92,9 +92,9 @@
             this.DateOfBirthLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.DateOfBirthLabel.Location = new System.Drawing.Point(20, 170);
             this.DateOfBirthLabel.Name = "DateOfBirthLabel";
-            this.DateOfBirthLabel.Size = new System.Drawing.Size(319, 30);
+            this.DateOfBirthLabel.Size = new System.Drawing.Size(173, 30);
             this.DateOfBirthLabel.TabIndex = 3;
-            this.DateOfBirthLabel.Text = "Date of Birth: Date of Birth";
+            this.DateOfBirthLabel.Text = "Date of Birth: ";
             // 
             // CityLabel
             // 
@@ -102,9 +102,9 @@
             this.CityLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.CityLabel.Location = new System.Drawing.Point(20, 370);
             this.CityLabel.Name = "CityLabel";
-            this.CityLabel.Size = new System.Drawing.Size(121, 30);
+            this.CityLabel.Size = new System.Drawing.Size(74, 30);
             this.CityLabel.TabIndex = 3;
-            this.CityLabel.Text = "City: City";
+            this.CityLabel.Text = "City: ";
             // 
             // PhoneNumberLabel
             // 
@@ -112,9 +112,9 @@
             this.PhoneNumberLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PhoneNumberLabel.Location = new System.Drawing.Point(20, 320);
             this.PhoneNumberLabel.Name = "PhoneNumberLabel";
-            this.PhoneNumberLabel.Size = new System.Drawing.Size(337, 30);
+            this.PhoneNumberLabel.Size = new System.Drawing.Size(199, 30);
             this.PhoneNumberLabel.TabIndex = 3;
-            this.PhoneNumberLabel.Text = "Phone Number: 000 000 000";
+            this.PhoneNumberLabel.Text = "Phone Number:";
             // 
             // ZipCodeLabel
             // 
@@ -122,9 +122,9 @@
             this.ZipCodeLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ZipCodeLabel.Location = new System.Drawing.Point(20, 420);
             this.ZipCodeLabel.Name = "ZipCodeLabel";
-            this.ZipCodeLabel.Size = new System.Drawing.Size(245, 30);
+            this.ZipCodeLabel.Size = new System.Drawing.Size(136, 30);
             this.ZipCodeLabel.TabIndex = 3;
-            this.ZipCodeLabel.Text = "Zip Code: Zip Code";
+            this.ZipCodeLabel.Text = "Zip Code: ";
             // 
             // EmailLabel
             // 
@@ -132,16 +132,16 @@
             this.EmailLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.EmailLabel.Location = new System.Drawing.Point(20, 270);
             this.EmailLabel.Name = "EmailLabel";
-            this.EmailLabel.Size = new System.Drawing.Size(337, 30);
+            this.EmailLabel.Size = new System.Drawing.Size(92, 30);
             this.EmailLabel.TabIndex = 3;
-            this.EmailLabel.Text = "Email: email@domain.com";
+            this.EmailLabel.Text = "Email: ";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(382, 20);
+            this.pictureBox1.Location = new System.Drawing.Point(380, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(318, 480);
+            this.pictureBox1.Size = new System.Drawing.Size(318, 500);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
@@ -152,10 +152,9 @@
             this.AccountNumberLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AccountNumberLabel.Location = new System.Drawing.Point(20, 520);
             this.AccountNumberLabel.Name = "AccountNumberLabel";
-            this.AccountNumberLabel.Size = new System.Drawing.Size(613, 30);
+            this.AccountNumberLabel.Size = new System.Drawing.Size(226, 30);
             this.AccountNumberLabel.TabIndex = 3;
-            this.AccountNumberLabel.Text = "Account Number: 00 0000 0000 0000 0000 0000 0000";
-
+            this.AccountNumberLabel.Text = "Account Number:";
             // 
             // CancelButton
             // 
@@ -174,9 +173,9 @@
             this.LoginLabel.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LoginLabel.Location = new System.Drawing.Point(20, 470);
             this.LoginLabel.Name = "LoginLabel";
-            this.LoginLabel.Size = new System.Drawing.Size(155, 30);
+            this.LoginLabel.Size = new System.Drawing.Size(84, 30);
             this.LoginLabel.TabIndex = 3;
-            this.LoginLabel.Text = "Login: Login";
+            this.LoginLabel.Text = "Login:";
             // 
             // AccountDetailsUserControl
             // 
@@ -201,6 +200,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AccountDetailsUserControl";
             this.Size = new System.Drawing.Size(730, 800);
+            this.Load += new System.EventHandler(this.AccountDetailsUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
