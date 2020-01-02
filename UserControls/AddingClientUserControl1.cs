@@ -122,8 +122,8 @@ namespace Bank_App.UserControls
 
                 if (arePasswordsSame == true)
                 {
-                    SetTextBoxesValue();
                     AccountsManager.Client = new Client(LogInTextBox.Text, PasswordTextBox.Text, EmailTextBox.Text);
+                    SetTextBoxesValue();
                     this.Parent.Controls["addingClientUserControl2"].BringToFront();
                 }
             }

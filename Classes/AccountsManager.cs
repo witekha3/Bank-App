@@ -58,7 +58,7 @@ namespace Bank_App.Classes
                     "SELECT LAST_INSERT_ID();";
             
                 string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
-                    "'" + Client.Login + "', '" + Client.Password + "', '" + Client.IsAdmin.ToString() + "'); SELECT LAST_INSERT_ID();";
+                    "'" + Client.Login + "', '" + Client.Password + "', 0); SELECT LAST_INSERT_ID();";
 
                 
                 DataTable personId = DataBaseManager.Get(personTableQ);
@@ -75,7 +75,7 @@ namespace Bank_App.Classes
         {
 
             DataTable data = DataBaseManager.Get("SELECT " +
-                "UserTable.Id, UserTable.Login, " +
+                "AccountTable.Id, UserTable.Login, " +
                "PersonTable.Email, PersonTable.Pesel, " +
                "AccountTable.AccountNumber " +
                "FROM AccountTable " +
