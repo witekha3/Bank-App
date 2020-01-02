@@ -45,6 +45,7 @@ namespace Bank_App.Classes
             return data;
         }
 
+<<<<<<< HEAD
         public static DataTable GetUsersFromDataBase()
         {
 
@@ -65,5 +66,7 @@ namespace Bank_App.Classes
             else currentSaldo = saldo - value;
             DataBaseManager.Post("update AccountTable set Saldo = " + "'" + currentSaldo.ToString().Replace(",", ".") + "'" + "where AccountNumber =" + "'" + LogInManager.WhoIsCurrentLoged + "'");
         }
+=======
+>>>>>>> a8e2c2f8c8688c0f0cdb4bf8faddf26ce3b60068
     }
 }
