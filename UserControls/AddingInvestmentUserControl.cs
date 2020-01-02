@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Bank_App.Enums;
+using Bank_App.Forms;
+using Bank_App.Classes;
 
 namespace Bank_App.UserControls
 {
@@ -39,7 +41,7 @@ namespace Bank_App.UserControls
             DurationComboBox.Items.Add("3600 days");
             DurationComboBox.Text = "30 days";
         }
-
+        private decimal saldo;
         private bool CheckControls()
         {
             bool isConfirmed = true;
@@ -140,7 +142,29 @@ namespace Bank_App.UserControls
                 return interest;
 
         }
-
+        private void AddInvestment()
+        {
+            double interest = MatchInterestToDuration();
+            DataBaseManager.Post("INSERT INTO InvestmentTable VALUES(" + "''," +
+               "'" + NameTextBox.Text + "', '" + TypeComboBox.Text + "', " +
+               "'" + ValueTextBox.Text.Replace(",", ".") + "', '" + interest.ToString() + "', " +
+               "'" + DateTime.Now.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.AddDays(Convert.ToInt32(DurationComboBox.Text.Replace(" days", ""))).ToString("yyyy-MM-dd") + "', '" + DurationComboBox.Text + "', " +
+               "'" + LogInManager.WhoIsCurrentLoged + "')");
+        }
+        private bool CheckBalance()
+        {
+            DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+            saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
+            if (saldo >= Convert.ToDecimal(ValueTextBox.Text))
+            {
+                return true;
+            }
+            else
+            {
+                MessageBox.Show("You don't have enough money to realize this investment");
+                return false;
+            }
+        }
         private void Confirm()
         {
             ResetControls();
@@ -148,11 +172,14 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                double interest = MatchInterestToDuration();
-
-                ResetControls();
-                SetTextBoxesValue();
-                this.Parent.Controls["mainUserControl"].BringToFront();
+                if (CheckBalance())
+                {
+                    AddInvestment();
+                    TransferManager.UpdateBalance(saldo,Convert.ToDecimal(ValueTextBox.Text),'-');
+                    ResetControls();
+                    SetTextBoxesValue();
+                    this.Parent.Controls["mainUserControl"].BringToFront();
+                }
             }
         }
 

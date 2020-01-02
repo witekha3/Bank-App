@@ -58,5 +58,12 @@ namespace Bank_App.Classes
                "ORDER BY AccountTable.Id ");
             return data;
         }
+        public static void UpdateBalance(decimal saldo, decimal value, char h)
+        {
+            decimal currentSaldo;
+            if (h == '+') currentSaldo = saldo + value;
+            else currentSaldo = saldo - value;
+            DataBaseManager.Post("update AccountTable set Saldo = " + "'" + currentSaldo.ToString().Replace(",", ".") + "'" + "where AccountNumber =" + "'" + LogInManager.WhoIsCurrentLoged + "'");
+        }
     }
 }
