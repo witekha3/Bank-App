@@ -25,8 +25,6 @@ namespace Bank_App.UserControls
 
         private void Delete()
         {
-            ResetControls();
-
             try
             {
                 DataBaseManager.Post("Delete " +
@@ -43,6 +41,7 @@ namespace Bank_App.UserControls
             {
                 IncorrectSelectedItemLabel.Visible = true;
             }
+            ResetControls();
         }
 
         public void ShowClients()
