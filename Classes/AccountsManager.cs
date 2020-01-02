@@ -67,7 +67,6 @@ namespace Bank_App.Classes
                 string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0]+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
                 DataBaseManager.Post(createAccountQ);
                 
-                
             }
         }
 

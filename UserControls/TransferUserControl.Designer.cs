@@ -237,6 +237,7 @@
             this.DefinedTransferTxt.Name = "DefinedTransferTxt";
             this.DefinedTransferTxt.Size = new System.Drawing.Size(447, 32);
             this.DefinedTransferTxt.TabIndex = 18;
+            this.DefinedTransferTxt.Click += new System.EventHandler(this.DefinedTransferTxt_Click);
             this.DefinedTransferTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DefinedTransferTxt_KeyDown);
             // 
             // label1

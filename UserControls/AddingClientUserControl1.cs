@@ -147,6 +147,9 @@ namespace Bank_App.UserControls
             Next();            
         }
 
+        private void AddingClientUserControl1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

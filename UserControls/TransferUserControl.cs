@@ -105,6 +105,7 @@ namespace Bank_App.UserControls
             TitleTextBox.Text = "Title";
             ValueTextBox.Text = "0";
             AccountNumberTextBox.Text = "0";
+            DefinedTransferTxt.Text = "";
         }
 
         private void Cancel()
@@ -219,6 +220,11 @@ namespace Bank_App.UserControls
                 AccountNumberTextBox.Text = data.Rows[0].ItemArray[2].ToString();
                 SetVisibility(true);
             }
+        }
+
+        private void DefinedTransferTxt_Click(object sender, EventArgs e)
+        {
+            DefinedTransfer();
         }
     }
 }
