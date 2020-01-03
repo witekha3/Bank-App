@@ -14,6 +14,9 @@ namespace Bank_App.UserControls
 {
     public partial class DeleteClientUserControl : UserControl
     {
+        AccountsManager accountsManager = new AccountsManager();
+        DataBaseManager dataBaseManager = new DataBaseManager();
+
         public DeleteClientUserControl()
         {
             InitializeComponent();
@@ -27,7 +30,7 @@ namespace Bank_App.UserControls
         {
             try
             {
-                DataBaseManager.Post("Delete " +
+                dataBaseManager.Post("Delete " +
                 "UserTable.*, " +
                 "PersonTable.*, " +
                 "AccountTable.* " +
@@ -47,7 +50,7 @@ namespace Bank_App.UserControls
 
         public void ShowClients()
         {
-            DataTable data = AccountsManager.GetAllUsersFromDataBase();
+            DataTable data = accountsManager.GetAllUsersFromDataBase();
 
             ListViewItem item;
 

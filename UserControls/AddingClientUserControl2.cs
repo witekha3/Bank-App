@@ -13,6 +13,8 @@ namespace Bank_App.UserControls
 {
     public partial class AddingClientUserControl2 : UserControl
     {
+        AccountsManager accountsManager = new AccountsManager();
+
         public AddingClientUserControl2()
         {
             InitializeComponent();
@@ -114,11 +116,11 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                bool isExist = AccountsManager.CheckIfPersonExist(AccountsManager.Client.Pesel);
+                bool isExist = accountsManager.CheckIfPersonExist(AccountsManager.Client.Pesel);
 
                 if(isExist == false)
                 {
-                    AccountsManager.Client.AccountNumber = AccountsManager.GenerateAccountNumber();
+                    AccountsManager.Client.AccountNumber = accountsManager.GenerateAccountNumber();
                     AccountsManager.Client.Name = NameTextBox.Text;
                     AccountsManager.Client.Surname = SurnameTextBox.Text;
                     AccountsManager.Client.City = CityNameTextBox.Text;
@@ -127,7 +129,7 @@ namespace Bank_App.UserControls
                     AccountsManager.Client.PhoneNumber = PhoneNumberTextBox.Text;
                     AccountsManager.Client.Pesel = PeselTextBox.Text;
 
-                    AccountsManager.CreateAccount();
+                    accountsManager.CreateAccount();
 
                     SetTextBoxesValue();
                     ResetControls();

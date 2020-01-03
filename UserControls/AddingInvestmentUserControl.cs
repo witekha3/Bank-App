@@ -15,6 +15,8 @@ namespace Bank_App.UserControls
 {
     public partial class AddingInvestmentUserControl : UserControl
     {
+        InvestmentManager investmentManager = new InvestmentManager();
+        TransferManager transferManager = new TransferManager();
         InvestmentTypes[] investmentTypesTab = new InvestmentTypes[4];
         public AddingInvestmentUserControl()
         {
@@ -94,15 +96,15 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                isConfirmed = InvestmentManager.CheckBalance(ValueTextBox.Text);
+                isConfirmed = investmentManager.CheckBalance(ValueTextBox.Text);
 
                 if (isConfirmed == true)
                 {
-                    InvestmentManager.AddInvestment(DurationComboBox.Text, NameTextBox.Text, TypeComboBox.Text, ValueTextBox.Text);
-                    TransferManager.UpdateBalance(InvestmentManager.Saldo, Convert.ToDecimal(ValueTextBox.Text),'-');
+                    investmentManager.AddInvestment(DurationComboBox.Text, NameTextBox.Text, TypeComboBox.Text, ValueTextBox.Text);
+                    transferManager.UpdateBalance(investmentManager.Saldo, Convert.ToDecimal(ValueTextBox.Text),'-');
                     ResetControls();
                     SetTextBoxesValue();
-                    InvestmentManager.Saldo = 0.0M;
+                    investmentManager.Saldo = 0.0M;
                     this.Parent.Controls["mainUserControl"].BringToFront();
                 }
                 else
@@ -116,7 +118,7 @@ namespace Bank_App.UserControls
         {
             ResetControls();
             SetTextBoxesValue();
-            InvestmentManager.Saldo = 0.0M;
+            investmentManager.Saldo = 0.0M;
             this.Parent.Controls["investmentsUserControl"].BringToFront();
         }
 

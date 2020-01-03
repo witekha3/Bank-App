@@ -14,6 +14,8 @@ namespace Bank_App.UserControls
 {
     public partial class DefinedTransferUserControl : UserControl
     {
+        DataBaseManager DataBaseManager = new DataBaseManager();
+        TransferManager transferManager = new TransferManager();
         public DefinedTransferUserControl()
         {
             InitializeComponent();
@@ -43,7 +45,7 @@ namespace Bank_App.UserControls
 
         public void ShowTransferHistory()
         {
-            DataTable data = TransferManager.GetTransferHistoryFromDataBase();
+            DataTable data = transferManager.GetTransferHistoryFromDataBase();
 
             ListViewItem item;
 

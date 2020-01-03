@@ -13,6 +13,7 @@ namespace Bank_App.UserControls
 {
     public partial class AccountDetailsUserControl : UserControl
     {
+        AccountsManager accountsManager = new AccountsManager();
         public AccountDetailsUserControl()
         {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace Bank_App.UserControls
 
         private void ShowAccountDetails()
         {
-            DataTable data = AccountsManager.GetAccountDetails();
+            DataTable data = accountsManager.GetAccountDetails();
 
             NameLabel.Text = "Name: " + data.Rows[0].ItemArray[2].ToString();
             SurnameLabel.Text = "Surname: " + data.Rows[0].ItemArray[3].ToString();

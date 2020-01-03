@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace Bank_App.Classes
 {
-    static class AccountsManager
+    class AccountsManager
     {
+        DataBaseManager dataBaseManager = new DataBaseManager();
         public static Client Client { get; set; }
-        public static string GenerateAccountNumber()
+        public string GenerateAccountNumber()
         {
             string accountNumber = "";
             int numberToAdd;
@@ -29,10 +30,10 @@ namespace Bank_App.Classes
             return accountNumber;
         }
 
-        public static bool CheckIfPersonExist(string pesel) 
+        public bool CheckIfPersonExist(string pesel) 
         {
             bool exist = false;
-            if (DataBaseManager.Get("SELECT * FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
+            if (dataBaseManager.Get("SELECT * FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
             {
                 exist = true;
             }
@@ -40,7 +41,7 @@ namespace Bank_App.Classes
 
         }
 
-        public static void CreateAccount()
+        public void CreateAccount()
         {
             int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
             
@@ -55,19 +56,19 @@ namespace Bank_App.Classes
                     "'" + Client.Login + "', '" + Client.Password + "', 0); SELECT LAST_INSERT_ID();";
 
                 
-            DataTable personId = DataBaseManager.Get(personTableQ);
-            DataTable userId = DataBaseManager.Get(userTableQ);
+            DataTable personId = dataBaseManager.Get(personTableQ);
+            DataTable userId = dataBaseManager.Get(userTableQ);
 
             string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0]+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
-            DataBaseManager.Post(createAccountQ);
+            dataBaseManager.Post(createAccountQ);
                 
             
         }
 
-        public static DataTable GetAllUsersFromDataBase()
+        public DataTable GetAllUsersFromDataBase()
         {
 
-            DataTable data = DataBaseManager.Get("SELECT " +
+            DataTable data = dataBaseManager.Get("SELECT " +
                 "AccountTable.Id, UserTable.Login, " +
                "PersonTable.Email, PersonTable.Pesel, " +
                "AccountTable.AccountNumber " +
@@ -78,9 +79,9 @@ namespace Bank_App.Classes
             return data;
         }
 
-        public static DataTable GetUserDetailByAdmin(string pesel)
+        public DataTable GetUserDetailByAdmin(string pesel)
         {
-            DataTable data = DataBaseManager.Get("SELECT " +
+            DataTable data = dataBaseManager.Get("SELECT " +
                "UserTable.Id, UserTable.Login, " +
                "PersonTable.Name, PersonTable.Surname, PersonTable.City, PersonTable.CityCode, PersonTable.PhoneNumber, PersonTable.Email, PersonTable.Pesel," +
                "AccountTable.AccountNumber " +
@@ -92,9 +93,9 @@ namespace Bank_App.Classes
             return data;
         }
 
-        public static DataTable GetAccountDetails()
+        public DataTable GetAccountDetails()
         {
-            DataTable data = DataBaseManager.Get("SELECT " +
+            DataTable data = dataBaseManager.Get("SELECT " +
                "UserTable.Id, UserTable.Login, " +
                "PersonTable.Name, PersonTable.Surname, PersonTable.BirthDate, PersonTable.Pesel, PersonTable.Email, PersonTable.PhoneNumber, PersonTable.City, PersonTable.CityCode, " +
                "AccountTable.AccountNumber " +
@@ -106,9 +107,9 @@ namespace Bank_App.Classes
             return data;
         }
 
-        public static void UpdateUserDetails(string pesel, string login, string name, string surname, string city, string zipCode, string email, string phone)
+        public void UpdateUserDetails(string pesel, string login, string name, string surname, string city, string zipCode, string email, string phone)
         {
-            DataTable data = DataBaseManager.Get("SELECT " +
+            DataTable data = dataBaseManager.Get("SELECT " +
                 "UserTable.Id, " +
                 "PersonTable.Id, PersonTable.Pesel, " +
                 "AccountTable.AccountNumber " +
@@ -119,11 +120,11 @@ namespace Bank_App.Classes
             int userTableId = (int)data.Rows[0].ItemArray[0];
             int personTableId = (int)data.Rows[0].ItemArray[1];
 
-            DataBaseManager.Post("UPDATE UserTable " + 
+            dataBaseManager.Post("UPDATE UserTable " + 
                 "SET Login = " + "'" + login + "'" +
                 " WHERE Id = " + "'" + userTableId + "'");
 
-            DataBaseManager.Post("UPDATE PersonTable " +
+            dataBaseManager.Post("UPDATE PersonTable " +
             "SET Name = " + "'" + name + "'" +
             ", Surname = " + "'" + surname + "'" +
             ", City = " + "'" + city + "'" +

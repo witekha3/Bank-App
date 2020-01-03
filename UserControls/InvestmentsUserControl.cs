@@ -14,6 +14,9 @@ namespace Bank_App.UserControls
 {
     public partial class InvestmentsUserControl : UserControl
     {
+        InvestmentManager investmentManager = new InvestmentManager();
+        DataBaseManager dataBaseManager = new DataBaseManager();
+        TransferManager transferManager = new TransferManager();
         public InvestmentsUserControl()
         {
             InitializeComponent();
@@ -34,11 +37,11 @@ namespace Bank_App.UserControls
                 string id = InvestmentsList.SelectedItems[0].SubItems[0].Text;
                 string value = InvestmentsList.SelectedItems[0].SubItems[3].Text;
                 InvestmentsList.SelectedItems[0].Remove();
-                InvestmentManager.RemoveInvestment(Convert.ToInt32(id));
-                DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
-                InvestmentManager.Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
-                TransferManager.UpdateBalance(InvestmentManager.Saldo, Convert.ToDecimal(value), '+');
-                InvestmentManager.Saldo = 0.0M;
+                investmentManager.RemoveInvestment(Convert.ToInt32(id));
+                DataTable SenderData = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+                investmentManager.Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
+                transferManager.UpdateBalance(investmentManager.Saldo, Convert.ToDecimal(value), '+');
+                investmentManager.Saldo = 0.0M;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -49,14 +52,14 @@ namespace Bank_App.UserControls
         private void Cancel()
         {
             ResetControls();
-            InvestmentManager.Saldo = 0.0M;
+            investmentManager.Saldo = 0.0M;
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
 
         private void Create()
         {
             ResetControls();
-            InvestmentManager.Saldo = 0.0M;
+            investmentManager.Saldo = 0.0M;
             this.Parent.Controls["addingInvestmentUserControl"].BringToFront();
         }
         public void UpdateInvestmentList()
@@ -66,7 +69,7 @@ namespace Bank_App.UserControls
                 InvestmentsList.Items[0].Remove();
              }
 
-             DataTable MyInvestments = InvestmentManager.GetAllInvestmentsFromDataBase();
+             DataTable MyInvestments = investmentManager.GetAllInvestmentsFromDataBase();
              ListView listView = new ListView();
              string[] str = new string[MyInvestments.Columns.Count - 1];
              int fc = MyInvestments.Columns.Count - 1;

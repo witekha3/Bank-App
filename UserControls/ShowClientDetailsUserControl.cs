@@ -13,6 +13,7 @@ namespace Bank_App.UserControls
 {
     public partial class ShowClientDetailsUserControl : UserControl
     {
+        AccountsManager accountsManager = new AccountsManager();
         public ShowClientDetailsUserControl()
         {
             InitializeComponent();
@@ -190,7 +191,7 @@ namespace Bank_App.UserControls
                 SetVisibility(true);
                 try
                 {
-                    DataTable data = AccountsManager.GetUserDetailByAdmin(PeselTextBox.Text);
+                    DataTable data = accountsManager.GetUserDetailByAdmin(PeselTextBox.Text);
                     FillTextBoxesByData(data);
 
                 }
@@ -220,7 +221,7 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                AccountsManager.UpdateUserDetails(PeselTextBox.Text, LogInTextBox.Text, NameTextBox.Text, SurnameTextBox.Text, CityNameTextBox.Text,
+                accountsManager.UpdateUserDetails(PeselTextBox.Text, LogInTextBox.Text, NameTextBox.Text, SurnameTextBox.Text, CityNameTextBox.Text,
                     ZipCodeTextBox1.Text, EmailTextBox.Text, PhoneNumberTextBox.Text);
                 ResetControls();
                 ResetPeselControls();

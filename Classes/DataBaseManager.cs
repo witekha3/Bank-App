@@ -14,9 +14,9 @@ namespace Bank_App.Forms
     class DataBaseManager
     {
 
-        private static string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
+        private string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
 
-        public static DataTable Get(string query) 
+        public DataTable Get(string query) 
         {
             MySqlConnection sqlcon = new MySqlConnection(connectionString);
             DataTable dataTable = new DataTable();
@@ -39,7 +39,7 @@ namespace Bank_App.Forms
 
         }
 
-        public static void Post(string query) {
+        public void Post(string query) {
 
             MySqlConnection sqlcon = new MySqlConnection(connectionString);
             try

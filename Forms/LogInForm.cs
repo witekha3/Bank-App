@@ -14,6 +14,7 @@ namespace Bank_App
 {
     public partial class LogInForm : Form
     {
+        LogInManager logInManager = new LogInManager();
         public LogInForm()
         {
             InitializeComponent();
@@ -71,7 +72,7 @@ namespace Bank_App
 
             if (isConfirmed == true)
             {
-                bool isUserExist = LogInManager.LogIn(LogInTextBox.Text, PasswordTextBox.Text, out isAdmin);
+                bool isUserExist = logInManager.LogIn(LogInTextBox.Text, PasswordTextBox.Text, out isAdmin);
                 
                 if(isUserExist == true)
                 {

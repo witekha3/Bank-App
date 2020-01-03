@@ -14,6 +14,7 @@ namespace Bank_App.UserControls
 {
     public partial class TransferUserControl : UserControl
     {
+        TransferManager transferManager = new TransferManager();
         public TransferUserControl()
         {
             InitializeComponent();
@@ -45,7 +46,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if (ValueTextBox.Text == "" || TransferManager.CheckBalance(ValueTextBox.Text) == false)
+            if (ValueTextBox.Text == "" || transferManager.CheckBalance(ValueTextBox.Text) == false)
             {
                 IncorrectValueLabel.Visible = true;
                 ValueTextBox.ForeColor = Color.White;
@@ -53,7 +54,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if(AccountNumberTextBox.Text == "" || TransferManager.CheckIfExist(AccountNumberTextBox.Text) == false)
+            if(AccountNumberTextBox.Text == "" || transferManager.CheckIfExist(AccountNumberTextBox.Text) == false)
             {
                 IncorrectAccountNumberLabel.Visible = true;
                 AccountNumberTextBox.ForeColor = Color.White;
@@ -94,7 +95,7 @@ namespace Bank_App.UserControls
 
             if (isConfirmed == true)
             {
-                TransferManager.SendMoney(CreateTransfer());
+                transferManager.SendMoney(CreateTransfer());
                 SetVisibility(false);
                 ResetControls();
                 SetValueOfTextBoxes();
@@ -139,7 +140,7 @@ namespace Bank_App.UserControls
         }
         private void DefinedTransfer()
         {
-            AutoCompleteStringCollection myCollection = TransferManager.DefinedTransfer();
+            AutoCompleteStringCollection myCollection = transferManager.DefinedTransfer();
 
             DefinedTransferTextBox.AutoCompleteCustomSource = myCollection;
         }
@@ -148,7 +149,7 @@ namespace Bank_App.UserControls
         {
             if (e.KeyData == Keys.Enter)
             {
-                DataTable data = TransferManager.GetDataRelatedToDefinedTransfers(DefinedTransferTextBox.Text);
+                DataTable data = transferManager.GetDataRelatedToDefinedTransfers(DefinedTransferTextBox.Text);
 
                 TitleTextBox.Text = data.Rows[0].ItemArray[0].ToString();
                 ValueTextBox.Text = data.Rows[0].ItemArray[1].ToString();

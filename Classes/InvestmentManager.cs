@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 
 namespace Bank_App.Classes
 {
-    static class InvestmentManager
+    class InvestmentManager
     {
-        public static decimal Saldo = 0.0M;
-        public static double MatchInterestToDuration(string Duration)
+        DataBaseManager dataBaseManager = new DataBaseManager();
+
+        public decimal Saldo = 0.0M;
+        public double MatchInterestToDuration(string Duration)
         {
             double interest = 0;
 
@@ -67,21 +69,21 @@ namespace Bank_App.Classes
                 return interest;
 
         }
-        public static void AddInvestment(string duration, string name, string type, string value)
+        public void AddInvestment(string duration, string name, string type, string value)
         {
             double interest = MatchInterestToDuration(duration);
-            DataBaseManager.Post("INSERT INTO InvestmentTable VALUES(" + "''," +
+            dataBaseManager.Post("INSERT INTO InvestmentTable VALUES(" + "''," +
                "'" + name + "', '" + type + "', " +
                "'" + value.Replace(",", ".") + "', '" + interest.ToString() + "', " +
                "'" + DateTime.Now.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.AddDays(Convert.ToInt32(duration.Replace(" days", ""))).ToString("yyyy-MM-dd") + "', '" + duration + "', " +
                "'" + LogInManager.WhoIsCurrentLoged + "')");
         }
 
-        public static bool CheckBalance(string value)
+        public bool CheckBalance(string value)
         {
             Saldo = 0.0M;
 
-            DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+            DataTable SenderData = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
             Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
             if (Saldo >= Convert.ToDecimal(value))
             {
@@ -93,14 +95,14 @@ namespace Bank_App.Classes
             }
         }
 
-        public static void RemoveInvestment(int id)
+        public void RemoveInvestment(int id)
         {
-            DataBaseManager.Post("Delete from InvestmentTable where Id =" + "'" + id + "'");
+            dataBaseManager.Post("Delete from InvestmentTable where Id =" + "'" + id + "'");
         }
 
-        public static DataTable GetAllInvestmentsFromDataBase()
+        public DataTable GetAllInvestmentsFromDataBase()
         {
-            DataTable data = DataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+            DataTable data = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
             return data;
         }
     }
