@@ -11,7 +11,7 @@ using MySql.Data;
 
 namespace Bank_App.Forms
 {
-    class DataBaseManager
+    public class DataBaseManager
     {
 
         private string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
@@ -28,7 +28,7 @@ namespace Bank_App.Forms
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
             }
             finally
             {
