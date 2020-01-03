@@ -29,12 +29,13 @@ namespace Bank_App.UserControls
             {
                 DataBaseManager.Post("Delete " +
                 "UserTable.*, " +
-               "PersonTable.*, " +
-               "AccountTable.* " +
-               "FROM AccountTable " +
-               "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
-               "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
-               "Where AccountTable.Id = " + ClientsListView.SelectedItems[0].Text);
+                "PersonTable.*, " +
+                "AccountTable.* " +
+                "FROM AccountTable " +
+                "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+                "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+                "Where AccountTable.Id = " + ClientsListView.SelectedItems[0].Text);
+
                 ClientsListView.SelectedItems[0].Remove();
             }
             catch (ArgumentOutOfRangeException)

@@ -147,7 +147,6 @@
             this.InvestmentsList.TabIndex = 19;
             this.InvestmentsList.UseCompatibleStateImageBehavior = false;
             this.InvestmentsList.View = System.Windows.Forms.View.Details;
-            this.InvestmentsList.SelectedIndexChanged += new System.EventHandler(this.InvestmentsListView_SelectedIndexChanged);
             // 
             // IdColumn
             // 

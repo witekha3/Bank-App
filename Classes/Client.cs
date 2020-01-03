@@ -14,7 +14,7 @@ namespace Bank_App.Classes
         public Client() : base()
         {
             AccountNumber = "";
-            Balance = 0.0M;
+            Balance = 100.0M;
         }
 
         public Client(string accountNumber, string login, string password, string email, bool isAdmin, string name,
@@ -22,13 +22,13 @@ namespace Bank_App.Classes
             : base(login, password, email, isAdmin, name, surname, dateOfBirth, city, zipCode, pesel, phoneNumber)
         {
             AccountNumber = accountNumber;
-            Balance = 0.0M;
+            Balance = 100.0M;
         }
 
         public Client(string login, string password, string email)  : base(login, password, email)
         {
             AccountNumber = "";
-            Balance = 0.0M;
+            Balance = 100.0M;
         }
 
     }

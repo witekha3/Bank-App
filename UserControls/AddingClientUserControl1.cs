@@ -113,6 +113,8 @@ namespace Bank_App.UserControls
 
         private void Next()
         {
+            ResetControls();
+
             AccountsManager.Client = null;
             bool isConfirmed = CheckControls();
 
@@ -143,13 +145,8 @@ namespace Bank_App.UserControls
 
         private void NextButton_Click(object sender, EventArgs e)
         {
-            ResetControls();
             Next();            
         }
 
-        private void AddingClientUserControl1_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

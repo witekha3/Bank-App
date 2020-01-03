@@ -41,6 +41,8 @@ namespace Bank_App.UserControls
             PeselTextBox.ForeColor = SystemColors.ControlDarkDark;
             PeselTextBox.BackColor = SystemColors.Window;
 
+            IncorrectClientLabel.Visible = false;
+
         }
         private void SetTextBoxesValue()
         {
@@ -112,21 +114,31 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                AccountsManager.Client.AccountNumber = AccountsManager.GenerateAccountNumber();
-                AccountsManager.Client.Name = NameTextBox.Text;
-                AccountsManager.Client.Surname = SurnameTextBox.Text;
-                AccountsManager.Client.City = CityNameTextBox.Text;
-                AccountsManager.Client.ZipCode = ZipCodeTextBox1.Text;
-                AccountsManager.Client.DateOfBirth = DateOfBirthPicker.Value.Date;
-                AccountsManager.Client.PhoneNumber = PhoneNumberTextBox.Text;
-                AccountsManager.Client.Pesel = PeselTextBox.Text;
+                bool isExist = AccountsManager.CheckIfPersonExist(AccountsManager.Client.Pesel);
 
-                AccountsManager.CreateAccount();
+                if(isExist == false)
+                {
+                    AccountsManager.Client.AccountNumber = AccountsManager.GenerateAccountNumber();
+                    AccountsManager.Client.Name = NameTextBox.Text;
+                    AccountsManager.Client.Surname = SurnameTextBox.Text;
+                    AccountsManager.Client.City = CityNameTextBox.Text;
+                    AccountsManager.Client.ZipCode = ZipCodeTextBox1.Text;
+                    AccountsManager.Client.DateOfBirth = DateOfBirthPicker.Value.Date;
+                    AccountsManager.Client.PhoneNumber = PhoneNumberTextBox.Text;
+                    AccountsManager.Client.Pesel = PeselTextBox.Text;
 
-                SetTextBoxesValue();
-                ResetControls();
-                AccountsManager.Client = null;
-                this.Parent.Controls["mainUserControl"].BringToFront();
+                    AccountsManager.CreateAccount();
+
+                    SetTextBoxesValue();
+                    ResetControls();
+                    AccountsManager.Client = null;
+                    this.Parent.Controls["mainUserControl"].BringToFront();
+                }
+                else
+                {
+                    IncorrectClientLabel.Visible = true;
+                }
+
             }
         }
 
@@ -146,9 +158,5 @@ namespace Bank_App.UserControls
             CreateClient();
         }
 
-        private void CentralPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }

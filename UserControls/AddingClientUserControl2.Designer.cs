@@ -33,6 +33,7 @@
             this.CreateUserButton = new System.Windows.Forms.Button();
             this.DateOfBirthPicker = new System.Windows.Forms.DateTimePicker();
             this.IncorrectZipCodeLabel = new System.Windows.Forms.Label();
+            this.IncorrectClientLabel = new System.Windows.Forms.Label();
             this.IncorrectPhoneNumberLabel = new System.Windows.Forms.Label();
             this.IncorrectPeselLabel = new System.Windows.Forms.Label();
             this.IncorrectCityNameLabel = new System.Windows.Forms.Label();
@@ -61,6 +62,7 @@
             this.CentralPanel.Controls.Add(this.CreateUserButton);
             this.CentralPanel.Controls.Add(this.DateOfBirthPicker);
             this.CentralPanel.Controls.Add(this.IncorrectZipCodeLabel);
+            this.CentralPanel.Controls.Add(this.IncorrectClientLabel);
             this.CentralPanel.Controls.Add(this.IncorrectPhoneNumberLabel);
             this.CentralPanel.Controls.Add(this.IncorrectPeselLabel);
             this.CentralPanel.Controls.Add(this.IncorrectCityNameLabel);
@@ -85,7 +87,6 @@
             this.CentralPanel.Name = "CentralPanel";
             this.CentralPanel.Size = new System.Drawing.Size(730, 800);
             this.CentralPanel.TabIndex = 0;
-            this.CentralPanel.Paint += new System.Windows.Forms.PaintEventHandler(this.CentralPanel_Paint);
             // 
             // CancelButton
             // 
@@ -132,6 +133,19 @@
             this.IncorrectZipCodeLabel.Text = "Zip Code, which you entered is incorrect.";
             this.IncorrectZipCodeLabel.UseWaitCursor = true;
             this.IncorrectZipCodeLabel.Visible = false;
+            // 
+            // IncorrectClientLabel
+            // 
+            this.IncorrectClientLabel.AutoSize = true;
+            this.IncorrectClientLabel.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IncorrectClientLabel.ForeColor = System.Drawing.Color.Red;
+            this.IncorrectClientLabel.Location = new System.Drawing.Point(20, 440);
+            this.IncorrectClientLabel.Name = "IncorrectClientLabel";
+            this.IncorrectClientLabel.Size = new System.Drawing.Size(168, 19);
+            this.IncorrectClientLabel.TabIndex = 10;
+            this.IncorrectClientLabel.Text = "This client already exist.";
+            this.IncorrectClientLabel.UseWaitCursor = true;
+            this.IncorrectClientLabel.Visible = false;
             // 
             // IncorrectPhoneNumberLabel
             // 
@@ -383,5 +397,6 @@
         private System.Windows.Forms.Label IncorrectPhoneNumberLabel;
         private System.Windows.Forms.TextBox PhoneNumberTextBox;
         private System.Windows.Forms.Label PhoneNumberLabel;
+        private System.Windows.Forms.Label IncorrectClientLabel;
     }
 }

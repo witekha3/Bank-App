@@ -34,10 +34,11 @@ namespace Bank_App.UserControls
                 string id = InvestmentsList.SelectedItems[0].SubItems[0].Text;
                 string value = InvestmentsList.SelectedItems[0].SubItems[3].Text;
                 InvestmentsList.SelectedItems[0].Remove();
-                RemoveInvestment(Convert.ToInt32(id));
+                InvestmentManager.RemoveInvestment(Convert.ToInt32(id));
                 DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
-                decimal saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
-                TransferManager.UpdateBalance(saldo, Convert.ToDecimal(value), '+');
+                InvestmentManager.Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
+                TransferManager.UpdateBalance(InvestmentManager.Saldo, Convert.ToDecimal(value), '+');
+                InvestmentManager.Saldo = 0.0M;
             }
             catch (ArgumentOutOfRangeException)
             {
@@ -45,19 +46,17 @@ namespace Bank_App.UserControls
             }
 
         }
-        private void RemoveInvestment(int id)
-        {
-            DataBaseManager.Post("Delete from InvestmentTable where Id ="+"'"+id+"'");
-        }
         private void Cancel()
         {
             ResetControls();
+            InvestmentManager.Saldo = 0.0M;
             this.Parent.Controls["MainUserControl"].BringToFront();
         }
 
         private void Create()
         {
             ResetControls();
+            InvestmentManager.Saldo = 0.0M;
             this.Parent.Controls["addingInvestmentUserControl"].BringToFront();
         }
         public void UpdateInvestmentList()
@@ -66,13 +65,13 @@ namespace Bank_App.UserControls
              {
                 InvestmentsList.Items[0].Remove();
              }
-         
-             DataTable MyInvestmetns = DataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
-             ListView listView = new ListView();
-             string[] str = new string[MyInvestmetns.Columns.Count - 1];
-             int fc = MyInvestmetns.Columns.Count - 1;
 
-             foreach (DataRow row in MyInvestmetns.Rows)
+             DataTable MyInvestments = InvestmentManager.GetAllInvestmentsFromDataBase();
+             ListView listView = new ListView();
+             string[] str = new string[MyInvestments.Columns.Count - 1];
+             int fc = MyInvestments.Columns.Count - 1;
+
+             foreach (DataRow row in MyInvestments.Rows)
              {
                  string[] subitems = new string[fc];
 
@@ -104,10 +103,6 @@ namespace Bank_App.UserControls
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             UpdateInvestmentList();
-        }
-
-        private void InvestmentsListView_SelectedIndexChanged(object sender, EventArgs e)
-        {
         }
     }
 }

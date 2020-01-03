@@ -44,7 +44,7 @@
             this.AccountNumberLabel = new System.Windows.Forms.Label();
             this.AccountNumberTextBox = new System.Windows.Forms.TextBox();
             this.IncorrectAccountNumberLabel = new System.Windows.Forms.Label();
-            this.DefinedTransferTxt = new System.Windows.Forms.TextBox();
+            this.DefinedTransferTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -229,16 +229,16 @@
             this.IncorrectAccountNumberLabel.UseWaitCursor = true;
             this.IncorrectAccountNumberLabel.Visible = false;
             // 
-            // DefinedTransferTxt
+            // DefinedTransferTextBox
             // 
-            this.DefinedTransferTxt.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.DefinedTransferTxt.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.DefinedTransferTxt.Location = new System.Drawing.Point(202, 75);
-            this.DefinedTransferTxt.Name = "DefinedTransferTxt";
-            this.DefinedTransferTxt.Size = new System.Drawing.Size(447, 32);
-            this.DefinedTransferTxt.TabIndex = 18;
-            this.DefinedTransferTxt.Click += new System.EventHandler(this.DefinedTransferTxt_Click);
-            this.DefinedTransferTxt.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DefinedTransferTxt_KeyDown);
+            this.DefinedTransferTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.DefinedTransferTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.DefinedTransferTextBox.Location = new System.Drawing.Point(202, 75);
+            this.DefinedTransferTextBox.Name = "DefinedTransferTextBox";
+            this.DefinedTransferTextBox.Size = new System.Drawing.Size(447, 32);
+            this.DefinedTransferTextBox.TabIndex = 18;
+            this.DefinedTransferTextBox.Click += new System.EventHandler(this.DefinedTransferTxt_Click);
+            this.DefinedTransferTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DefinedTransferTxt_KeyDown);
             // 
             // label1
             // 
@@ -255,7 +255,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Menu;
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.DefinedTransferTxt);
+            this.Controls.Add(this.DefinedTransferTextBox);
             this.Controls.Add(this.CreateTransferButton);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.ConfirmButton);
@@ -301,7 +301,7 @@
         private System.Windows.Forms.Label AccountNumberLabel;
         private System.Windows.Forms.TextBox AccountNumberTextBox;
         private System.Windows.Forms.Label IncorrectAccountNumberLabel;
-        private System.Windows.Forms.TextBox DefinedTransferTxt;
+        private System.Windows.Forms.TextBox DefinedTransferTextBox;
         private System.Windows.Forms.Label label1;
     }
 }

@@ -29,7 +29,7 @@ namespace Bank_App.Classes
             return accountNumber;
         }
 
-        public static bool CheckIfPersonExist(String pesel) 
+        public static bool CheckIfPersonExist(string pesel) 
         {
             bool exist = false;
             if (DataBaseManager.Get("SELECT * FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
@@ -42,32 +42,26 @@ namespace Bank_App.Classes
 
         public static void CreateAccount()
         {
-            if (CheckIfPersonExist(Client.Pesel))
-            {
-                MessageBox.Show("This person already exist");
-            }
-            else {
-                int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
-                
-                
-                string personTableQ = "INSERT INTO PersonTable VALUES("+"'' ," +
+            int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
+            
+            string personTableQ = "INSERT INTO PersonTable VALUES("+"'' ," +
                     "'" + Client.Name + "', '" + Client.Surname + "', " +
                     "'" + Client.City + "', '" + Client.ZipCode + "', " +
                     "'" + Client.Email + "', '" + Client.DateOfBirth.ToString("yyyy-MM-dd").Substring(0, indexOfDate) + "', " +
                     "'" + Client.PhoneNumber + "', '" + Client.Pesel + "');" +
                     "SELECT LAST_INSERT_ID();";
             
-                string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
+            string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
                     "'" + Client.Login + "', '" + Client.Password + "', 0); SELECT LAST_INSERT_ID();";
 
                 
-                DataTable personId = DataBaseManager.Get(personTableQ);
-                DataTable userId = DataBaseManager.Get(userTableQ);
+            DataTable personId = DataBaseManager.Get(personTableQ);
+            DataTable userId = DataBaseManager.Get(userTableQ);
 
-                string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0]+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
-                DataBaseManager.Post(createAccountQ);
+            string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0]+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
+            DataBaseManager.Post(createAccountQ);
                 
-            }
+            
         }
 
         public static DataTable GetAllUsersFromDataBase()

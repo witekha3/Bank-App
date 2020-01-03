@@ -45,7 +45,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if (ValueTextBox.Text == "")
+            if (ValueTextBox.Text == "" || TransferManager.CheckBalance(ValueTextBox.Text) == false)
             {
                 IncorrectValueLabel.Visible = true;
                 ValueTextBox.ForeColor = Color.White;
@@ -53,7 +53,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if(AccountNumberTextBox.Text == "")
+            if(AccountNumberTextBox.Text == "" || TransferManager.CheckIfExist(AccountNumberTextBox.Text) == false)
             {
                 IncorrectAccountNumberLabel.Visible = true;
                 AccountNumberTextBox.ForeColor = Color.White;
@@ -89,15 +89,18 @@ namespace Bank_App.UserControls
 
         private void Confirm()
         {
-            bool isConfirmed = CheckControls();
+            ResetControls();
+            bool isConfirmed = CheckControls(); 
 
-            if(isConfirmed)
+            if (isConfirmed == true)
             {
+                TransferManager.SendMoney(CreateTransfer());
                 SetVisibility(false);
                 ResetControls();
                 SetValueOfTextBoxes();
-                this.Parent.Controls["MainUserControl"].BringToFront();
+                this.Parent.Controls["MainUserControl"].BringToFront();                            
             }
+
         }
 
         private void SetValueOfTextBoxes()
@@ -105,7 +108,7 @@ namespace Bank_App.UserControls
             TitleTextBox.Text = "Title";
             ValueTextBox.Text = "0";
             AccountNumberTextBox.Text = "0";
-            DefinedTransferTxt.Text = "";
+            DefinedTransferTextBox.Text = "";
         }
 
         private void Cancel()
@@ -123,31 +126,8 @@ namespace Bank_App.UserControls
                 LogInManager.WhoIsCurrentLoged,
                 AccountNumberTextBox.Text,
                 DatePicker.Value.Date);
+
             return transfer;
-        }
-        private bool CheckIfExist()
-        {
-            DataTable ReceiverData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + AccountNumberTextBox.Text + "'" + "");
-            if (ReceiverData.Rows.Count != 0) return true;
-            else
-            {
-                MessageBox.Show("Wrong receiver account number");
-                return false;
-            }
-        }
-        private bool CheckBalance()
-        {
-            DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
-            decimal saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
-            if (saldo >= Convert.ToDecimal(ValueTextBox.Text)) 
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("You don't have enough money to realize this transfer");
-                return false;
-            }
         }
 
         private void SelectDefinedTransfer()
@@ -157,13 +137,28 @@ namespace Bank_App.UserControls
             SetValueOfTextBoxes();
             this.Parent.Controls["selectDefinedTransferUserControl"].BringToFront();
         }
+        private void DefinedTransfer()
+        {
+            AutoCompleteStringCollection myCollection = TransferManager.DefinedTransfer();
+
+            DefinedTransferTextBox.AutoCompleteCustomSource = myCollection;
+        }
+
+        private void DefinedTransferPrompt(KeyEventArgs e)
+        {
+            if (e.KeyData == Keys.Enter)
+            {
+                DataTable data = TransferManager.GetDataRelatedToDefinedTransfers(DefinedTransferTextBox.Text);
+
+                TitleTextBox.Text = data.Rows[0].ItemArray[0].ToString();
+                ValueTextBox.Text = data.Rows[0].ItemArray[1].ToString();
+                AccountNumberTextBox.Text = data.Rows[0].ItemArray[2].ToString();
+                SetVisibility(true);
+            }
+        }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
-            if (CheckIfExist() && CheckBalance())
-            {
-                TransferManager.SendMoney(CreateTransfer());
-            }
             Confirm();
         }
 
@@ -183,23 +178,6 @@ namespace Bank_App.UserControls
             SetValueOfTextBoxes();
         }
 
-        private void DefinedTransfer()
-        {
-            AutoCompleteStringCollection myCollection = new AutoCompleteStringCollection();
-
-            DataTable data = DataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
-
-            for (int i = 0; i < data.Rows.Count; i++) 
-            {
-                string sData = "";
-                sData += data.Rows[i].ItemArray[0].ToString() + " Receiver Account: " + data.Rows[i].ItemArray[2].ToString();
-
-                myCollection.Add(sData);
-            }
-
-            DefinedTransferTxt.AutoCompleteCustomSource = myCollection;
-        }
-
         private void TransferUserControl_Load(object sender, EventArgs e)
         {
             DefinedTransfer();
@@ -207,19 +185,7 @@ namespace Bank_App.UserControls
 
         private void DefinedTransferTxt_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyData == Keys.Enter)
-            {
-                string selectedTransfer = DefinedTransferTxt.Text;
-                int indexOfTitle = selectedTransfer.IndexOf(" Receiver Account: ");
-
-                DataTable data = DataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber from TransferHistory where " +
-                    "SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged + " and Title = '" + selectedTransfer.Substring(0, indexOfTitle)+"'");
-
-                TitleTextBox.Text = data.Rows[0].ItemArray[0].ToString();
-                ValueTextBox.Text = data.Rows[0].ItemArray[1].ToString();
-                AccountNumberTextBox.Text = data.Rows[0].ItemArray[2].ToString();
-                SetVisibility(true);
-            }
+            DefinedTransferPrompt(e);
         }
 
         private void DefinedTransferTxt_Click(object sender, EventArgs e)

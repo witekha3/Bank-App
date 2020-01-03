@@ -61,9 +61,6 @@ namespace Bank_App.Forms
             addingInvestmentUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(addingInvestmentUserControl);
 
-            SelectDefinedTransferUserControl selectDefinedTransferUserControl = new SelectDefinedTransferUserControl();
-            selectDefinedTransferUserControl.Dock = DockStyle.Fill;
-            CentralPanel.Controls.Add(selectDefinedTransferUserControl);
         }
 
         private void LogOut()

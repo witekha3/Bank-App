@@ -41,6 +41,7 @@
             this.DurationComboBox = new System.Windows.Forms.ComboBox();
             this.CancelButton = new System.Windows.Forms.Button();
             this.ConfirmButton = new System.Windows.Forms.Button();
+            this.IncorrectBalanceLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // CreateInvestmentLabel
@@ -184,6 +185,19 @@
             this.ConfirmButton.UseWaitCursor = true;
             this.ConfirmButton.Click += new System.EventHandler(this.ConfirmButton_Click);
             // 
+            // IncorrectBalanceLabel
+            // 
+            this.IncorrectBalanceLabel.AutoSize = true;
+            this.IncorrectBalanceLabel.Font = new System.Drawing.Font("Century Gothic", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.IncorrectBalanceLabel.ForeColor = System.Drawing.Color.Red;
+            this.IncorrectBalanceLabel.Location = new System.Drawing.Point(20, 452);
+            this.IncorrectBalanceLabel.Name = "IncorrectBalanceLabel";
+            this.IncorrectBalanceLabel.Size = new System.Drawing.Size(409, 19);
+            this.IncorrectBalanceLabel.TabIndex = 12;
+            this.IncorrectBalanceLabel.Text = "You do not have enough money to realize this investment.";
+            this.IncorrectBalanceLabel.UseWaitCursor = true;
+            this.IncorrectBalanceLabel.Visible = false;
+            // 
             // AddingInvestmentUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 23F);
@@ -192,6 +206,7 @@
             this.Controls.Add(this.ConfirmButton);
             this.Controls.Add(this.DurationComboBox);
             this.Controls.Add(this.TypeComboBox);
+            this.Controls.Add(this.IncorrectBalanceLabel);
             this.Controls.Add(this.IncorrectValueLabel);
             this.Controls.Add(this.IncorrectNameLabel);
             this.Controls.Add(this.ValueTextBox);
@@ -226,5 +241,6 @@
         private System.Windows.Forms.ComboBox DurationComboBox;
         private System.Windows.Forms.Button CancelButton;
         private System.Windows.Forms.Button ConfirmButton;
+        private System.Windows.Forms.Label IncorrectBalanceLabel;
     }
 }

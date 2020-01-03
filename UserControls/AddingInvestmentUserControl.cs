@@ -20,11 +20,11 @@ namespace Bank_App.UserControls
         {
             InitializeComponent();
 
-            TypeComboBox.Items.Add(InvestmentTypes.DAILY.ToString());
-            TypeComboBox.Items.Add(InvestmentTypes.TERM.ToString());
-            TypeComboBox.Items.Add(InvestmentTypes.PROGRESS.ToString());
-            TypeComboBox.Items.Add(InvestmentTypes.CURRENCY.ToString());
-            TypeComboBox.Text = InvestmentTypes.DAILY.ToString();
+            TypeComboBox.Items.Add("Daily");
+            TypeComboBox.Items.Add("Term");
+            TypeComboBox.Items.Add("Progress");
+            TypeComboBox.Items.Add("Curerency");
+            TypeComboBox.Text = "Daily";
 
             investmentTypesTab[0] = InvestmentTypes.DAILY;
             investmentTypesTab[1] = InvestmentTypes.TERM;
@@ -41,7 +41,6 @@ namespace Bank_App.UserControls
             DurationComboBox.Items.Add("3600 days");
             DurationComboBox.Text = "30 days";
         }
-        private decimal saldo;
         private bool CheckControls()
         {
             bool isConfirmed = true;
@@ -62,7 +61,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if (isConfirmed)
+            if (isConfirmed == true)
                 return true;
             else
                 return false;
@@ -77,94 +76,17 @@ namespace Bank_App.UserControls
             IncorrectValueLabel.Visible = false;
             ValueTextBox.ForeColor = SystemColors.ControlDarkDark;
             ValueTextBox.BackColor = SystemColors.Window;
+
+            IncorrectBalanceLabel.Visible = false;
         }
         private void SetTextBoxesValue()
         {
             NameTextBox.Text = "Name";
             ValueTextBox.Text = "Value";
             DurationComboBox.Text = "30 days";
-            TypeComboBox.Text = InvestmentTypes.DAILY.ToString();
+            TypeComboBox.Text = "Daily";
         }
 
-        private double MatchInterestToDuration()
-        {
-            double interest = 0;
-
-            if(DurationComboBox.Text == "30 days")
-            {
-                interest = 0.10;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "60 days")
-            {
-                interest = 0.30;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "90 days")
-            {
-                interest = 0.55;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "180 days")
-            {
-                interest = 0.8;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "360 days")
-            {
-                interest = 1.2;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "720 days")
-            {
-                interest = 2.6;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "1800 days")
-            {
-                interest = 9;
-                return interest;
-            }
-
-            else if (DurationComboBox.Text == "3600 days")
-            {
-                interest = 12.5;
-                return interest;
-            }
-
-            else
-                return interest;
-
-        }
-        private void AddInvestment()
-        {
-            double interest = MatchInterestToDuration();
-            DataBaseManager.Post("INSERT INTO InvestmentTable VALUES(" + "''," +
-               "'" + NameTextBox.Text + "', '" + TypeComboBox.Text + "', " +
-               "'" + ValueTextBox.Text.Replace(",", ".") + "', '" + interest.ToString() + "', " +
-               "'" + DateTime.Now.ToString("yyyy-MM-dd") + "', '" + DateTime.Now.AddDays(Convert.ToInt32(DurationComboBox.Text.Replace(" days", ""))).ToString("yyyy-MM-dd") + "', '" + DurationComboBox.Text + "', " +
-               "'" + LogInManager.WhoIsCurrentLoged + "')");
-        }
-        private bool CheckBalance()
-        {
-            DataTable SenderData = DataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
-            saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
-            if (saldo >= Convert.ToDecimal(ValueTextBox.Text))
-            {
-                return true;
-            }
-            else
-            {
-                MessageBox.Show("You don't have enough money to realize this investment");
-                return false;
-            }
-        }
         private void Confirm()
         {
             ResetControls();
@@ -172,13 +94,20 @@ namespace Bank_App.UserControls
 
             if(isConfirmed == true)
             {
-                if (CheckBalance())
+                isConfirmed = InvestmentManager.CheckBalance(ValueTextBox.Text);
+
+                if (isConfirmed == true)
                 {
-                    AddInvestment();
-                    TransferManager.UpdateBalance(saldo,Convert.ToDecimal(ValueTextBox.Text),'-');
+                    InvestmentManager.AddInvestment(DurationComboBox.Text, NameTextBox.Text, TypeComboBox.Text, ValueTextBox.Text);
+                    TransferManager.UpdateBalance(InvestmentManager.Saldo, Convert.ToDecimal(ValueTextBox.Text),'-');
                     ResetControls();
                     SetTextBoxesValue();
+                    InvestmentManager.Saldo = 0.0M;
                     this.Parent.Controls["mainUserControl"].BringToFront();
+                }
+                else
+                {
+                    IncorrectBalanceLabel.Visible = true;
                 }
             }
         }
@@ -187,6 +116,7 @@ namespace Bank_App.UserControls
         {
             ResetControls();
             SetTextBoxesValue();
+            InvestmentManager.Saldo = 0.0M;
             this.Parent.Controls["investmentsUserControl"].BringToFront();
         }
 

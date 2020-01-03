@@ -82,8 +82,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\InvestmentManager.cs" />
     <Compile Include="Classes\TransferManager.cs" />
-    <Compile Include="Classes\DefinedTransfer.cs" />
     <Compile Include="Classes\Investment.cs" />
     <Compile Include="Classes\Transfer.cs" />
     <Compile Include="Classes\AccountsManager.cs" />
@@ -162,12 +162,6 @@
     <Compile Include="UserControls\MainUserControl.Designer.cs">
       <DependentUpon>MainUserControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\SelectDefinedTransferUserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\SelectDefinedTransferUserControl.Designer.cs">
-      <DependentUpon>SelectDefinedTransferUserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\ShowClientDetailsUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,9 +215,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MainUserControl.resx">
       <DependentUpon>MainUserControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\SelectDefinedTransferUserControl.resx">
-      <DependentUpon>SelectDefinedTransferUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\ShowClientDetailsUserControl.resx">
       <DependentUpon>ShowClientDetailsUserControl.cs</DependentUpon>

@@ -16,14 +16,6 @@ namespace Bank_App.Forms
 
         private static string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
 
-        public static string ConnectionString
-        {
-            get
-            {
-                return connectionString;
-            }
-        }
-
         public static DataTable Get(string query) 
         {
             MySqlConnection sqlcon = new MySqlConnection(connectionString);
