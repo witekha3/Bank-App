@@ -179,6 +179,7 @@
             this.EmailTextBox.TabIndex = 7;
             this.EmailTextBox.Text = "Email";
             this.EmailTextBox.UseWaitCursor = true;
+            this.EmailTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EmailTextBox_KeyPress);
             // 
             // IncorrectEmailLabel
             // 

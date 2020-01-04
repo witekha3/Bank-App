@@ -126,8 +126,9 @@
             this.ValueTextBox.Name = "ValueTextBox";
             this.ValueTextBox.Size = new System.Drawing.Size(300, 28);
             this.ValueTextBox.TabIndex = 11;
-            this.ValueTextBox.Text = "Value";
+            this.ValueTextBox.Text = "0";
             this.ValueTextBox.UseWaitCursor = true;
+            this.ValueTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTextBox_KeyPress);
             // 
             // IncorrectValueLabel
             // 

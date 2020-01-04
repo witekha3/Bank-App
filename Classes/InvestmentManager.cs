@@ -85,6 +85,7 @@ namespace Bank_App.Classes
 
             DataTable SenderData = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
             Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
+
             if (Saldo >= Convert.ToDecimal(value))
             {
                 return true;

@@ -52,8 +52,8 @@ namespace Bank_App.UserControls
             SurnameTextBox.Text = "Surname";
             CityNameTextBox.Text = "City Name";
             ZipCodeTextBox1.Text = "00-000";
-            PeselTextBox.Text = "Pesel";
-            PhoneNumberTextBox.Text = "PhoneNumber";
+            PeselTextBox.Text = "00000000000";
+            PhoneNumberTextBox.Text = "000000000";
             DateOfBirthPicker.MaxDate = DateTime.Today;
             DateOfBirthPicker.Value = DateTime.Today;
         }
@@ -144,6 +144,29 @@ namespace Bank_App.UserControls
             }
         }
 
+        private void AcceptOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
+        }
+
+        private void AcceptOnlyNumbersAndDash(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '-' && ZipCodeTextBox1.SelectionStart == 1)
+                e.Handled = true;
+
+            if (e.KeyChar == '-' && (sender as TextBox).Text.Contains('-'))
+                e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
+        }
+
         private void Cancel()
         {
             ResetControls();
@@ -160,5 +183,19 @@ namespace Bank_App.UserControls
             CreateClient();
         }
 
+        private void PeselTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbers(sender, e);
+        }
+
+        private void PhoneNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbers(sender, e);
+        }
+
+        private void ZipCodeTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbersAndDash(sender, e);
+        }
     }
 }

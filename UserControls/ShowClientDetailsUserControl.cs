@@ -101,8 +101,8 @@ namespace Bank_App.UserControls
             SurnameTextBox.Text = "Surname";
             CityNameTextBox.Text = "City Name";
             ZipCodeTextBox1.Text = "00-000";
-            PeselTextBox.Text = "Pesel";
-            PhoneNumberTextBox.Text = "PhoneNumber";
+            PeselTextBox.Text = "00000000000";
+            PhoneNumberTextBox.Text = "000000000";
             LogInTextBox.Text = "Login";
             EmailTextBox.Text = "Email";
         }
@@ -231,6 +231,38 @@ namespace Bank_App.UserControls
                 this.Parent.Controls["mainUserControl"].BringToFront();
             }
         }
+        private void AcceptNumbersAndLettersAndAt(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '@' && EmailTextBox.SelectionStart == 0)
+                e.Handled = true;
+
+            if (e.KeyChar == '@' && (sender as TextBox).Text.Contains('@'))
+                e.Handled = true;
+
+        }
+
+        private void AcceptOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
+        }
+
+        private void AcceptOnlyNumbersAndDash(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '-' && ZipCodeTextBox1.SelectionStart == 1)
+                e.Handled = true;
+
+            if (e.KeyChar == '-' && (sender as TextBox).Text.Contains('-'))
+                e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == '-' || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
+        }
         private void SearchButton_Click(object sender, EventArgs e)
         {
             Search();
@@ -244,6 +276,26 @@ namespace Bank_App.UserControls
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             Confirm();
+        }
+
+        private void ZipCodeTextBox1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbersAndDash(sender, e);
+        }
+
+        private void PhoneNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbers(sender, e);
+        }
+
+        private void EmailTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptNumbersAndLettersAndAt(sender, e);
+        }
+
+        private void PeselTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbers(sender, e);
         }
     }
 }

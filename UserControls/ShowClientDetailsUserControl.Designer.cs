@@ -91,7 +91,8 @@
             this.PeselTextBox.Name = "PeselTextBox";
             this.PeselTextBox.Size = new System.Drawing.Size(300, 28);
             this.PeselTextBox.TabIndex = 12;
-            this.PeselTextBox.Text = "Pesel";
+            this.PeselTextBox.Text = "00000000000";
+            this.PeselTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PeselTextBox_KeyPress);
             // 
             // PeselLabel
             // 
@@ -179,6 +180,7 @@
             this.ZipCodeTextBox1.TabIndex = 25;
             this.ZipCodeTextBox1.Text = "00-000";
             this.ZipCodeTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ZipCodeTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ZipCodeTextBox1_KeyPress);
             // 
             // PhoneNumberTextBox
             // 
@@ -189,7 +191,8 @@
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(300, 28);
             this.PhoneNumberTextBox.TabIndex = 26;
-            this.PhoneNumberTextBox.Text = "Phone Number";
+            this.PhoneNumberTextBox.Text = "000000000";
+            this.PhoneNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneNumberTextBox_KeyPress);
             // 
             // CityNameTextBox
             // 
@@ -343,6 +346,7 @@
             this.EmailTextBox.TabIndex = 42;
             this.EmailTextBox.Text = "Email";
             this.EmailTextBox.UseWaitCursor = true;
+            this.EmailTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.EmailTextBox_KeyPress);
             // 
             // EmailLabel
             // 
@@ -422,7 +426,7 @@
             this.Controls.Add(this.ClientDetailsLabel);
             this.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ShowClientDetailsUserControl";
             this.Size = new System.Drawing.Size(730, 800);
             this.ResumeLayout(false);
