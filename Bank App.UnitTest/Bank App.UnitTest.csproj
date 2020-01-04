@@ -64,6 +64,7 @@
     <Compile Include="DataBaseManagerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransferManagerTests.cs" />
+    <Compile Include="LogInManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

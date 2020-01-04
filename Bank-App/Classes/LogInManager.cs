@@ -1,4 +1,5 @@
-﻿using Bank_App.Forms;
+﻿using Bank_App.Classes;
+using Bank_App.Forms;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -9,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Bank_App.Classes
 {
-    class LogInManager
+    public class LogInManager
     {
         public static string WhoIsCurrentLoged { get; set; }
         DataBaseManager dataBaseManager = new DataBaseManager();
