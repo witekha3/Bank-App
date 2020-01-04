@@ -41,6 +41,11 @@ namespace Bank_App.Classes
 
         }
 
+        public string DisplayUserAccountBalance()
+        {
+            DataTable data = dataBaseManager.Get("SELECT Saldo FROM AccountTable WHERE AccountNumber = '" + LogInManager.WhoIsCurrentLoged + "';");
+            return data.Rows[0].ItemArray[0].ToString();
+        }
         public void CreateAccount()
         {
             int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
