@@ -15,7 +15,7 @@ namespace Bank_App.Forms
     public partial class ClientForm : Form
     {
         private ClientForm instance;
-
+        AccountsManager accountsManager = new AccountsManager();
         public ClientForm Instance
         {
             get
@@ -99,6 +99,7 @@ namespace Bank_App.Forms
         private void ClientForm_Load(object sender, EventArgs e)
         {
             AccountNumberLabel.Text = LogInManager.WhoIsCurrentLoged;
+            SaldoLabel.Text = "Balance: " + accountsManager.DisplayUserAccountBalance();
         }
     }
 }
