@@ -211,6 +211,7 @@
             this.AccountNumberTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AccountNumberTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.AccountNumberTextBox.Location = new System.Drawing.Point(25, 490);
+            this.AccountNumberTextBox.MaxLength = 26;
             this.AccountNumberTextBox.Name = "AccountNumberTextBox";
             this.AccountNumberTextBox.Size = new System.Drawing.Size(300, 28);
             this.AccountNumberTextBox.TabIndex = 11;

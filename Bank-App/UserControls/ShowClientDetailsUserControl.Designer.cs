@@ -88,6 +88,7 @@
             this.PeselTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PeselTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.PeselTextBox.Location = new System.Drawing.Point(25, 105);
+            this.PeselTextBox.MaxLength = 11;
             this.PeselTextBox.Name = "PeselTextBox";
             this.PeselTextBox.Size = new System.Drawing.Size(300, 28);
             this.PeselTextBox.TabIndex = 12;
@@ -175,6 +176,7 @@
             this.ZipCodeTextBox1.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.ZipCodeTextBox1.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.ZipCodeTextBox1.Location = new System.Drawing.Point(380, 345);
+            this.ZipCodeTextBox1.MaxLength = 6;
             this.ZipCodeTextBox1.Name = "ZipCodeTextBox1";
             this.ZipCodeTextBox1.Size = new System.Drawing.Size(110, 28);
             this.ZipCodeTextBox1.TabIndex = 25;
@@ -188,6 +190,7 @@
             this.PhoneNumberTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.PhoneNumberTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.PhoneNumberTextBox.Location = new System.Drawing.Point(381, 445);
+            this.PhoneNumberTextBox.MaxLength = 9;
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(300, 28);
             this.PhoneNumberTextBox.TabIndex = 26;

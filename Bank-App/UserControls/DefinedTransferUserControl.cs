@@ -14,7 +14,7 @@ namespace Bank_App.UserControls
 {
     public partial class DefinedTransferUserControl : UserControl
     {
-        DataBaseManager DataBaseManager = new DataBaseManager();
+        DataBaseManager dataBaseManager = new DataBaseManager();
         TransferManager transferManager = new TransferManager();
         public DefinedTransferUserControl()
         {
@@ -32,8 +32,11 @@ namespace Bank_App.UserControls
 
             try
             {
-                DataBaseManager.Post("Delete from TransferHistory where Title = " + "'" + TransferHistoryListView.SelectedItems[0].Text + "'" + " and ReceiverAccountNumber = "
-                   + "'" + TransferHistoryListView.SelectedItems[0].SubItems[2].Text + "'" + " and Date = " + "'" + TransferHistoryListView.SelectedItems[0].SubItems[3].Text + "'");
+                string title = TransferHistoryListView.SelectedItems[0].Text;
+                string accountNumber = TransferHistoryListView.SelectedItems[0].SubItems[2].Text;
+                string date = TransferHistoryListView.SelectedItems[0].SubItems[3].Text;
+
+                transferManager.DeleteFromTransferHistory(title, accountNumber, date);
 
                 TransferHistoryListView.SelectedItems[0].Remove();
             }

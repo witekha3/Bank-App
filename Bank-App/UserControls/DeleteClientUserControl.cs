@@ -30,14 +30,11 @@ namespace Bank_App.UserControls
         {
             try
             {
-                dataBaseManager.Post("Delete " +
-                "UserTable.*, " +
-                "PersonTable.*, " +
-                "AccountTable.* " +
-                "FROM AccountTable " +
-                "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
-                "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
-                "Where AccountTable.Id = " + ClientsListView.SelectedItems[0].Text);
+                string id = ClientsListView.SelectedItems[0].Text;
+                string accountNumber = ClientsListView.SelectedItems[0].SubItems[4].Text;
+
+                accountsManager.DeleteClientFromDataBase(id);
+                accountsManager.DeleteAnotherRecordsRelatedToClient(accountNumber);
 
                 ClientsListView.SelectedItems[0].Remove();
             }

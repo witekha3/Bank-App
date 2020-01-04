@@ -133,5 +133,26 @@ namespace Bank_App.Classes
             ", PhoneNumber = " + "'" + phone + "'" +
             " WHERE Id = " + "'" + personTableId + "'");
         }
+
+        public void DeleteClientFromDataBase(string id)
+        {
+            dataBaseManager.Post("Delete " +
+                "UserTable.*, " +
+                "PersonTable.*, " +
+                "AccountTable.* " +
+                "FROM AccountTable " +
+                "INNER JOIN UserTable ON UserTable.Id = AccountTable.UserId " +
+                "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
+                "Where AccountTable.Id = " + "'" + id + "'");
+
+
+        }
+
+        public void DeleteAnotherRecordsRelatedToClient(string accountNumber)
+        {
+            dataBaseManager.Post("Delete from TransferHistory where ReceiverAccountNumber =  " + "'" + accountNumber + "'");
+
+            dataBaseManager.Post("Delete from InvestmentTable where AccountNumber = " + "'" + accountNumber + "'");
+        }
     }
 }

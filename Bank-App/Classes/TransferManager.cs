@@ -123,5 +123,12 @@ namespace Bank_App.Classes
 
             return data;
         }
+
+        public void DeleteFromTransferHistory(string title, string accountNumber, string date)
+        {
+            dataBaseManager.Post("Delete from TransferHistory where Title = " + "'" + title + "'" + " and ReceiverAccountNumber = "
+                   + "'" + accountNumber + "'" + " and Date = " + "'" + date + "'");
+
+        }
     }
 }
