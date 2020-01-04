@@ -138,6 +138,16 @@ namespace Bank_App.UserControls
             this.Parent.Controls["mainUserControl"].BringToFront();
         }
 
+        private void AcceptNumbersAndLettersAndAt(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == '@' && EmailTextBox.SelectionStart == 0)
+                e.Handled = true;
+
+            if (e.KeyChar == '@' && (sender as TextBox).Text.Contains('@'))
+                e.Handled = true;
+
+        }
+
         private void CancelButton_Click(object sender, EventArgs e)
         {
             Cancel();
@@ -148,5 +158,9 @@ namespace Bank_App.UserControls
             Next();            
         }
 
+        private void EmailTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptNumbersAndLettersAndAt(sender, e);
+        }
     }
 }

@@ -54,7 +54,7 @@ namespace Bank_App.UserControls
                 isConfirmed = false;
             }
 
-            if(AccountNumberTextBox.Text == "" || transferManager.CheckIfExist(AccountNumberTextBox.Text) == false)
+            if(AccountNumberTextBox.Text == "" || transferManager.CheckIfExist(AccountNumberTextBox.Text) == false || AccountNumberTextBox.Text == LogInManager.WhoIsCurrentLoged)
             {
                 IncorrectAccountNumberLabel.Visible = true;
                 AccountNumberTextBox.ForeColor = Color.White;
@@ -95,11 +95,25 @@ namespace Bank_App.UserControls
 
             if (isConfirmed == true)
             {
-                transferManager.SendMoney(CreateTransfer());
-                SetVisibility(false);
-                ResetControls();
-                SetValueOfTextBoxes();
-                this.Parent.Controls["MainUserControl"].BringToFront();                            
+                Transfer transfer = new Transfer(TitleTextBox.Text, Convert.ToDecimal(ValueTextBox.Text),LogInManager.WhoIsCurrentLoged,
+                    AccountNumberTextBox.Text, DatePicker.Value.Date);
+
+                if(transfer.TransferValue > 0)
+                {
+                    transferManager.SendMoney(transfer);
+                    SetVisibility(false);
+                    ResetControls();
+                    SetValueOfTextBoxes();
+                    this.Parent.Controls["MainUserControl"].BringToFront();
+                }
+                else
+                {
+                    IncorrectValueLabel.Visible = true;
+                    ValueTextBox.ForeColor = Color.White;
+                    ValueTextBox.BackColor = Color.Red;
+                    isConfirmed = false;
+                }
+                           
             }
 
         }
@@ -108,8 +122,8 @@ namespace Bank_App.UserControls
         {
             TitleTextBox.Text = "Title";
             ValueTextBox.Text = "0";
-            AccountNumberTextBox.Text = "0";
-            DefinedTransferTextBox.Text = "";
+            AccountNumberTextBox.Text = "00000000000000000000000000";
+            DefinedTransferTextBox.Text = "Defined Transfer";
         }
 
         private void Cancel()
@@ -118,17 +132,6 @@ namespace Bank_App.UserControls
             ResetControls();
             SetValueOfTextBoxes();
             this.Parent.Controls["MainUserControl"].BringToFront();
-        }
-        private Transfer CreateTransfer()
-        {
-            Transfer transfer = new Transfer(
-                TitleTextBox.Text,
-                Convert.ToDecimal(ValueTextBox.Text),
-                LogInManager.WhoIsCurrentLoged,
-                AccountNumberTextBox.Text,
-                DatePicker.Value.Date);
-
-            return transfer;
         }
 
         private void SelectDefinedTransfer()
@@ -156,6 +159,29 @@ namespace Bank_App.UserControls
                 AccountNumberTextBox.Text = data.Rows[0].ItemArray[2].ToString();
                 SetVisibility(true);
             }
+        }
+
+        private void AcceptOnlyNumbers(object sender, KeyPressEventArgs e)
+        {
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
+        }
+
+        private void AcceptOnlyNumbersAndComma(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ',' && ValueTextBox.SelectionStart == 0)
+                e.Handled = true;
+
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+                e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == ',' || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
         }
 
         private void ConfirmButton_Click(object sender, EventArgs e)
@@ -192,6 +218,16 @@ namespace Bank_App.UserControls
         private void DefinedTransferTxt_Click(object sender, EventArgs e)
         {
             DefinedTransfer();
+        }
+
+        private void AccountNumberTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbers(sender, e);
+        }
+
+        private void ValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbersAndComma(sender, e);
         }
     }
 }

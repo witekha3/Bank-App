@@ -115,6 +115,7 @@
             this.ValueTextBox.TabIndex = 11;
             this.ValueTextBox.Text = "0";
             this.ValueTextBox.UseWaitCursor = true;
+            this.ValueTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ValueTextBox_KeyPress);
             // 
             // IncorrectValueLabel
             // 
@@ -213,8 +214,9 @@
             this.AccountNumberTextBox.Name = "AccountNumberTextBox";
             this.AccountNumberTextBox.Size = new System.Drawing.Size(300, 28);
             this.AccountNumberTextBox.TabIndex = 11;
-            this.AccountNumberTextBox.Text = "0";
+            this.AccountNumberTextBox.Text = "00000000000000000000000000";
             this.AccountNumberTextBox.UseWaitCursor = true;
+            this.AccountNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.AccountNumberTextBox_KeyPress);
             // 
             // IncorrectAccountNumberLabel
             // 
@@ -233,10 +235,13 @@
             // 
             this.DefinedTransferTextBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.DefinedTransferTextBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.DefinedTransferTextBox.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.DefinedTransferTextBox.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.DefinedTransferTextBox.Location = new System.Drawing.Point(202, 75);
             this.DefinedTransferTextBox.Name = "DefinedTransferTextBox";
-            this.DefinedTransferTextBox.Size = new System.Drawing.Size(447, 32);
+            this.DefinedTransferTextBox.Size = new System.Drawing.Size(434, 28);
             this.DefinedTransferTextBox.TabIndex = 18;
+            this.DefinedTransferTextBox.Text = "Defined Transfer";
             this.DefinedTransferTextBox.Click += new System.EventHandler(this.DefinedTransferTxt_Click);
             this.DefinedTransferTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DefinedTransferTxt_KeyDown);
             // 

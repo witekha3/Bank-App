@@ -222,6 +222,7 @@
             this.ZipCodeTextBox1.TabIndex = 8;
             this.ZipCodeTextBox1.Text = "00-000";
             this.ZipCodeTextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ZipCodeTextBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ZipCodeTextBox1_KeyPress);
             // 
             // PhoneNumberTextBox
             // 
@@ -231,7 +232,8 @@
             this.PhoneNumberTextBox.Name = "PhoneNumberTextBox";
             this.PhoneNumberTextBox.Size = new System.Drawing.Size(300, 28);
             this.PhoneNumberTextBox.TabIndex = 8;
-            this.PhoneNumberTextBox.Text = "Phone Number";
+            this.PhoneNumberTextBox.Text = "000000000";
+            this.PhoneNumberTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PhoneNumberTextBox_KeyPress);
             // 
             // PeselTextBox
             // 
@@ -241,7 +243,8 @@
             this.PeselTextBox.Name = "PeselTextBox";
             this.PeselTextBox.Size = new System.Drawing.Size(300, 28);
             this.PeselTextBox.TabIndex = 8;
-            this.PeselTextBox.Text = "Pesel";
+            this.PeselTextBox.Text = "00000000";
+            this.PeselTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.PeselTextBox_KeyPress);
             // 
             // CityNameTextBox
             // 

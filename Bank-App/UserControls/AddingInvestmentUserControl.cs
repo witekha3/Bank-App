@@ -84,9 +84,17 @@ namespace Bank_App.UserControls
         private void SetTextBoxesValue()
         {
             NameTextBox.Text = "Name";
-            ValueTextBox.Text = "Value";
+            ValueTextBox.Text = "0";
             DurationComboBox.Text = "30 days";
             TypeComboBox.Text = "Daily";
+        }
+
+        private bool CheckIfValueIsGreaterThanZero(string value)
+        {
+            if (Convert.ToDecimal(value) > 0)
+                return true;
+            else
+                return false;
         }
 
         private void Confirm()
@@ -94,24 +102,50 @@ namespace Bank_App.UserControls
             ResetControls();
             bool isConfirmed = CheckControls();
 
-            if(isConfirmed == true)
+            if (isConfirmed == true)
             {
-                isConfirmed = investmentManager.CheckBalance(ValueTextBox.Text);
+                isConfirmed = CheckIfValueIsGreaterThanZero(ValueTextBox.Text);
 
-                if (isConfirmed == true)
+                if(isConfirmed == true)
                 {
-                    investmentManager.AddInvestment(DurationComboBox.Text, NameTextBox.Text, TypeComboBox.Text, ValueTextBox.Text);
-                    transferManager.UpdateBalance(investmentManager.Saldo, Convert.ToDecimal(ValueTextBox.Text),'-');
-                    ResetControls();
-                    SetTextBoxesValue();
-                    investmentManager.Saldo = 0.0M;
-                    this.Parent.Controls["mainUserControl"].BringToFront();
+                    isConfirmed = investmentManager.CheckBalance(ValueTextBox.Text);
+
+                    if (isConfirmed == true)
+                    {
+                        investmentManager.AddInvestment(DurationComboBox.Text, NameTextBox.Text, TypeComboBox.Text, ValueTextBox.Text);
+                        transferManager.UpdateBalance(investmentManager.Saldo, Convert.ToDecimal(ValueTextBox.Text), '-');
+                        ResetControls();
+                        SetTextBoxesValue();
+                        investmentManager.Saldo = 0.0M;
+                        this.Parent.Controls["mainUserControl"].BringToFront();
+                    }
+                    else
+                    {
+                        IncorrectBalanceLabel.Visible = true;
+                    }
                 }
                 else
                 {
-                    IncorrectBalanceLabel.Visible = true;
+                    IncorrectValueLabel.Visible = true;
+                    ValueTextBox.ForeColor = Color.White;
+                    ValueTextBox.BackColor = Color.Red;
                 }
+
             }
+        }
+
+        private void AcceptOnlyNumbersAndComma(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == ',' && ValueTextBox.SelectionStart == 0)
+                e.Handled = true;
+
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(','))
+                e.Handled = true;
+
+            if (char.IsDigit(e.KeyChar) || e.KeyChar == ',' || e.KeyChar == (char)Keys.Back)
+                base.OnKeyPress(e);
+            else
+                e.Handled = true;
         }
 
         private void Cancel()
@@ -130,6 +164,11 @@ namespace Bank_App.UserControls
         private void ConfirmButton_Click(object sender, EventArgs e)
         {
             Confirm();
+        }
+
+        private void ValueTextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            AcceptOnlyNumbersAndComma(sender, e);
         }
     }
 }
