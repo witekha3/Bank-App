@@ -14,6 +14,7 @@ namespace Bank_App
 {
     public partial class LogInForm : Form
     {
+        InvestmentManager investmentManager = new InvestmentManager();
         LogInManager logInManager = new LogInManager();
         public LogInForm()
         {
@@ -72,9 +73,12 @@ namespace Bank_App
 
             if (isConfirmed == true)
             {
+
                 bool isUserExist = logInManager.LogIn(LogInTextBox.Text, PasswordTextBox.Text, out isAdmin);
-                
-                if(isUserExist == true)
+                investmentManager.UpDateInvestments();
+
+                if (isUserExist == true)
+
                 {
                     if(isAdmin == true)
                     {
