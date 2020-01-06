@@ -1,9 +1,12 @@
 ﻿using Bank_App.Enums;
+using Bank_App.Forms;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Bank_App.Classes
 {
@@ -37,5 +40,6 @@ namespace Bank_App.Classes
             Duration = duration;
             Interest = interest;
         }
+       
     }
 }
