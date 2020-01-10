@@ -14,8 +14,7 @@ namespace Bank_App.Forms
     public class DataBaseManager
     {
 
-        private string connectionString = "server=sql7.freesqldatabase.com;user=sql7316377;database=sql7316377;password=IOon5ive!;";
-
+        private string connectionString = "server=sql7.freesqldatabase.com;user=sql7318515;database=sql7318515;password=IOon5ive!;";
         public DataTable Get(string query) 
         {
             MySqlConnection sqlcon = new MySqlConnection(connectionString);
