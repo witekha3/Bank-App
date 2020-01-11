@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace Bank_App.Classes
 {
-    class InvestmentManager
+    public class InvestmentManager
     {
         DataBaseManager dataBaseManager = new DataBaseManager();
 

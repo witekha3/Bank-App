@@ -66,6 +66,7 @@
     <Compile Include="TransferManagerTests.cs" />
     <Compile Include="LogInManagerTests.cs" />
     <Compile Include="AccountsManagerTests.cs" />
+    <Compile Include="InvestmentManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

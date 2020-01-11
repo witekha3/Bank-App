@@ -147,7 +147,6 @@ namespace Bank_App.UnitTest
         [TestMethod]
         public void UpdateUserDetails_IncorrectPesel_ReturnsVoid()
         {
-            //AccountsManager accountsManager = new AccountsManager();
             string[] tab = returnDetailsOfLastUser();
             string name = tab[0];
             string surname = tab[1];
@@ -158,7 +157,6 @@ namespace Bank_App.UnitTest
             string login = tab[6];
             string pesel = tab[7];
 
-            //accountsManager.UpdateUserDetails("a", "test", "test", "test", "test", "test", "test", "test");
             tab = returnDetailsOfLastUser();
 
             bool updated = false;
