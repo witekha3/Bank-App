@@ -22,7 +22,10 @@ namespace Bank_App.UnitTest
             TransferManager transferManager = new TransferManager();
             var result = transferManager.GetUsersFromDataBase();
             bool res2 = false;
-            if (result.Rows.Count > 0) { res2 = true; }
+            if (result.Rows.Count > 0)
+            {
+                res2 = true;
+            }
             Assert.IsTrue(res2); ;
         }
 
@@ -57,5 +60,7 @@ namespace Bank_App.UnitTest
             var result = transferManager.DefinedTransfer();
             Assert.IsInstanceOfType(result, typeof(AutoCompleteStringCollection));
         }
+
+
     }
 }
