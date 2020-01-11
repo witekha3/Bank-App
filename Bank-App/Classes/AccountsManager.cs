@@ -44,6 +44,7 @@ namespace Bank_App.Classes
         {
             bool exist = false;
 
+
             if (dataBaseManager.Get("SELECT Pesel FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
             {
                 exist = true;
@@ -58,7 +59,6 @@ namespace Bank_App.Classes
 
             return balance;
         }
-
         public void CreateAccount()
         {
             int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
