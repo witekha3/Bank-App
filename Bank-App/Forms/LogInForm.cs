@@ -111,7 +111,17 @@ namespace Bank_App
 
         private void LogInButton_Click(object sender, EventArgs e)
         {
-            LogIn();
+
+            DataBaseManager db = new DataBaseManager();
+            db.Post("Insert into PersonTable Values('','admin','admin','admin','admin','admin','10 -10-2012', 'admin','admin')");
+            db.Post("Insert into UserTable Values('', 'admin','admin','1')");
+            db.Post("Insert into AccountTable Values('','1','1','admin','100')");
+
+
+
+
+
+            //LogIn();
         }
     }
 }

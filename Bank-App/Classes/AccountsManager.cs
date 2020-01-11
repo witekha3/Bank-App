@@ -43,6 +43,7 @@ namespace Bank_App.Classes
         {
             bool exist = false;
 
+
             if (dataBaseManager.Get("SELECT Pesel FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
             {
                 exist = true;
@@ -55,7 +56,6 @@ namespace Bank_App.Classes
             DataTable data = dataBaseManager.Get("SELECT Saldo FROM AccountTable WHERE AccountNumber = '" + LogInManager.WhoIsCurrentLoged + "';");
             return data.Rows[0].ItemArray[0].ToString();
         }
-
         public void CreateAccount()
         {
             int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
