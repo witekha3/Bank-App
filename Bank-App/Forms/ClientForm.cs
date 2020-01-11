@@ -16,6 +16,7 @@ namespace Bank_App.Forms
     {
         private ClientForm instance;
         AccountsManager accountsManager = new AccountsManager();
+        TransferManager transferManager = new TransferManager();
         public ClientForm Instance
         {
             get
@@ -35,6 +36,13 @@ namespace Bank_App.Forms
             CentralPanel.Controls["MainUserControl"].BringToFront();
         }
 
+        public void RefreshBalanceLabel(object o, EventArgs e)
+        {
+            decimal balance = accountsManager.GetUserAccountBalance();
+
+            BalanceLabel.Text = "Balance: " + balance.ToString("C");
+        }
+
         private void CreateControls()
         {
             MainUserControl mainUserControl = new MainUserControl();
@@ -44,6 +52,7 @@ namespace Bank_App.Forms
             TransferUserControl transferUserControl = new TransferUserControl();
             transferUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(transferUserControl);
+            transferUserControl.ChangedBalanceValue += RefreshBalanceLabel;
 
             AccountDetailsUserControl accountDetailsUserControl = new AccountDetailsUserControl();
             accountDetailsUserControl.Dock = DockStyle.Fill;
@@ -98,8 +107,12 @@ namespace Bank_App.Forms
 
         private void ClientForm_Load(object sender, EventArgs e)
         {
+            decimal balance = accountsManager.GetUserAccountBalance();
+
             AccountNumberLabel.Text = LogInManager.WhoIsCurrentLoged;
-            SaldoLabel.Text = "Balance: " + accountsManager.DisplayUserAccountBalance();
+
+            BalanceLabel.Text = "Balance: " + balance.ToString("C");
+
         }
     }
 }

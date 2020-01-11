@@ -36,7 +36,7 @@
             this.TransfersHistoryButton = new System.Windows.Forms.Button();
             this.TransfersButton = new System.Windows.Forms.Button();
             this.LogoPanel = new System.Windows.Forms.Panel();
-            this.SaldoLabel = new System.Windows.Forms.Label();
+            this.BalanceLabel = new System.Windows.Forms.Label();
             this.AccountNumberLabel = new System.Windows.Forms.Label();
             this.MottoLabel = new System.Windows.Forms.Label();
             this.LogoPictureBox = new System.Windows.Forms.PictureBox();
@@ -144,7 +144,7 @@
             // 
             // LogoPanel
             // 
-            this.LogoPanel.Controls.Add(this.SaldoLabel);
+            this.LogoPanel.Controls.Add(this.BalanceLabel);
             this.LogoPanel.Controls.Add(this.AccountNumberLabel);
             this.LogoPanel.Controls.Add(this.MottoLabel);
             this.LogoPanel.Controls.Add(this.LogoPictureBox);
@@ -154,27 +154,27 @@
             this.LogoPanel.Size = new System.Drawing.Size(270, 250);
             this.LogoPanel.TabIndex = 0;
             // 
-            // SaldoLabel
+            // BalanceLabel
             // 
-            this.SaldoLabel.AutoSize = true;
-            this.SaldoLabel.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SaldoLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.SaldoLabel.Location = new System.Drawing.Point(80, 200);
-            this.SaldoLabel.Name = "SaldoLabel";
-            this.SaldoLabel.Size = new System.Drawing.Size(100, 19);
-            this.SaldoLabel.TabIndex = 1;
-            this.SaldoLabel.Text = "Saldo: 0.00";
+            this.BalanceLabel.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.BalanceLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.BalanceLabel.Location = new System.Drawing.Point(6, 202);
+            this.BalanceLabel.Name = "BalanceLabel";
+            this.BalanceLabel.Size = new System.Drawing.Size(261, 19);
+            this.BalanceLabel.TabIndex = 1;
+            this.BalanceLabel.Text = "Balance: 0.00";
+            this.BalanceLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // AccountNumberLabel
             // 
-            this.AccountNumberLabel.AutoSize = true;
             this.AccountNumberLabel.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AccountNumberLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.AccountNumberLabel.Location = new System.Drawing.Point(15, 175);
+            this.AccountNumberLabel.Location = new System.Drawing.Point(3, 175);
             this.AccountNumberLabel.Name = "AccountNumberLabel";
-            this.AccountNumberLabel.Size = new System.Drawing.Size(240, 18);
+            this.AccountNumberLabel.Size = new System.Drawing.Size(264, 18);
             this.AccountNumberLabel.TabIndex = 1;
             this.AccountNumberLabel.Text = "11 1111 1111 1111 1111 1111 1111";
+            this.AccountNumberLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // MottoLabel
             // 
@@ -241,7 +241,7 @@
         private System.Windows.Forms.PictureBox LogoPictureBox;
         private System.Windows.Forms.Panel CentralPanel;
         private System.Windows.Forms.Button AccountDetailsButton;
-        private System.Windows.Forms.Label SaldoLabel;
+        private System.Windows.Forms.Label BalanceLabel;
         private System.Windows.Forms.Label AccountNumberLabel;
     }
 }

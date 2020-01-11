@@ -13,6 +13,7 @@ namespace Bank_App.Classes
     class AccountsManager
     {
         DataBaseManager dataBaseManager = new DataBaseManager();
+        TransferManager transferManager = new TransferManager();
         public static Client Client { get; set; }
         public string GenerateAccountNumber()
         {
@@ -41,10 +42,12 @@ namespace Bank_App.Classes
 
         }
 
-        public string DisplayUserAccountBalance()
+        public decimal GetUserAccountBalance()
         {
-            DataTable data = dataBaseManager.Get("SELECT Saldo FROM AccountTable WHERE AccountNumber = '" + LogInManager.WhoIsCurrentLoged + "';");
-            return data.Rows[0].ItemArray[0].ToString();
+            DataTable data = transferManager.GetSenderData();
+            decimal balance = Convert.ToDecimal(data.Rows[0]["Saldo"]);
+
+            return balance;
         }
         public void CreateAccount()
         {
