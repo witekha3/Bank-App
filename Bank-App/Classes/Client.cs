@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Bank_App.Classes
 {
-    class Client : User
+    public class Client : User
     {
         public string AccountNumber { get; set; }
         public decimal Balance { get; set; }

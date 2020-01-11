@@ -41,7 +41,7 @@ namespace Bank_App.UnitTest
         public void CheckIfExist_CorrectAccountNumber_ReturnsTrue()
         {
             TransferManager transferManager = new TransferManager();
-            var result = transferManager.CheckIfExist("00000000000000000000000000");
+            var result = transferManager.CheckIfExist("admin");
             Assert.IsTrue(result); ;
         }
 

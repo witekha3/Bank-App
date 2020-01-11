@@ -10,15 +10,17 @@ using System.Windows.Forms;
 
 namespace Bank_App.Classes
 {
-    class AccountsManager
+    public class AccountsManager
     {
         DataBaseManager dataBaseManager = new DataBaseManager();
         TransferManager transferManager = new TransferManager();
         public static Client Client { get; set; }
+
         public string GenerateAccountNumber()
         {
             string accountNumber = "";
             int numberToAdd;
+            DataTable existingAccountsNumbers = dataBaseManager.Get("Select AccountNumber from AccountTable");
 
             Random random = new Random();
 
@@ -28,18 +30,26 @@ namespace Bank_App.Classes
                 accountNumber += numberToAdd.ToString();
             }
 
+            foreach (DataRow row in existingAccountsNumbers.Rows)
+            {
+                if (row.ItemArray[0].ToString() == accountNumber) 
+                {
+                    GenerateAccountNumber();
+                }
+            }
             return accountNumber;
         }
 
         public bool CheckIfPersonExist(string pesel) 
         {
             bool exist = false;
-            if (dataBaseManager.Get("SELECT * FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
+
+
+            if (dataBaseManager.Get("SELECT Pesel FROM PersonTable WHERE Pesel = " + "'" + pesel + "'").Rows.Count > 0)
             {
                 exist = true;
             }
             return exist;
-
         }
 
         public decimal GetUserAccountBalance()
