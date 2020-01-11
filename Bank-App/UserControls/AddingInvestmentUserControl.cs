@@ -18,6 +18,16 @@ namespace Bank_App.UserControls
         InvestmentManager investmentManager = new InvestmentManager();
         TransferManager transferManager = new TransferManager();
         InvestmentTypes[] investmentTypesTab = new InvestmentTypes[4];
+
+        public delegate void ChangedBalanceValueEventHandler(object o, EventArgs e);
+        public event ChangedBalanceValueEventHandler ChangedBalanceValue;
+
+        protected virtual void OnChangedBalanceValue()
+        {
+            if (ChangedBalanceValue != null)
+                ChangedBalanceValue(this, EventArgs.Empty);
+        }
+
         public AddingInvestmentUserControl()
         {
             InitializeComponent();
@@ -117,6 +127,7 @@ namespace Bank_App.UserControls
                         ResetControls();
                         SetTextBoxesValue();
                         investmentManager.Saldo = 0.0M;
+                        OnChangedBalanceValue();
                         this.Parent.Controls["mainUserControl"].BringToFront();
                     }
                     else

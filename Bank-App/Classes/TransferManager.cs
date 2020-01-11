@@ -22,7 +22,6 @@ namespace Bank_App.Classes
             dataBaseManager.Post("update AccountTable set Saldo = " + "'" + currentSaldo.ToString().Replace(",",".") + "'" + "where AccountNumber =" + "'" + transfer.SenderAccountNumber + "'");
             ReceiveMoney(transfer);
             UpdateTransferList(transfer);
-
         }
         public void ReceiveMoney(Transfer transfer)
         {

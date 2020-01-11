@@ -17,6 +17,7 @@ namespace Bank_App.Forms
         private ClientForm instance;
         AccountsManager accountsManager = new AccountsManager();
         TransferManager transferManager = new TransferManager();
+        
         public ClientForm Instance
         {
             get
@@ -33,6 +34,7 @@ namespace Bank_App.Forms
         {
             InitializeComponent();
             CreateControls();
+
             CentralPanel.Controls["MainUserControl"].BringToFront();
         }
 
@@ -65,10 +67,12 @@ namespace Bank_App.Forms
             InvestmentsUserControl investmentsUserControl = new InvestmentsUserControl();
             investmentsUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(investmentsUserControl);
+            investmentsUserControl.ChangedBalanceValue += RefreshBalanceLabel;
 
             AddingInvestmentUserControl addingInvestmentUserControl = new AddingInvestmentUserControl();
             addingInvestmentUserControl.Dock = DockStyle.Fill;
             CentralPanel.Controls.Add(addingInvestmentUserControl);
+            addingInvestmentUserControl.ChangedBalanceValue += RefreshBalanceLabel;
 
         }
 
@@ -112,7 +116,6 @@ namespace Bank_App.Forms
             AccountNumberLabel.Text = LogInManager.WhoIsCurrentLoged;
 
             BalanceLabel.Text = "Balance: " + balance.ToString("C");
-
         }
     }
 }

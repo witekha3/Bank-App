@@ -24,7 +24,6 @@ namespace Bank_App.UserControls
             if (ChangedBalanceValue != null)
                 ChangedBalanceValue(this, EventArgs.Empty);
         }
-
         public TransferUserControl()
         {
             InitializeComponent();
