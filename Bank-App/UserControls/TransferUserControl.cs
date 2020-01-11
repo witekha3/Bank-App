@@ -15,6 +15,15 @@ namespace Bank_App.UserControls
     public partial class TransferUserControl : UserControl
     {
         TransferManager transferManager = new TransferManager();
+
+        public delegate void ChangedBalanceValueEventHandler(object o, EventArgs e);
+        public event ChangedBalanceValueEventHandler ChangedBalanceValue;
+
+        protected virtual void OnChangedBalanceValue()
+        {
+            if (ChangedBalanceValue != null)
+                ChangedBalanceValue(this, EventArgs.Empty);
+        }
         public TransferUserControl()
         {
             InitializeComponent();
@@ -104,6 +113,7 @@ namespace Bank_App.UserControls
                     SetVisibility(false);
                     ResetControls();
                     SetValueOfTextBoxes();
+                    OnChangedBalanceValue();
                     this.Parent.Controls["MainUserControl"].BringToFront();
                 }
                 else

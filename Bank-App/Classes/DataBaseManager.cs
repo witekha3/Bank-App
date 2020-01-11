@@ -25,9 +25,9 @@ namespace Bank_App.Forms
                 MySqlDataAdapter sqlDataAdapter = new MySqlDataAdapter(query, sqlcon);
                 sqlDataAdapter.Fill(dataTable);
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                //MessageBox.Show(e.ToString());
+
             }
             finally
             {

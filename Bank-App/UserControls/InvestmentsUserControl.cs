@@ -17,6 +17,15 @@ namespace Bank_App.UserControls
         InvestmentManager investmentManager = new InvestmentManager();
         DataBaseManager dataBaseManager = new DataBaseManager();
         TransferManager transferManager = new TransferManager();
+
+        public delegate void ChangedBalanceValueEventHandler(object o, EventArgs e);
+        public event ChangedBalanceValueEventHandler ChangedBalanceValue;
+
+        protected virtual void OnChangedBalanceValue()
+        {
+            if (ChangedBalanceValue != null)
+                ChangedBalanceValue(this, EventArgs.Empty);
+        }
         public InvestmentsUserControl()
         {
             InitializeComponent();
@@ -42,6 +51,7 @@ namespace Bank_App.UserControls
                 investmentManager.Saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
                 transferManager.UpdateBalance(investmentManager.Saldo, Convert.ToDecimal(value), '+');
                 investmentManager.Saldo = 0.0M;
+                OnChangedBalanceValue();
             }
             catch (ArgumentOutOfRangeException)
             {

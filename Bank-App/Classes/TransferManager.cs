@@ -12,9 +12,8 @@ namespace Bank_App.Classes
     public class TransferManager
     {
         DataBaseManager dataBaseManager = new DataBaseManager();
-
         public void SendMoney(Transfer transfer)
-        {
+        {            
             DataTable SenderData = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + transfer.SenderAccountNumber + "'");
 
             decimal saldo = Convert.ToDecimal(SenderData.Rows[0]["Saldo"]);
@@ -43,7 +42,8 @@ namespace Bank_App.Classes
 
         public DataTable GetTransferHistoryFromDataBase()
         {
-            DataTable data = dataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber, Date from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
+            //DataTable data = dataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber, Date from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
+            DataTable data = dataBaseManager.Get("Select * FROM TransferHistory");
             return data;
         }
         public DataTable GetUsersFromDataBase()
