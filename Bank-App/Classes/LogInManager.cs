@@ -19,7 +19,7 @@ namespace Bank_App.Classes
         {
             try
             {
-                DataTable datatable = dataBaseManager.Get("SELECT * FROM UserTable WHERE Login = " + "'" + login + "' AND PASSWORD = " + "'" + password + "'");
+                DataTable datatable = dataBaseManager.Get("SELECT * FROM UserTable WHERE Login = BINARY " + "'" + login + "' AND PASSWORD = BINARY" + "'" + password + "'");
 
                 if (datatable.Rows.Count == 1)
                 {

@@ -49,7 +49,7 @@ namespace Bank_App.UserControls
         public void ShowTransferHistory()
         {
             DataTable data = transferManager.GetTransferHistoryFromDataBase();
-            MessageBox.Show(LogInManager.WhoIsCurrentLoged);
+
             ListViewItem item;
 
             try

@@ -153,7 +153,6 @@ namespace Bank_App.Classes
                 "INNER JOIN PersonTable ON PersonTable.Id = AccountTable.PersonId " +
                 "Where AccountTable.Id = " + "'" + id + "'");
 
-
         }
 
         public void DeleteAnotherRecordsRelatedToClient(string accountNumber)
