@@ -75,7 +75,7 @@ namespace Bank_App
             {
 
                 bool isUserExist = logInManager.LogIn(LogInTextBox.Text, PasswordTextBox.Text, out isAdmin);
-                investmentManager.UpDateInvestments();
+                investmentManager.UpdateInvestments();
 
                 if (isUserExist == true)
 

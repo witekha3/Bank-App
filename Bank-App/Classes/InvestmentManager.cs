@@ -14,53 +14,53 @@ namespace Bank_App.Classes
         DataBaseManager dataBaseManager = new DataBaseManager();
 
         public decimal Saldo = 0.0M;
-        public double MatchInterestToDuration(string Duration)
+        public double MatchInterestToDuration(string duration)
         {
             double interest = 0;
 
-            if (Duration == "30 days")
+            if (duration == "30 days")
             {
                 interest = 0.010;
                 return interest;
             }
 
-            else if (Duration == "60 days")
+            else if (duration == "60 days")
             {
                 interest = 0.030;
                 return interest;
             }
 
-            else if (Duration == "90 days")
+            else if (duration == "90 days")
             {
                 interest = 0.055;
                 return interest;
             }
 
-            else if (Duration == "180 days")
+            else if (duration == "180 days")
             {
                 interest = 0.08;
                 return interest;
             }
 
-            else if (Duration == "360 days")
+            else if (duration == "360 days")
             {
                 interest = 0.12;
                 return interest;
             }
 
-            else if (Duration == "720 days")
+            else if (duration == "720 days")
             {
                 interest = 0.26;
                 return interest;
             }
 
-            else if (Duration == "1800 days")
+            else if (duration == "1800 days")
             {
                 interest = 0.9;
                 return interest;
             }
 
-            else if (Duration == "3600 days")
+            else if (duration == "3600 days")
             {
                 interest = 1.25;
                 return interest;
@@ -96,7 +96,7 @@ namespace Bank_App.Classes
                 return false;
             }
         }
-        public void UpDateInvestments()
+        public void UpdateInvestments()
         {
             DataTable InvestmentList = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
             int totalrows = InvestmentList.Rows.Count;
@@ -177,11 +177,11 @@ namespace Bank_App.Classes
             dataBaseManager.Post("update AccountTable set Saldo = " + "'" + Saldo.ToString().Replace(",", ".") + "'" + "where AccountNumber =" + "'" + AccNumber + "'");
             Saldo = 0;
         }
-        public void UpdateInvStart(int id, string start)
+        public void UpdateInvestmentStart(int id, string start)
         {
             dataBaseManager.Post("update InvestmentTable set Start = " + "'" + start + "'" + "where Id =" + "'" + id.ToString() + "'");
         }
-        public void UpdateInvValue(int id, double value)
+        public void UpdateInvestmentValue(int id, double value)
         {
             dataBaseManager.Post("update InvestmentTable set Value = " + "'" + value.ToString().Replace(",", ".") + "'" + "where Id =" + "'" + id.ToString() + "'");
         }
@@ -212,8 +212,8 @@ namespace Bank_App.Classes
             }
             ts = ts.AddDays(j*30);
             start = ts.ToString("yyyy-MM-dd");
-            UpdateInvStart(id, start);
-            UpdateInvValue(id, value);
+            UpdateInvestmentStart(id, start);
+            UpdateInvestmentValue(id, value);
         }
     }
 }

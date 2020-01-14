@@ -42,8 +42,8 @@
             this.ValueColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.InterestColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.StartColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.DurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.FinishColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.DurationColumn = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.RefreshButton = new System.Windows.Forms.Button();
             this.RefreshLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -140,7 +140,7 @@
             this.InvestmentsList.GridLines = true;
             this.InvestmentsList.HideSelection = false;
             this.InvestmentsList.LabelWrap = false;
-            this.InvestmentsList.Location = new System.Drawing.Point(20, 70);
+            this.InvestmentsList.Location = new System.Drawing.Point(23, 64);
             this.InvestmentsList.MultiSelect = false;
             this.InvestmentsList.Name = "InvestmentsList";
             this.InvestmentsList.Size = new System.Drawing.Size(690, 363);
@@ -155,12 +155,12 @@
             // InvestmentNameColumn
             // 
             this.InvestmentNameColumn.Text = "Name";
-            this.InvestmentNameColumn.Width = 200;
+            this.InvestmentNameColumn.Width = 143;
             // 
             // TypeColumn
             // 
             this.TypeColumn.Text = "Type";
-            this.TypeColumn.Width = 200;
+            this.TypeColumn.Width = 134;
             // 
             // ValueColumn
             // 
@@ -177,16 +177,15 @@
             this.StartColumn.Text = "Start";
             this.StartColumn.Width = 130;
             // 
-            // DurationColumn
-            // 
-            this.DurationColumn.DisplayIndex = 6;
-            this.DurationColumn.Text = "Duration";
-            this.DurationColumn.Width = 130;
-            // 
             // FinishColumn
             // 
             this.FinishColumn.Text = "Finish";
             this.FinishColumn.Width = 130;
+            // 
+            // DurationColumn
+            // 
+            this.DurationColumn.Text = "Duration";
+            this.DurationColumn.Width = 130;
             // 
             // RefreshButton
             // 

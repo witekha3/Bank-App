@@ -287,7 +287,7 @@ namespace Bank_App.UnitTest
             DataBaseManager dataBaseManager = new DataBaseManager();
             DataTable getId = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
 
-            investmentManager.UpdateInvValue(Convert.ToInt32(getId.Rows[0].ItemArray[0]),val);
+            investmentManager.UpdateInvestmentValue(Convert.ToInt32(getId.Rows[0].ItemArray[0]),val);
 
             getId = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
 

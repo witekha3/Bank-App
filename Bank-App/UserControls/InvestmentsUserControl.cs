@@ -86,15 +86,18 @@ namespace Bank_App.UserControls
 
              foreach (DataRow row in MyInvestments.Rows)
              {
-                 string[] subitems = new string[fc];
+                string[] subitems = new string[fc];
+                object[] o = row.ItemArray;
+                 
+                o[5]=(Convert.ToDateTime(o[5].ToString())).ToString("yyyy-MM-dd");
+                o[6] = (Convert.ToDateTime(o[6].ToString())).ToString("yyyy-MM-dd");
 
-                 object[] o = row.ItemArray;
-                 for (int i = 0; i < fc; i++)
-                 {
-                     subitems[i] = o[i].ToString();
-                 }
-                 ListViewItem item = new ListViewItem(subitems);
-                 InvestmentsList.Items.Add(item);
+                for (int i = 0; i < fc; i++)
+                {
+                    subitems[i] = o[i].ToString();
+                }
+                ListViewItem item = new ListViewItem(subitems);
+                InvestmentsList.Items.Add(item);
              }
         }
 

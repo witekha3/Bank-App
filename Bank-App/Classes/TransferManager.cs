@@ -43,8 +43,7 @@ namespace Bank_App.Classes
 
         public DataTable GetTransferHistoryFromDataBase()
         {
-            //DataTable data = dataBaseManager.Get("Select Title, TransferValue, ReceiverAccountNumber, Date from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
-            DataTable data = dataBaseManager.Get("Select * FROM TransferHistory");
+            DataTable data = dataBaseManager.Get("Select * from TransferHistory where SenderAccountNumber = " + LogInManager.WhoIsCurrentLoged);
             return data;
         }
         public DataTable GetUsersFromDataBase()
@@ -60,10 +59,10 @@ namespace Bank_App.Classes
                "ORDER BY AccountTable.Id ");
             return data;
         }
-        public void UpdateBalance(decimal saldo, decimal value, char h)
+        public void UpdateBalance(decimal saldo, decimal value, char sign)
         {
             decimal currentSaldo;
-            if (h == '+') currentSaldo = saldo + value;
+            if (sign == '+') currentSaldo = saldo + value;
             else currentSaldo = saldo - value;
             dataBaseManager.Post("update AccountTable set Saldo = " + "'" + currentSaldo.ToString().Replace(",", ".") + "'" + "where AccountNumber =" + "'" + LogInManager.WhoIsCurrentLoged + "'");
         }

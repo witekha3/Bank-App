@@ -153,6 +153,7 @@ namespace Bank_App.UserControls
         }
         private void DefinedTransfer()
         {
+
             AutoCompleteStringCollection myCollection = transferManager.DefinedTransfer();
 
             DefinedTransferTextBox.AutoCompleteCustomSource = myCollection;
@@ -227,6 +228,7 @@ namespace Bank_App.UserControls
 
         private void DefinedTransferTxt_Click(object sender, EventArgs e)
         {
+            DefinedTransferTextBox.Text = "";
             DefinedTransfer();
         }
 
