@@ -58,10 +58,10 @@ namespace Bank_App.UserControls
 
                 for (int i = 0; i < rowsNumber; i++)
                 {
-                    item = new ListViewItem(data.Rows[i].ItemArray[0].ToString());
-                    item.SubItems.Add(data.Rows[i].ItemArray[1].ToString());
+                    item = new ListViewItem(data.Rows[i].ItemArray[1].ToString());
                     item.SubItems.Add(data.Rows[i].ItemArray[2].ToString());
-                    item.SubItems.Add(data.Rows[i].ItemArray[3].ToString());
+                    item.SubItems.Add(data.Rows[i].ItemArray[4].ToString());
+                    item.SubItems.Add(data.Rows[i].ItemArray[5].ToString());
                     TransferHistoryListView.Items.Add(item);
                 }
             }

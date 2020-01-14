@@ -25,7 +25,7 @@ namespace Bank_App.UserControls
 
             NameLabel.Text = "Name: " + data.Rows[0].ItemArray[2].ToString();
             SurnameLabel.Text = "Surname: " + data.Rows[0].ItemArray[3].ToString();
-            DateOfBirthLabel.Text = "Date of Birth: " + data.Rows[0].ItemArray[4].ToString();
+            DateOfBirthLabel.Text = "Date of Birth: " + (Convert.ToDateTime(data.Rows[0].ItemArray[4].ToString())).ToString("yyyy-MM-dd");
             PeselNumberLabel.Text = "Pesel: " + data.Rows[0].ItemArray[5].ToString();
             EmailLabel.Text = "Email: " + data.Rows[0].ItemArray[6].ToString();
             PhoneNumberLabel.Text = "Phone: " + data.Rows[0].ItemArray[7].ToString();

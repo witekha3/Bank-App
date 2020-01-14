@@ -34,10 +34,11 @@ namespace Bank_App.Classes
         }
         public void UpdateTransferList(Transfer transfer)
         {
-            dataBaseManager.Post("INSERT INTO TransferHistory VALUES("+"''," +
+            string mess = transfer.Date.ToString("yyyy-MM-dd") + " " + DateTime.Now.ToString("HH:mm:ss");
+            dataBaseManager.Post("INSERT INTO TransferHistory VALUES(" + "''," +
                 "'" + transfer.Title + "', '" + transfer.TransferValue.ToString().Replace(",", ".") + "', " +
                 "'" + transfer.SenderAccountNumber + "', '" + transfer.ReceiverAccountNumber + "', " +
-                "'" + transfer.Date.ToString("G") + "')");
+                "'" + mess + "')");
         }
 
         public DataTable GetTransferHistoryFromDataBase()

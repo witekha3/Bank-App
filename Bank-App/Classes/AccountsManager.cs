@@ -61,12 +61,12 @@ namespace Bank_App.Classes
         }
         public void CreateAccount()
         {
-            int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
+            //int indexOfDate = Client.DateOfBirth.ToString().IndexOf(" ");
             
             string personTableQ = "INSERT INTO PersonTable VALUES("+"'' ," +
                     "'" + Client.Name + "', '" + Client.Surname + "', " +
                     "'" + Client.City + "', '" + Client.ZipCode + "', " +
-                    "'" + Client.Email + "', '" + Client.DateOfBirth.ToString("yyyy-MM-dd").Substring(0, indexOfDate) + "', " +
+                    "'" + Client.Email + "', '" + Client.DateOfBirth.ToString("yyyy-MM-dd") + "', " +
                     "'" + Client.PhoneNumber + "', '" + Client.Pesel + "');" +
                     "SELECT LAST_INSERT_ID();";
             
@@ -77,7 +77,7 @@ namespace Bank_App.Classes
             DataTable personId = dataBaseManager.Get(personTableQ);
             DataTable userId = dataBaseManager.Get(userTableQ);
 
-            string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0]+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
+            string createAccountQ = "Insert into AccountTable values('', '"+ personId.Rows[0].ItemArray[0].ToString() + "', '"+ userId.Rows[0].ItemArray[0].ToString()+ "', '" + Client.AccountNumber + "', '" + Client.Balance.ToString().Replace(",",".") +"')";
             dataBaseManager.Post(createAccountQ);
                 
             

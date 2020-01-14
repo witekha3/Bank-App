@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Bank_App.Classes;
 using Bank_App.Forms;
+using System.Data;
 
 namespace Bank_App.UnitTest
 {
@@ -114,6 +115,186 @@ namespace Bank_App.UnitTest
             double result = investmentManager.MatchInterestToDuration(duration);
 
             Assert.AreEqual(result, interests);
+        }
+        [TestMethod]
+        public void CheckBalance_SaldoIsCorrect_ReturnsTrue()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string value = "10";
+            DataBaseManager dataBaseManager = new DataBaseManager();
+
+            string personTableQ = "INSERT INTO PersonTable VALUES(" + "'' ," +
+                   "'" + "name" + "', '" + "Surname" + "', " +
+                   "'" + "City" + "', '" + "ZipCode" + "', " +
+                   "'" + "Email" + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "', " +
+                   "'" + "PhoneNumber" + "', '" + "Pesel" + "');" +
+                   "SELECT LAST_INSERT_ID();";
+
+            string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
+                    "'" + "Login" + "', '" + "Password" + "', 0); SELECT LAST_INSERT_ID();";
+
+
+            DataTable personId = dataBaseManager.Get(personTableQ);
+            DataTable userId = dataBaseManager.Get(userTableQ);
+
+            string createAccountQ = "Insert into AccountTable values('', '" + personId.Rows[0].ItemArray[0].ToString() + "', '" + userId.Rows[0].ItemArray[0].ToString() + "', '" + "test" + "', '" + "100" + "')";
+            dataBaseManager.Post(createAccountQ);
+
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            bool result = investmentManager.CheckBalance(value);
+
+            DataTable getId = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            AccountsManager accountsManager = new AccountsManager();
+            accountsManager.DeleteClientFromDataBase(getId.Rows[0].ItemArray[0].ToString());
+
+            Assert.IsTrue(result);
+        }
+        [TestMethod]
+        public void CheckBalance_SaldoIsCorrect_ReturnsFalse()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string value = "1000";
+            DataBaseManager dataBaseManager = new DataBaseManager();
+
+            string personTableQ = "INSERT INTO PersonTable VALUES(" + "'' ," +
+                   "'" + "name" + "', '" + "Surname" + "', " +
+                   "'" + "City" + "', '" + "ZipCode" + "', " +
+                   "'" + "Email" + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "', " +
+                   "'" + "PhoneNumber" + "', '" + "Pesel" + "');" +
+                   "SELECT LAST_INSERT_ID();";
+
+            string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
+                    "'" + "Login" + "', '" + "Password" + "', 0); SELECT LAST_INSERT_ID();";
+
+
+            DataTable personId = dataBaseManager.Get(personTableQ);
+            DataTable userId = dataBaseManager.Get(userTableQ);
+
+            string createAccountQ = "Insert into AccountTable values('', '" + personId.Rows[0].ItemArray[0].ToString() + "', '" + userId.Rows[0].ItemArray[0].ToString() + "', '" + "test" + "', '" + "100" + "')";
+            dataBaseManager.Post(createAccountQ);
+
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            bool result = investmentManager.CheckBalance(value);
+
+            DataTable getId = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            AccountsManager accountsManager = new AccountsManager();
+            accountsManager.DeleteClientFromDataBase(getId.Rows[0].ItemArray[0].ToString());
+
+            Assert.IsFalse(result);
+        }
+        [TestMethod]
+        public void AddInvestment_InvestmentAdded()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string duration = "180 days";
+            string name = "name";
+            string type = "DAILY";
+            string value = "10";
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            investmentManager.AddInvestment(duration, name, type, value);
+            DataBaseManager dataBaseManager = new DataBaseManager();
+            DataTable result = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            Assert.IsNotNull(result);
+
+            dataBaseManager.Post("delete from InvestmentTable where AccountNumber = "+"'"+LogInManager.WhoIsCurrentLoged+"'");
+        }
+        [TestMethod]
+        public void RemoveInvestment_InvestmentRemovedSuccesfully()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string duration = "180 days";
+            string name = "name";
+            string type = "DAILY";
+            string value = "10";
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            investmentManager.AddInvestment(duration, name, type, value);
+            DataBaseManager dataBaseManager = new DataBaseManager();
+            DataTable getId = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            investmentManager.RemoveInvestment(Convert.ToInt32(getId.Rows[0].ItemArray[0]));
+
+            DataTable result = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+            Assert.AreEqual(result.Rows.Count,0);
+        }
+        [TestMethod]
+        public void GetAllInvestmentsFromDataBase_GetAllInvestmentsSuccesfully()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+
+            DataBaseManager dataBaseManager = new DataBaseManager();
+            InvestmentManager investmentManager = new InvestmentManager();
+            DataTable result = investmentManager.GetAllInvestmentsFromDataBase();
+            DataTable inv = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+
+            Assert.AreEqual(result.Rows.Count, inv.Rows.Count);
+        }
+        [TestMethod]
+        public void SetSaldo_ChangedSaldoSuccesfully()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string value = "10";
+            decimal AddValue = 10;
+
+            DataBaseManager dataBaseManager = new DataBaseManager();
+
+            string personTableQ = "INSERT INTO PersonTable VALUES(" + "'' ," +
+                   "'" + "name" + "', '" + "Surname" + "', " +
+                   "'" + "City" + "', '" + "ZipCode" + "', " +
+                   "'" + "Email" + "', '" + DateTime.Now.ToString("yyyy-MM-dd") + "', " +
+                   "'" + "PhoneNumber" + "', '" + "Pesel" + "');" +
+                   "SELECT LAST_INSERT_ID();";
+
+            string userTableQ = "INSERT INTO UserTable VALUES(" + "'' ," +
+                    "'" + "Login" + "', '" + "Password" + "', 0); SELECT LAST_INSERT_ID();";
+
+
+            DataTable personId = dataBaseManager.Get(personTableQ);
+            DataTable userId = dataBaseManager.Get(userTableQ);
+
+            string createAccountQ = "Insert into AccountTable values('', '" + personId.Rows[0].ItemArray[0].ToString() + "', '" + userId.Rows[0].ItemArray[0].ToString() + "', '" + "test" + "', '" + value + "')";
+            dataBaseManager.Post(createAccountQ);
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            investmentManager.SetSaldo(AddValue,"test");
+
+            DataTable FinalSaldo = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'" + "");
+            Assert.AreEqual(Convert.ToDouble(FinalSaldo.Rows[0].ItemArray[4]), 20);
+
+            DataTable getId = dataBaseManager.Get("select * from AccountTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            AccountsManager accountsManager = new AccountsManager();
+            accountsManager.DeleteClientFromDataBase(getId.Rows[0].ItemArray[0].ToString());
+        }
+        [TestMethod]
+        public void UpdateInvValue_UpdatedSaldoSuccesfully()
+        {
+            LogInManager.WhoIsCurrentLoged = "test";
+            string duration = "180 days";
+            string name = "name";
+            string type = "DAILY";
+            string value = "10";
+            double val = 10;
+
+            InvestmentManager investmentManager = new InvestmentManager();
+            investmentManager.AddInvestment(duration, name, type, value);
+            DataBaseManager dataBaseManager = new DataBaseManager();
+            DataTable getId = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            investmentManager.UpdateInvValue(Convert.ToInt32(getId.Rows[0].ItemArray[0]),val);
+
+            getId = dataBaseManager.Get("select * from InvestmentTable where AccountNumber = " + "'" + LogInManager.WhoIsCurrentLoged + "'");
+
+            double currentsaldo =Convert.ToDouble(getId.Rows[0].ItemArray[3]);
+            investmentManager.RemoveInvestment(Convert.ToInt32(getId.Rows[0].ItemArray[0]));
+
+            Assert.AreEqual(currentsaldo, val);
         }
     }
 }
